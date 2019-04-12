@@ -1,10 +1,605 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="MobileOptimized" content="width"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <title>会员注册_狗扑网</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://www.goupu.com.cn/favicon.ico"/>
+    <link rel="bookmark" type="image/x-icon" href="http://www.goupu.com.cn/favicon.ico"/>
+    <link rel="archives" title="狗扑网" href="http://www.goupu.com.cn/archiver/"/>
+    <link rel="stylesheet" type="text/css" href="http://www.goupu.com.cn/skin/default/style.css"/>
+    <link rel="stylesheet" type="text/css" href="http://www.goupu.com.cn/skin/default/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="http://www.goupu.com.cn/skin/default/fonts/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.goupu.com.cn/skin/default/css/jquery.mCustomScrollbar.css" />
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="http://www.goupu.com.cn/skin/default/ie6.css"/>
+    <![endif]-->
+    <script type="text/javascript">window.onerror=function(){return true;}</script><script type="text/javascript" src="http://www.goupu.com.cn/lang/zh-cn/lang.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/file/script/config.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/file/script/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/file/script/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/file/script/common.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/file/script/page.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/skin/default/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/skin/default/js/jquery.toTop.min.js"></script>
+    <script type="text/javascript" src="http://www.goupu.com.cn/file/script/jqthumb.min.js"></script>
+    <script type="text/javascript">
+        var searchid = 5;
+    </script>
 </head>
-<body>
-
+<body><div class="c_warp top_photo"></div>
+<div class="c_head">
+    <div class="welcome">
+        <div class="clearfix" id="head_">
+            <span class="fl"><a class="a1">HELLO!</a>欢迎喜爱狗狗的您访问狗扑网。&nbsp;&nbsp;&nbsp;&nbsp;服务热线:</span>
+            <span class="fr" id="destoon_member"><a href="">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">注册</a></span>
+        </div>
+    </div>
+    <div class="c_search clearfix">
+        <div class="c_logo">
+            <a href="http://www.goupu.com.cn/"><img src="http://www.goupu.com.cn/file/upload/201609/07/151223311.png" width="206" height="75" alt=""/></a>
+        </div>
+        <div class="dogcity"><p>总站</p>[<a href="javascript:;">犬种分站</a>]
+            <div class="doglist">
+                <ul class="clearfix">
+                    <li>
+                        <dl>
+                            <dt>大型犬</dt>
+                            <dd>
+                                <a href="http://zangao.goupu.com.cn/">藏獒</a><a href="http://jinmao.goupu.com.cn/">金毛犬</a><a href="http://alsj.goupu.com.cn/">阿拉斯加犬</a><a href="http://demu.goupu.com.cn/">德国牧羊犬</a><a href="http://qiutian.goupu.com.cn/">秋田犬</a><a href="http://lq.goupu.com.cn/">狼青犬</a><a href="http://gjs.goupu.com.cn/">高加索犬</a><a href="http://maquan.goupu.com.cn/">马犬</a><a href="http://geliquan.goupu.com.cn/">格力犬</a><a href="http://heilang.goupu.com.cn/">黑狼犬</a><a href="http://dubin.goupu.com.cn/">杜宾犬</a><a href="http://lwn.goupu.com.cn/">罗威纳犬</a><a href="http://kasiluo.goupu.com.cn/">卡斯罗</a><a href="http://dugao.goupu.com.cn/">杜高犬</a><a href="http://gumu.goupu.com.cn/">古代牧羊犬</a><a href="http://dbx.goupu.com.cn/">大白熊犬</a><a href="http://dadan.goupu.com.cn/">大丹犬</a><a href="http://afh.goupu.com.cn/">阿富汗猎犬</a><a href="http://sumu.goupu.com.cn/">苏格兰牧羊犬</a><a href="http://sbn.goupu.com.cn/">圣伯纳犬</a><a href="http://kmq.goupu.com.cn/">昆明犬</a><a href="http://zy.goupu.com.cn/">中亚牧羊犬</a><a href="http://bimu.goupu.com.cn/">比利时牧羊犬</a><a href="http://flw.goupu.com.cn/">法老王猎犬</a><a href="http://nfl.goupu.com.cn/">纽芬兰犬</a><a href="http://dongde.goupu.com.cn/">东德牧羊犬</a><a href="http://bes.goupu.com.cn/">伯恩山犬</a></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>中型犬</dt>
+                            <dd>
+                                <a href="http://hashiqi.goupu.com.cn/">哈士奇</a><a href="http://lbld.goupu.com.cn/">拉布拉多</a><a href="http://bianmu.goupu.com.cn/">边境牧羊犬</a><a href="http://fadou.goupu.com.cn/">法国斗牛犬</a><a href="http://samoye.goupu.com.cn/">萨摩耶</a><a href="http://bite.goupu.com.cn/">比特犬</a><a href="http://chaiquan.goupu.com.cn/">柴犬</a><a href="http://keka.goupu.com.cn/">可卡犬</a><a href="http://huibite.goupu.com.cn/">惠比特犬</a><a href="http://jianali.goupu.com.cn/">加纳利犬</a><a href="http://bandian.goupu.com.cn/">斑点狗</a><a href="http://yingdou.goupu.com.cn/">英国斗牛犬</a><a href="http://songshi.goupu.com.cn/">松狮</a><a href="http://xnr.goupu.com.cn/">雪纳瑞</a><a href="http://ntg.goupu.com.cn/">牛头梗</a><a href="http://eba.goupu.com.cn/">美国恶霸犬</a><a href="http://lachang.goupu.com.cn/">腊肠犬</a><a href="http://shapi.goupu.com.cn/">沙皮狗</a><a href="http://xiquan.goupu.com.cn/">细犬</a><a href="http://xiledi.goupu.com.cn/">喜乐蒂</a><a href="http://sbg.goupu.com.cn/">史宾格犬</a><a href="http://qsq.goupu.com.cn/">拳师犬</a><a href="http://tugou.goupu.com.cn/">中华田园犬</a></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>小型犬</dt>
+                            <dd>
+                                <a href="http://taidi.goupu.com.cn/">泰迪犬</a><a href="http://chabei.goupu.com.cn/">茶杯犬</a><a href="http://guibin.goupu.com.cn/">贵宾犬</a><a href="http://bomei.goupu.com.cn/">博美犬</a><a href="http://bixiong.goupu.com.cn/">比熊犬</a><a href="http://jiwawa.goupu.com.cn/">吉娃娃</a><a href="http://hdq.goupu.com.cn/">蝴蝶犬</a><a href="http://keji.goupu.com.cn/">柯基犬</a><a href="http://yhq.goupu.com.cn/">银狐犬</a><a href="http://bage.goupu.com.cn/">巴哥犬</a><a href="http://ykx.goupu.com.cn/">约克夏</a><a href="http://xishi.goupu.com.cn/">西施犬</a><a href="http://bige.goupu.com.cn/">比格犬</a><a href="http://xlq.goupu.com.cn/">小鹿犬</a><a href="http://jingba.goupu.com.cn/">京巴</a><a href="http://mejs.goupu.com.cn/">马尔济斯犬</a><a href="http://xigaodi.goupu.com.cn/">西高地白梗</a><a href="http://gmq.goupu.com.cn/">中国冠毛犬</a><a href="http://bajidu.goupu.com.cn/">巴吉度犬</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="search_">
+            <form action="http://www.goupu.com.cn/sell/search.php" id="search">
+                <input type="hidden" name="moduleid" value="5" id="destoon_moduleid"/>
+                <input type="hidden" name="spread" value="0" id="destoon_spread"/>
+                <input type="hidden" name="catid" value="1"/><input type="text" class="keyword" name="kw" value="" placeholder="请输入搜索关键词..."/><input type="hidden" id="destoon_select" class="search_m" value="狗市" readonly onfocus="this.blur();" onclick="$('#search_module').fadeIn('fast');"/>
+                <div class="search_button">
+                    <input class="btn" type="submit" value=""/>
+                </div>
+            </form>
+        </div>
+        <div class="store"><a href="http://www.goupu.com.cn/vip.html" target="_blank">vip商家入驻</a></div>
+        <div class="c_QR">
+            <div><img src="http://www.goupu.com.cn/skin/default/images/QR_code.png"/></div>
+            <div class="QR_text">微信二维码</div>
+        </div>
+    </div>
+    <div class="index_nav">
+        <div class="index_nav_">
+            <ul class="clearfix">
+                <li id="active_li"><a href="http://www.goupu.com.cn/">首页</a></li>
+                <li class="d23"><a href="http://www.goupu.com.cn/dog/"><span>狗狗大全</span></a><dl><div class="type_tit">按体型</div><div class="clearfix"><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-1-0-0.html">小型犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-2-0-0.html">中型犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-3-0-0.html">大型犬</a></div><div class="type_tit">按功能</div><div class="clearfix"><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-1-0.html">伴侣犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-2-0.html">枪猎犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-3-0.html">狩猎犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-4-0.html">牧羊犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-5-0.html">工作犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-6-0.html">梗类犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-7-0.html">玩具犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-8-0.html">家庭犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-9-0.html">缉毒犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-10-0.html">军犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-11-0.html">护卫犬</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-12-0.html">导盲犬</a></div><div class="type_tit">按特性</div><div class="clearfix"><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-1.html">不掉毛</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-2.html">无体味</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-3.html">易打理</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-4.html">粘人</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-5.html">吠叫</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-6.html">友善</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-7.html">易训练</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-8.html">护家</a><a href="http://www.goupu.com.cn/dog/s-4-0-0-0-0-0-9.html">耐寒</a></div></dl></li><li class="d12"><a href="http://www.goupu.com.cn/photo/"><span>狗狗秀</span></a><dl><a href="http://www.goupu.com.cn/photo/list-34.html">狗狗可爱图片</a><a href="http://www.goupu.com.cn/photo/list-35.html">狗狗图片大全</a><a href="http://www.goupu.com.cn/photo/list-36.html">狗狗搞笑图片</a><a href="http://www.goupu.com.cn/photo/list-213.html">纯种狗狗图片</a></dl></li><li class="d5"><a href="http://www.goupu.com.cn/sell/"><span>狗市</span></a></li><li class="d14"><a href="http://www.goupu.com.cn/video/"><span>视频</span></a><dl><a href="http://www.goupu.com.cn/video/list-22.html">狗狗训练视频</a><a href="http://www.goupu.com.cn/video/list-21.html">可爱狗狗视频</a><a href="http://www.goupu.com.cn/video/list-20.html">狗狗搞笑视频</a><a href="http://www.goupu.com.cn/video/list-215.html">狗狗打架视频</a><a href="http://www.goupu.com.cn/video/list-216.html">狗狗热门视频</a></dl></li><li class="d21"><a href="http://www.goupu.com.cn/news/"><span>新闻</span></a><dl><a href="http://www.goupu.com.cn/news/list-7.html">狗狗新闻</a><a href="http://www.goupu.com.cn/news/list-23.html">展会赛事</a><a href="http://www.goupu.com.cn/news/list-24.html">奇闻铁事</a><a href="http://www.goupu.com.cn/news/list-25.html">狗狗故事</a><a href="http://www.goupu.com.cn/news/list-26.html">狗狗电影</a></dl></li><li class="d24"><a href="http://www.goupu.com.cn/baike/"><span>百科</span></a><dl><a href="http://www.goupu.com.cn/baike/list-31.html">狗狗喂养</a><a href="http://www.goupu.com.cn/baike/list-30.html">狗狗美容</a><a href="http://www.goupu.com.cn/baike/list-32.html">狗狗训练</a><a href="http://www.goupu.com.cn/baike/list-33.html">狗狗健康</a><a href="http://www.goupu.com.cn/baike/list-127.html">狗狗繁殖</a><a href="http://www.goupu.com.cn/baike/list-128.html">狗狗选购</a></dl></li><li class="d10"><a href="http://www.goupu.com.cn/know/"><span>问答</span></a><dl><a href="http://www.goupu.com.cn/know/list-134.html">疾病</a><a href="http://www.goupu.com.cn/know/list-16.html">养护</a><a href="http://www.goupu.com.cn/know/list-19.html">美容</a><a href="http://www.goupu.com.cn/know/list-17.html">训狗</a><a href="http://www.goupu.com.cn/know/list-18.html">繁殖</a><a href="http://www.goupu.com.cn/know/list-15.html">综合</a></dl></li><li class="d4"><a href="http://www.goupu.com.cn/fuwu/"><span>服务</span></a><dl><a href="http://www.goupu.com.cn/fuwu/list-3.html">宠物医院</a><a href="http://www.goupu.com.cn/fuwu/list-49.html">宠物店</a><a href="http://www.goupu.com.cn/fuwu/list-217.html">犬舍</a></dl></li><li class="d25"><a href="http://bbs.goupu.com.cn/" target="_blank"><span>社区</span></a></li><li><a href="javascript:;">加盟</a>
+                <dl><a href="http://www.goupu.com.cn/jiameng/">宠物店加盟</a><a href="http://www.goupu.com.cn/yiyuan/">宠物医院加盟</a></dl></li>
+                <li><a href="javascript:;">培训</a><dl><a href="http://www.goupu.com.cn/meirong/">宠物美容培训</a><a href="http://www.goupu.com.cn/xunquan/">训犬师培训</a></dl></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .tl{width:85px;text-align:right;padding-right:20px;}
+    .reg_title {border-bottom:#CCCCCC 1px solid;font-weight:bold;padding:0 0 10px 10px;margin:15px 55px 0 0;font-size:14px;color:#FF6600;}
+    .reg_inp {border:#c9c9c9 1px solid;padding:0 3px;line-height: 35px;height: 35px;}
+    .tips {position:absolute;z-index:1000;width:300px;background:url('image/tips_bg.gif') no-repeat 0 bottom;overflow:hidden;margin:-5px 0 0 -10px;}
+    .tips div{background:url('image/tips_top.gif') no-repeat;line-height:22px;padding:8px 10px 8px 35px;}
+</style>
+<div class="m">
+    <div class="user_position">当前位置: <a href="http://www.goupu.com.cn/">首页</a> &raquo; <a href="registergp.php">会员注册</a></div>
+    <div class="login_tit"><img src="http://www.goupu.com.cn/skin/default/images/login_tit.jpg" alt=""></div>
+    <div class="reg_box">
+        <div class="box_l">
+            <iframe src="" name="send" id="send" style="display:none;"></iframe>
+            <form action="registergp.php" method="post" target="send" onsubmit="return check();">
+                <input name="action" type="hidden" id="action" value="915b5a8dce3f1b925af2dad547b2a869"/>
+                <input name="forward" type="hidden" value="http://www.goupu.com.cn/sell/"/>
+                <table cellpadding="5" cellspacing="5" width="100%">
+                    <tr onmouseover="Ds('tusername');" onmouseout="Dh('tusername');">
+                        <td class="tl">会员名 <span class="f_red">*</span></td>
+                        <td width="220"><input type="text" class="reg_inp" style="width:280px;" name="post[username]" id="username" onblur="validator('username');" autocomplete="off" />
+                        </td>
+                        <td>
+                            <div class="tips" id="tusername" style="display:none;">
+                                <div>4-20个字符，只能使用小写字母(a-z)、数字(0-9)、下划线(_)、中划线(-)，且以字母或数字开头和结尾</div>
+                            </div>
+                            <span id="dusername" class="f_red"></span>&nbsp;
+                        </td>
+                    </tr>
+                    <tr onmouseover="Ds('tpassword');" onmouseout="Dh('tpassword');">
+                        <td class="tl">登录密码 <span class="f_red">*</span></td>
+                        <td><input type="password" class="reg_inp" style="width:280px;" name="post[password]" id="password" onblur="validator('password');" autocomplete="off"/></td>
+                        <td>
+                            <div class="tips" id="tpassword" style="display:none;">
+                                <div>6-20个字符，区分大小写，推荐使用数字、字母和特殊符号组合</div>
+                            </div>
+                            <span id="dpassword" class="f_red"></span>&nbsp;
+                        </td>
+                    </tr>
+                    <tr onmouseover="Ds('tcpassword');" onmouseout="Dh('tcpassword');">
+                        <td class="tl">重复输入 <span class="f_red">*</span></td>
+                        <td><input type="password" class="reg_inp" style="width:280px;" size="30" name="post[cpassword]" id="cpassword" onblur="validate('cpassword');" autocomplete="off"/></td>
+                        <td>
+                            <div class="tips" id="tcpassword" style="display:none;">
+                                <div>请再输入一遍上面填写的密码</div>
+                            </div>
+                            <span id="dcpassword" class="f_red"></span>&nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <table cellpadding="5" cellspacing="5" width="100%">
+                    <tr onmouseover="Ds('temail');" onmouseout="Dh('temail');">
+                        <td class="tl">电子邮箱 <span class="f_red">*</span></td>
+                        <td width="220"><input type="text" class="reg_inp" style="width:280px;" name="post[email]" id="email" onblur="validator('email');"/></td>
+                        <td>
+                            <div class="tips" id="temail" style="display:none;">
+                                <div>
+                                    请使用常用常用邮箱(Email)地址，地址不会被公开且可用于登录网站
+                                </div>
+                            </div>
+                            <span id="demail" class="f_red"></span>&nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <div id="company_detail">
+                    <table cellpadding="5" cellspacing="5" width="100%">
+                        <tr onmouseover="Ds('tcompany');" onmouseout="Dh('tcompany');">
+                            <td class="tl">店铺名称 <span class="f_red">*</span></td>
+                            <td width="220"><input type="text" class="reg_inp" style="width:280px;" name="post[company]" id="company" onblur="validator('company');"/></td>
+                            <td>
+                                <div class="tips" id="tcompany" style="display:none;">
+                                    <div>请填写店铺全称，注册之后将不可更改</div>
+                                </div>
+                                <span id="dcompany" class="f_red"></span>&nbsp;
+                            </td>
+                        </tr>
+                        <tr onmouseover="Ds('ttruename');" onmouseout="Dh('ttruename');">
+                            <td class="tl">联系人 <span class="f_red">*</span></td>
+                            <td><input type="text" class="reg_inp" style="width:280px;" name="post[truename]" id="truename" onblur="validator('truename');"/></td>
+                            <td>
+                                <div class="tips" id="ttruename" style="display:none;">
+                                    <div>请填写真实姓名，方便联系</div>
+                                </div>
+                                <span id="dtruename" class="f_red"></span>&nbsp;
+                            </td>
+                        </tr>
+                        <tr onmouseover="Ds('ttelephone');" onmouseout="Dh('ttelephone');">
+                            <td class="tl">联系电话 <span class="f_red">*</span></td>
+                            <td><input type="text" class="reg_inp" style="width:280px;" name="post[telephone]" id="telephone" onblur="validate('telephone');"/></td>
+                            <td>
+                                <div class="tips" id="ttelephone" style="display:none;">
+                                    <div>国内用户请加区号，国外用户请加国家码<br/>格式范例：86-010-88889999</div>
+                                </div>
+                                <span id="dtelephone" class="f_red"></span>&nbsp;
+                            </td>
+                        </tr>
+                        <tr onmouseover="Ds('tmsn');" onmouseout="Dh('tmsn');">
+                            <td class="tl">微信 <span class="f_red">*</span></td>
+                            <td><input type="text" class="reg_inp" style="width:280px;" name="post[msn]" id="telephone" onblur="validate('msn');"/></td>
+                            <td>
+                                <div class="tips" id="tmsn" style="display:none;">
+                                    <div>请填写真实微信，方便联系</div>
+                                </div>
+                                <span id="dtelephone" class="f_red"></span>&nbsp;
+                            </td>
+                        </tr>
+                        <tr onmouseover="Ds('taddress');" onmouseout="Dh('taddress');">
+                            <td class="tl">联系地址 <span class="f_red">*</span></td>
+                            <td><input type="text" class="reg_inp" style="width:280px;" name="post[address]" id="address" onblur="validator('address');"/></td>
+                            <td>
+                                <div class="tips" id="taddress" style="display:none;">
+                                    <div>请填写正确的联系地址，方便交易</div>
+                                </div>
+                                <span id="daddress" class="f_red"></span>&nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <table cellpadding="5" cellspacing="5" width="100%">
+                    <tr onmouseover="Ds('tcaptcha');" onmouseout="Dh('tcaptcha');">
+                        <td class="tl">验证码 <span class="f_red">*</span></td>
+                        <td><input name="captcha" id="captcha" type="text" size="6" onfocus="showcaptcha();" value="点击显示" placeholder="验证码" class="f_gray" style="margin:10px 0 10px 0;"/>&nbsp;<img src="http://www.goupu.com.cn/skin/default/image/loading.gif" title="验证码,看不清楚?请点击刷新&#10;字母不区分大小写" alt="" align="absmiddle" id="captchapng" onclick="reloadcaptcha();" style="display:none;cursor:pointer;"/><span id="ccaptcha"></span>
+                            <script type="text/javascript">
+                                function showcaptcha() {
+                                    if(Dd('captchapng').style.display=='none') {
+                                        Dd('captchapng').style.display='';
+                                    }
+                                    if(Dd('captchapng').src.indexOf('loading.gif') != -1) {
+                                        Dd('captchapng').src='http://www.goupu.com.cn/api/captcha.png.php?action=image';
+                                    }
+                                    if(Dd('captcha').value=='点击显示') {
+                                        Dd('captcha').value='';
+                                    }
+                                    Dd('captcha').className = '';
+                                }
+                                function reloadcaptcha() {
+                                    Dd('captchapng').src = 'http://www.goupu.com.cn/api/captcha.png.php?action=image&refresh='+Math.random();
+                                    Dd('ccaptcha').innerHTML = '';
+                                    Dd('captcha').value = '';
+                                }
+                                function checkcaptcha(s) {
+                                    s = s.trim();
+                                    var t = encodeURIComponent(s);
+                                    if(t.indexOf('%E2%80%86') != -1) s = decodeURIComponent(t.replace(/%E2%80%86/g, ''));
+                                    if(!is_captcha(s)) return;
+                                    $.post(AJPath, 'action=captcha&captcha='+s,
+                                        function(data) {
+                                            if(data == '0') {
+                                                Dd('ccaptcha').innerHTML = '&nbsp;&nbsp;<img src="http://www.goupu.com.cn/skin/default/image/check_right.gif" align="absmiddle"/>';
+                                            } else {
+                                                Dd('captcha').focus;
+                                                Dd('ccaptcha').innerHTML = '&nbsp;&nbsp;<img src="http://www.goupu.com.cn/skin/default/image/check_error.gif" align="absmiddle"/>';
+                                            }
+                                        }
+                                    );
+                                }
+                                function is_captcha(v) {
+                                    if(v == '点击显示') return false;
+                                    if(v.match(/^[a-z0-9A-Z]{1,}$/)) {
+                                        return v.match(/^[a-z0-9A-Z]{4,}$/);
+                                    } else {
+                                        return v.length > 1;
+                                    }
+                                }
+                                $(function() {
+                                    $('#captcha').bind('keyup blur', function() {
+                                        checkcaptcha($('#captcha').val());
+                                    });
+                                });
+                            </script></td>
+                        <td>
+                            <div class="tips" id="tcaptcha" style="display:none;">
+                                <div>请把图形中的字符填写到输入框中<br/>如果看不清楚，请点击图片刷新</div>
+                            </div>
+                            <span id="dcaptcha" class="f_red"></span>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tl">&nbsp;</td>
+                        <td width="300"><input type="checkbox" checked="checked" onclick="if(this.checked){Ds('sbm');}else{Dh('sbm');}"/> <a href="?read=1" target="_blank" class="b">我已阅读并同意服务条款</a></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr id="sbm">
+                        <td class="tl"></td>
+                        <td>
+                            <input type="hidden" name="post[regid]" value="6"/>
+                            <input type="hidden" name="post[areaid]" value="0">
+                            <input type="hidden" name="post[type]" value="个体经营">
+                            <input type="submit" name="submit" value="立即注册" class="btn_1" />&nbsp;&nbsp;&nbsp;已有账号？<a href="login.php?forward=http%3A%2F%2Fwww.goupu.com.cn%2Fsell%2F" class="b">登录</a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="box_r"><img src="http://www.goupu.com.cn/skin/default/images/login_pic.jpg" alt=""></div>
+    </div>
+</div>
+<script type="text/javascript" src="http://www.goupu.com.cn/file/script/guest.js"></script>
+<script type="text/javascript">
+    if(Dd('username').value == '') Dd('username').focus();
+    Dd('captcha').className = 'reg_inp';var vid = '';
+    function dtrim(id) {
+        var str = Dd(id).value.trim();
+        if(Dd(id).value != str) Dd(id).value = str;
+    }
+    function validator(id) {
+        vid = id;
+        dtrim(id);
+        makeRequest('moduleid=2&action=member&job='+id+'&value='+Dd(id).value, AJPath, '_validator');
+    }
+    function _validator() {
+        if(xmlHttp.readyState==4 && xmlHttp.status==200) {
+            Dd('d'+vid).innerHTML = xmlHttp.responseText ? '<img src="http://www.goupu.com.cn/skin/default/image/check_error.gif" align="absmiddle"/> '+xmlHttp.responseText : '<img src="http://www.goupu.com.cn/skin/default/image/check_right.gif" align="absmiddle"/> ';
+        }
+    }
+    function err_msg(str, id) {
+        Dd('d'+id).innerHTML = '<img src="http://www.goupu.com.cn/skin/default/image/check_'+(str ? 'error' : 'right')+'.gif" align="absmiddle"/> '+str;
+    }
+    function validate(type) {
+        if(type == 'cpassword') {
+            if(Dd('cpassword').value != Dd('password').value) {
+                err_msg('两次输入的密码不一致', type);
+            } else {
+                err_msg('', type);
+            }
+        } else if(type == 'telephone') {
+            dtrim(type);
+            if(Dd('telephone').value.match(/^[0-9\-\(\)\+\.]{7,}$/)) {
+                err_msg('', type);
+            } else {
+                err_msg('请输入店铺电话', type);
+            }
+        }
+    }
+    function reg(type) {
+        if(type) {
+            Ds('company_detail');
+        } else {
+            Dh('company_detail');
+        }
+    }
+    function Df(ID) {
+        Dd(ID).focus();
+    }
+    function check() {
+        var f,p;
+        f = 'username';
+        if(Dd(f).value == '') {
+            err_msg('请填写会员登录名', f);
+            Df(f);
+            return false;
+        }
+        if(Dd('d'+f).innerHTML.indexOf('error') != -1) {
+            Df(f);
+            return false;
+        }
+        f = 'password';
+        if(Dd(f).value.length < 6) {
+            err_msg('请填写会员登录密码', f);
+            Df(f);
+            return false;
+        }
+        if(Dd('d'+f).innerHTML.indexOf('error') != -1) {
+            Df(f);
+            return false;
+        }
+        f = 'cpassword';
+        if(Dd(f).value == '') {
+            err_msg('请重复输入密码', f);
+            Df(f);
+            return false;
+        }
+        if(Dd('password').value != Dd(f).value) {
+            err_msg('两次输入的密码不一致', f);
+            Df(f);
+            return false;
+        }
+        f = 'email';
+        if(Dd(f).value.length < 6) {
+            err_msg('请填写电子邮箱', f);
+            Df(f);
+            return false;
+        }
+        if(Dd('d'+f).innerHTML.indexOf('error') != -1) {
+            Df(f);
+            return false;
+        }
+        if(Dd('g_5').checked == false) {
+            f = 'company';
+            if(Dd(f).value == '') {
+                err_msg('请填写店铺名称', f);
+                Df(f);
+                return false;
+            }
+            if(Dd('d'+f).innerHTML.indexOf('error') != -1) {
+                Df(f);
+                return false;
+            }
+            if(Dd('type').value == '') {
+                Dmsg('请选择店铺类型', 'type');
+                return false;
+            }
+            f = 'truename';
+            if(Dd(f).value == '') {
+                err_msg('请填写联系人', f);
+                Df(f);
+                return false;
+            }
+            f = 'telephone';
+            if(Dd(f).value.length < 7) {
+                err_msg('请填写联系电话', f);
+                Df(f);
+                return false;
+            }
+            f = 'msn';
+            if(Dd(f).value == '') {
+                err_msg('请填写微信', f);
+                Df(f);
+                return false;
+            }
+            f = 'address';
+            if(Dd(f).value == '') {
+                err_msg('请填写联系地址', f);
+                Df(f);
+                return false;
+            }
+        }
+        f = 'captcha';
+        if(!is_captcha(Dd(f).value)) {
+            Dmsg('请填写验证码', f);
+            return false;
+        }
+        return true;
+    }
+    function SendCode() {
+        if(Dd('demail').innerHTML.indexOf('right') == -1) {
+            Dd('email').focus();
+            return;
+        }
+        makeRequest('action=895badfcd6bc10b14b370b8ea1683764&value='+Dd('email').value, 'registergp.php', '_SendCode');
+        Dh('sendok');
+        Dd('send_code').value = '正在发送';
+        Dd('send_code').disabled = true;
+    }
+    function _SendCode() {
+        var f = 'email';
+        if(xmlHttp.readyState==4 && xmlHttp.status==200) {
+            Dd('send_code').value = xmlHttp.responseText == 1 ? '发送成功' : '立即发送';
+            Dd('send_code').disabled = xmlHttp.responseText == 1 ? true : false;
+            if(xmlHttp.responseText == 1) {
+                Ds('sendok');
+                Dd('dsendok').innerHTML = '<img src="http://www.goupu.com.cn/member/image/ico_mailok.gif" align="absmiddle"/> <span class="f_green">邮件发送成功，</span> <a href="goto.php?action=emailcode&email='+Dd(f).value+'" target="_blank">立即查收</a>';
+                StopCode();
+            } else if(xmlHttp.responseText == 2) {
+                err_msg('邮件格式错误，请检查', f);
+                Df(f);
+            } else if(xmlHttp.responseText == 3) {
+                err_msg('邮件地址已存在，请更换', f);
+                Df(f);
+            } else if(xmlHttp.responseText == 4) {
+                err_msg('此邮件域名已经被禁止注册，请更换', f);
+                Df(f);
+            } else if(xmlHttp.responseText == 5) {
+                alert('邮件发送过快，请稍后再试');
+            } else if(xmlHttp.responseText == 6) {
+                alert('尝试发送次数太多，请稍后再试');
+            } else {
+                alert('未知错误，请重试');
+            }
+        }
+    }
+    function StopCode() {
+        Dd('send_code').disabled = true;
+        var i = 60;
+        var interval=window.setInterval(
+            function() {
+                if(i == 0) {
+                    Dd('send_code').value = '立即发送';
+                    Dd('send_code').disabled = false;
+                    clearInterval(interval);
+                } else {
+                    Dd('send_code').value = '重新发送('+i+')';
+                    i--;
+                }
+            },
+            1000);
+    }
+    function SendSCode() {
+        if(Dd('dmobile').innerHTML.indexOf('right') == -1) {
+            Dd('mobile').focus();
+            return;
+        }
+        makeRequest('action=6391d4e50f23e977a5abf0f37d2e1b15&value='+Dd('mobile').value, 'registergp.php', '_SendSCode');
+        Dh('sendsok');
+        Dd('send_scode').value = '正在发送';
+        Dd('send_scode').disabled = true;
+    }
+    function _SendSCode() {
+        var f = 'mobile';
+        if(xmlHttp.readyState==4 && xmlHttp.status==200) {
+            Dd('send_scode').value = xmlHttp.responseText == 1 ? '发送成功' : '立即发送';
+            Dd('send_scode').disabled = xmlHttp.responseText == 1 ? true : false;
+            if(xmlHttp.responseText == 1) {
+                Ds('sendsok');
+                Dd('dsendsok').innerHTML = '<img src="http://www.goupu.com.cn/member/image/ico_mailok.gif" align="absmiddle"/> <span class="f_green">短信发送成功</span>';
+                StopSCode();
+            } else if(xmlHttp.responseText == 2) {
+                err_msg('手机号码格式错误，请检查', f);
+                Df(f);
+            } else if(xmlHttp.responseText == 3) {
+                err_msg('手机号码已存在，请更换', f);
+                Df(f);
+            } else if(xmlHttp.responseText == 5) {
+                alert('短信发送过快，请稍后再试');
+            } else if(xmlHttp.responseText == 6) {
+                alert('尝试发送次数太多，请稍后再试');
+            } else {
+                alert('未知错误，请重试');
+            }
+        }
+    }
+    function StopSCode() {
+        Dd('send_scode').disabled = true;
+        var i = 180;
+        var interval=window.setInterval(
+            function() {
+                if(i == 0) {
+                    Dd('send_scode').value = '立即发送';
+                    Dd('send_scode').disabled = false;
+                    clearInterval(interval);
+                } else {
+                    Dd('send_scode').value = '重新发送('+i+')';
+                    i--;
+                }
+            },
+            1000);
+    }
+</script>
+<div class="c_footer_page">
+    <ul class="clearfix">
+        <li>
+            <img src="http://www.goupu.com.cn/skin/default/images/logo.png" width="206" height="75" alt="狗扑网-你的狗狗世界"/>
+        </li>
+        <li style="width:600px;line-height:0">
+            <div style="line-height:16px;color:#fff;padding-top: 30px;height: 80px;">狗扑网（www.goupu.com.cn）是宠物狗综合信息门户，创立于2017年，成立不久便凭借着良好的体验、优质的内容、贴心的服务成为宠物行业的佼佼者，深受广大喜爱狗狗的人们的欢迎，是国内领先的宠物狗垂直门户之一。</div>
+            <div class="clearfix" id="d1">
+                <a href="http://www.goupu.com.cn/about/index.html">关于狗扑</a> |
+                <a href="http://www.goupu.com.cn/about/guanggao.html">广告合作</a> |
+                <a href="http://www.goupu.com.cn/about/contact.html">联系我们</a> |
+                <a href="http://www.goupu.com.cn/about/statement.html">免责申明</a> |
+                <a href="http://www.goupu.com.cn/about/agreement.html">用户协议</a> |
+                <a href="http://www.goupu.com.cn/about/copyright.html">投稿指南</a>
+            </div>
+            <div class="d2">版权所有 备案号：沪ICP备15010410号-1    </div>
+        </li>
+        <li class="clearfix">
+            <div style="line-height:0;padding-top:30px;float:left;margin-right:30px;text-align:center;margin-left:50px">
+                <img src="http://www.goupu.com.cn/skin/default/images/QR_code.png" alt="狗扑网微信二维码"/><br/><span style="display:inline-block;margin-top:20px;color:#fff">微信（二维码）</span>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b3ead4c62661ce6cc4e5bb628c9cc1c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/javascript" src="//s.union.360.cn/167263.js" async defer></script>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<div class="back2top"><!--li><a href="tencent://message/?uin=470442207&Site=goupu.com.cn&Menu=yes" target="black"><i class="icon Hui-iconfont">&#xe6d0;</i>在线咨询</a></li--><li><a href="" class="code"><i class="icon Hui-iconfont">&#xe694;</i>公众号<img src="/skin/default/images/WeChat.jpg" alt="狗扑网微信二维码"></a></li><li><a href="http://www.goupu.com.cn/about/contact.html"><i class="icon Hui-iconfont">&#xe6c7;</i>犬舍入驻</a></li><li><a href="http://www.goupu.com.cn/about/guanggao.html"><i class="icon Hui-iconfont">&#xe68a;</i>广告合作</a></li><li class="backtop"><a href="javascript:void(0);" title="返回顶部">&nbsp;</a></li></div>
+<script type="text/javascript">
+    (function($){
+        $(document).ready(function(){
+            $(".pliuyan_02").mCustomScrollbar();
+        });
+    })(jQuery);
+    var destoon_userid = 0;
+    var destoon_username = '';
+    var destoon_message = 0;
+    var destoon_chat = 0;
+    var destoon_cart = get_cart();
+    var destoon_member = '';
+    destoon_member += '欢迎，<span class="f_green">客人</span> | <a href="http://www.goupu.com.cn/member/login.php">请登录</a> | <a href="http://www.goupu.com.cn/member/registergp.php">免费注册</a> | <a href="http://www.goupu.com.cn/member/send.php">忘记密码?</a>';
+    $('#destoon_member').html(destoon_member);
+    $('#destoon_city').html('全国');
+</script>
 </body>
 </html>
