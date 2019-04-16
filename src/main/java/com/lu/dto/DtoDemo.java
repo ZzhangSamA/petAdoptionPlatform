@@ -1,4 +1,4 @@
-package com.pet.dto;
+package com.lu.dto;
 
 public class DtoDemo {
     public static void main(String[] args) {

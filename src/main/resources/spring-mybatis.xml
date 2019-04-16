@@ -21,12 +21,12 @@
     <!--<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
         <!--<property name="dataSource" ref="dataSource"></property>-->
         <!--<property name="mapperLocations" value="classpath:mapper/*.xml"></property>-->
-        <!--<property name="typeAliasesPackage" value="com.pet.pojo"></property>-->
+        <!--<property name="typeAliasesPackage" value="com.lupojo"></property>-->
     <!--</bean>-->
 
     <!--&lt;!&ndash; 4、配置mybatis接口扫描器 &ndash;&gt;-->
     <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.pet.mapper"></property>-->
+        <!--<property name="basePackage" value="com.lumapper"></property>-->
         <!--<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>-->
     <!--</bean>-->
 

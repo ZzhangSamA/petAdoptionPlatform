@@ -1,4 +1,4 @@
-package com.pet.pojo;
+package com.lu.pojo;
 
 public class PojoDemo {
 }

@@ -1,4 +1,4 @@
-package com.pet.mapper;
+package com.lu.mapper;
 
 public interface ServiceDemo {
 }
