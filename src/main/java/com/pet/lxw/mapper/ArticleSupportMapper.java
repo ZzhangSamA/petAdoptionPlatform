@@ -1,6 +1,5 @@
 package com.pet.lxw.mapper;
 
-
 import com.pet.lxw.pojo.ArticleSupport;
 
 public interface ArticleSupportMapper {
