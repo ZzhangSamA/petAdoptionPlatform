@@ -1,4 +1,4 @@
-package com.lu.service;
+package com.pet.lu.service;
 
 public class ServiceDemo {
 }

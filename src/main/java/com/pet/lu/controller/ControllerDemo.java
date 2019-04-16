@@ -1,4 +1,4 @@
-package com.lu.controller;
+package com.pet.lu.controller;
 
 public class ControllerDemo {
 }

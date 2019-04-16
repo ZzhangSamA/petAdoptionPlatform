@@ -1,4 +1,4 @@
-package com.lu.vo;
+package com.pet.lu.vo;
 
 public class VoDemo {
 }
