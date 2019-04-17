@@ -20,6 +20,8 @@
     -->
     platform_id, platform_name, platform_icon, status, create_time, update_time
   </sql>
+
+  <!--根据id查询-->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -30,6 +32,8 @@
     from pay_platform
     where platform_id = #{platformId,jdbcType=INTEGER}
   </select>
+
+  <!--删除-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -38,6 +42,8 @@
     delete from pay_platform
     where platform_id = #{platformId,jdbcType=INTEGER}
   </delete>
+
+  <!--新增-->
   <insert id="insert" parameterType="com.pet.yz.pojo.PayPlatform" >
     <!--
       WARNING - @mbggenerated
@@ -50,6 +56,8 @@
       #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
+
+  <!--根据属性新增-->
   <insert id="insertSelective" parameterType="com.pet.yz.pojo.PayPlatform" >
     <!--
       WARNING - @mbggenerated
@@ -97,6 +105,8 @@
       </if>
     </trim>
   </insert>
+
+  <!--根据id修改属性-->
   <update id="updateByPrimaryKeySelective" parameterType="com.pet.yz.pojo.PayPlatform" >
     <!--
       WARNING - @mbggenerated
@@ -122,6 +132,8 @@
     </set>
     where platform_id = #{platformId,jdbcType=INTEGER}
   </update>
+
+  <!--根据id修改-->
   <update id="updateByPrimaryKey" parameterType="com.pet.yz.pojo.PayPlatform" >
     <!--
       WARNING - @mbggenerated
