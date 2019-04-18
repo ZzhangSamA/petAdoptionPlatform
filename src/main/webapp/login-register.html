@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="assets/css/meanmenu.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -358,16 +359,23 @@
                                 <div id="lg1" class="tab-pane active">
                                     <div class="login-form-container">
                                         <div class="login-register-form">
-                                            <form action="#" method="post">
-                                                <input type="text" name="user-name" placeholder="用户名">
-                                                <input type="password" name="user-password" placeholder="密码">
+                                            <form id="customerform" method="post">
+                                                <input type="text" name="customername" id="customername" placeholder="用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <input type="password" name="password" id="password" placeholder="密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <!--<div class="form-group has-success has-feedback">-->
+                                                <!--<div class="drag">-->
+                                                <!--<div class="bg"></div>-->
+                                                <!--<div class="text" onselectstart="return false;">请拖动滑块解锁</div>-->
+                                                <!--<div class="btndrag">&gt;&gt;</div>-->
+                                                <!--</div>-->
+                                                <!--</div>-->
                                                 <div class="button-box">
                                                     <div class="login-toggle-btn">
                                                         <input type="checkbox">
                                                         <label>记住我</label>
                                                         <a href="#">忘记密码?</a>
                                                     </div>
-                                                    <button type="submit"><span>登录</span></button>
+                                                    <input type="button" class="login-register-btn" value="登录" onclick="dologin()" style="height: 30px;width: 60px;background-color: #7e4c4f;"/>
                                                 </div>
                                             </form>
                                         </div>
@@ -377,10 +385,11 @@
                                     <div class="login-form-container">
                                         <div class="login-register-form">
                                             <form action="#" method="post">
-                                                <input type="text" name="user-name" placeholder="Username">
-                                                <input type="password" name="user-password" placeholder="Password">
-                                                <input name="user-email" placeholder="Email" type="email">
-                                                <div class="button-box">
+                                                <input type="text" name="user-name" placeholder="请输入用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <input type="password" name="user-password" placeholder="请输入密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <input type="text" name="user-telephone" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <input type="email" name="user-email" placeholder="请输入邮箱" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <div class="button-box" style="text-align: center">
                                                     <button type="submit"><span>注册</span></button>
                                                 </div>
                                             </form>
@@ -488,7 +497,7 @@
 		
 		
 		<!-- all js here -->
-        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+
         <script src="assets/js/popper.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.counterup.min.js"></script>
@@ -498,5 +507,153 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/jquery.validate-1.13.1.js"></script>
+    <script>
+        function dologin() {
+
+            $.ajax({
+                type: 'POST',
+                url: 'loginCheck',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "customerName":$("#customername").val(),
+                    "password":$("#password").val()
+                }),
+
+                success: function(response){
+                    alert(response);
+                    console.log(response);
+                    if(response==true){
+                        location.href="index.html";
+                        // window.location.href = "index.html";
+                    }else {
+                        alert("用户名或密码错误");
+                    }
+                },
+                error: function (message) {
+                    console.log(message);
+                },
+                dataType: 'json'
+            });
+        }
+
+        // //一、定义一个获取DOM元素的方法
+        //      var $ = function(selector){
+        //              return  document.querySelector(selector);
+        //          },
+        //          box = $(".drag"),//容器
+        //          bg = $(".bg"),//背景
+        //          text = $(".text"),//文字
+        //          btn = $(".btndrag"),//滑块
+        //          success = false,//是否通过验证的标志
+        //          distance = box.offsetWidth - btn.offsetWidth;//滑动成功的宽度（距离）
+        //
+        //      //二、给滑块注册鼠标按下事件
+        //      btn.onmousedown = function(e){
+        //
+        //          //1.鼠标按下之前必须清除掉后面设置的过渡属性
+        //          btn.style.transition = "";
+        //          bg.style.transition ="";
+        //
+        //          //说明：clientX 事件属性会返回当事件被触发时，鼠标指针向对于浏览器页面(或客户区)的水平坐标。
+        //
+        //          //2.当滑块位于初始位置时，得到鼠标按下时的水平位置
+        //          var e = e || window.event;
+        //          var downX = e.clientX;
+        //
+        //          //三、给文档注册鼠标移动事件
+        //          document.onmousemove = function(e){
+        //
+        //              var e = e || window.event;
+        //              //1.获取鼠标移动后的水平位置
+        //              var moveX = e.clientX;
+        //
+        //              //2.得到鼠标水平位置的偏移量（鼠标移动时的位置 - 鼠标按下时的位置）
+        //              var offsetX = moveX - downX;
+        //
+        //              //3.在这里判断一下：鼠标水平移动的距离 与 滑动成功的距离 之间的关系
+        //              if( offsetX > distance){
+        //                  offsetX = distance;//如果滑过了终点，就将它停留在终点位置
+        //              }else if( offsetX < 0){
+        //                  offsetX = 0;//如果滑到了起点的左侧，就将它重置为起点位置
+        //              }
+        //
+        //              //4.根据鼠标移动的距离来动态设置滑块的偏移量和背景颜色的宽度
+        //              btn.style.left = offsetX + "px";
+        //              bg.style.width = offsetX + "px";
+        //
+        //              //如果鼠标的水平移动距离 = 滑动成功的宽度
+        //              if( offsetX == distance){
+        //
+        //                  //1.设置滑动成功后的样式
+        //                  text.innerHTML = "验证通过";
+        //                  text.style.color = "#fff";
+        //                  btn.innerHTML = "&radic;";
+        //                  btn.style.color = "green";
+        //                  bg.style.backgroundColor = "lightgreen";
+        //
+        //                  //2.设置滑动成功后的状态
+        //                  success = true;
+        //                  //成功后，清除掉鼠标按下事件和移动事件（因为移动时并不会涉及到鼠标松开事件）
+        //                  btn.onmousedown = null;
+        //                  document.onmousemove = null;
+        //
+        //                  //3.成功解锁后的回调函数
+        //                  setTimeout(function(){
+        // //                      alert('解锁成功！');
+        //                      //1.获取登录按钮 btnlogin
+        //                      var btnObj = $("#btnLogin");
+        //                      //2.设置btnlogin disable为false
+        //                      btnObj.removeAttribute("disabled");
+        //                      //3.改btnlogin的底色
+        //                      btnObj.removeAttribute("style");
+        //                  },100);
+        //              }
+        //          }
+        //
+        //          //四、给文档注册鼠标松开事件
+        //          document.onmouseup = function(e){
+        //
+        //              //如果鼠标松开时，滑到了终点，则验证通过
+        //              if(success){
+        //                  return;
+        //              }else{
+        //                  //反之，则将滑块复位（设置了1s的属性过渡效果）
+        //                  btn.style.left = 0;
+        //                  bg.style.width = 0;
+        //                  btn.style.transition = "left 1s ease";
+        //                  bg.style.transition = "width 1s ease";
+        //              }
+        //              //只要鼠标松开了，说明此时不需要拖动滑块了，那么就清除鼠标移动和松开事件。
+        //              document.onmousemove = null;
+        //              document.onmouseup = null;
+        //          }
+        //      }
+
+        $("#customerform").validate({
+            rules:{
+                customername:{
+                    required: true,
+                    minlength: 2,
+                    maxlength: 16
+                },
+                password:{
+                    required: true,
+                    minlength: 5,
+                    maxlength: 16
+                }
+            },
+            messages:{
+                customername:{
+                    required:"请输入用户名",
+                    minlength:"至少输入{0}个字符"
+                },
+                password:{
+                    required:"请输入密码",
+                    minlength:"至少输入{0}个字符"
+                }
+            }
+        })
+    </script>
     </body>
 </html>
