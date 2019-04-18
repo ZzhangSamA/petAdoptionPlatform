@@ -7,4 +7,10 @@ import java.util.List;
 public interface ShippingAddressService{
 
     List<ShippingAddress> selectFromAddress(int customerId);
+
+    int delAddress(Integer addressId);
+
+    boolean addAddress(ShippingAddress shippingAddress);
+
+    boolean updateAddress(ShippingAddress shippingAddress);
 }

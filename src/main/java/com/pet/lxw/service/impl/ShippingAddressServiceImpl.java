@@ -17,5 +17,28 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
     public List<ShippingAddress> selectFromAddress(int customerId) {
         return this.shippingAddressMapper.selectFromAddress(customerId);
     }
+
+    public int delAddress(Integer addressId) {
+        return this.shippingAddressMapper.delAddress(addressId);
+    }
+
+    public boolean addAddress(ShippingAddress shippingAddress) {
+        boolean flag = false;
+        if (this.shippingAddressMapper.addAddress(shippingAddress)>0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateAddress(ShippingAddress shippingAddress) {
+
+        boolean flag = false;
+        if (this.shippingAddressMapper.updateAddress(shippingAddress)>0){
+            return true;
+        }
+        return false;
+    }
+
+
 }
 
