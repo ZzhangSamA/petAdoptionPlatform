@@ -3,10 +3,7 @@ package com.pet.yh.controller;
 import com.pet.yh.pojo.Customer;
 import com.pet.yh.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,5 +23,12 @@ public class CustomerController {
             httpSession.setAttribute("customer",customer);
         }
         return flag.toString();
+    }
+
+    @RequestMapping(value = "register",method = RequestMethod.POST)
+    public Object register(@RequestBody Customer customer){
+        System.out.println(customer);
+        boolean register = this.customerService.register(customer);
+        return register;
     }
 }
