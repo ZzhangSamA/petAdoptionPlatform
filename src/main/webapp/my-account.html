@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
         <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
     </head>
     <body>
     <header class="header-area">
@@ -397,7 +398,7 @@
                                                         <a href="#"><i class="ti-arrow-up"></i> back</a>
                                                     </div>
                                                     <div class="billing-btn">
-                                                        <button type="submit">Continue</button>
+                                                        <button type="button">Continue</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -434,7 +435,7 @@
                                                         <a href="#"><i class=" ti-arrow-up"></i> back</a>
                                                     </div>
                                                     <div class="billing-btn">
-                                                        <button type="submit">Continue</button>
+                                                        <button type="button">Continue</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -443,42 +444,57 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>3</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-3">Modify your address book entries   </a></h5>
+                                        <h5 class="panel-title"><span>3</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-3">查看地址 </a></h5>
                                     </div>
                                     <div id="my-account-3" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            <div class="billing-information-wrapper">
-                                                <div class="account-info-wrapper">
-                                                    <h4>Address Book Entries</h4>
-                                                </div>
-                                                <div class="entries-wrapper">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                                            <div class="entries-info text-center">
-                                                                <p>Gerald Armstrong </p>
-                                                                <p> Address will go here. </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                                            <div class="entries-edit-delete text-center">
-                                                                <a class="edit" href="#">Edit</a>
-                                                                <a href="#">Delete</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="billing-back-btn">
-                                                    <div class="billing-back">
-                                                        <a href="#"><i class="ti-arrow-up"></i> back</a>
-                                                    </div>
-                                                    <div class="billing-btn">
-                                                        <button type="submit">Continue</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            <table class="col-lg-12 col-md-12" id="dataTable">
+                                                <thead>
+                                                <tr >
+                                                    <th style="width: 70px ;text-align: center" height="80">#</th>
+                                                    <th style="width: 100px ;text-align: center">默认地址</th>
+                                                    <th style="width: 130px ;text-align: center">你的性别</th>
+                                                    <th style="width: 130px ;text-align: center">你的名称</th>
+                                                    <th style="width: 130px ;text-align: center">你的邮箱</th>
+                                                    <th style="width: 500px ;text-align: center">详细地址</th>
+                                                    <th width="100" style="text-align: center">更改地址</th>
+                                                    <th width="100" style="text-align: center">删除地址</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="tbody">
+                                                    <!--<tr>-->
+                                                        <!--<td style="text-align: center" height="50">1</td>-->
+                                                        <!--<td style="text-align: center" ><input type="radio" name="1" style=" height: 20px;"></td>-->
+                                                        <!--<td style="text-align: center" >1</td>-->
+                                                        <!--<td style="text-align: center" >1</td>-->
+                                                        <!--<td style="text-align: center" >1</td>-->
+                                                        <!--<td style="text-align: center" >1</td>-->
+                                                        <!--<td class="product-wishlist-cart" >-->
+                                                            <!--<a href="change-address.html">修改</a>-->
+                                                        <!--</td>-->
+                                                        <!--<td class="billing-btn" style="text-align: center">-->
+                                                            <!--<button type="button">删除</button>-->
+                                                        <!--</td>-->
+                                                    <!--</tr>-->
+                                                    <!--<tr>-->
+                                                        <!--<td style="text-align: center" height="50">2</td>-->
+                                                        <!--<td style="text-align: center"><input type="radio" name="1" style=" height: 20px;"></td>-->
+                                                        <!--<td style="text-align: center">2</td>-->
+                                                        <!--<td style="text-align: center">2</td>-->
+                                                        <!--<td style="text-align: center">2</td>-->
+                                                        <!--<td style="text-align: center">2</td>-->
+                                                        <!--<td class="product-wishlist-cart">-->
+                                                            <!--<a href="change-address.html">修改</a>-->
+                                                        <!--</td>-->
+                                                        <!--<td class="billing-btn" style="text-align: center">-->
+                                                            <!--<button type="button">删除</button>-->
+                                                        <!--</td>-->
+                                                    <!--</tr>-->
+                                                </tbody>
+                                                </table>
                                 </div>
+                            </div>
+                        </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h5 class="panel-title"><span>4</span> <a href="wishlist.html">Modify your wish list   </a></h5>
@@ -552,7 +568,7 @@
                                                     <input type="email" value="" name="EMAIL" class="email" placeholder="Your mail address" required>
                                                     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                                     <div class="mc-news" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
-                                                    <div class="clear"><input type="submit" value="SEND" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                                                    <div class="clear"><input type="button" value="SEND" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
                                                 </div>
                                             </form>
                                         </div>
@@ -586,6 +602,7 @@
 		
 		<!-- all js here -->
         <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+
         <script src="assets/js/popper.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.counterup.min.js"></script>
@@ -595,5 +612,72 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+
+
+
+        <script type="text/javascript">
+
+            initPage();
+            function initPage(){
+                // $("#tbody").empty("");
+                $.ajax({
+                    type: 'POST',
+                    url: 'selectFromAddress',
+                    data:{
+                        "customerId":1
+                    },
+                    traditional: true,
+                    success:function (response) {
+                         console.log(response);
+                        $(response).each(function (index,item) {
+
+                            $("#tbody").append("<tr>"+
+                                "<td style=\"text-align: center\">"+index+"</td>"+
+                                "<td style=\"text-align: center\"><input value='"+item.isDefault+"' onclick='defaultsChange()' name='defaultsAddress' type=\"radio\" style=\" height: 20px;\"></td>"+
+                                "<td style=\"text-align: center\">"+item.name+"</td>"+
+                                "<td style=\"text-align: center\">"+item.sex+"</td>"+
+                                "<td style=\"text-align: center\">"+item.postalCode+"</td>"+
+                                "<td style=\"text-align: center\">"+item.address+"</td>"+
+                                "<td class=\"product-wishlist-cart\" style=\"text-align: center\">"+
+                                " <a href=\"change-address.html\">修改</a>"+
+                                "</td>"+
+                                "<td class=\"billing-btn\" style=\"text-align: center\">"+
+                                " <button type='button' onclick='remove("+item.addressId+")'>删除</button>"+
+                                "</td>"+
+                                "</tr>");
+                        })
+                    },
+                    error:function (response) {
+                        console.log(response)
+                    },
+                    dataType: 'json'
+                });
+            }
+            //删除地址
+            function remove(addressId) {
+                $.ajax({
+                    url : "remove",
+                    cache:false,
+                    type : "POST",
+                    async: false,//true为异步，false为同步
+                    data: {"addressId":addressId},  //传入组装的参数
+                    success: function (addressId) {
+                        if (result == 1){
+                            alert("删除成功");
+                            window.location.reload();
+                        }else {
+                            alert("删除失败")
+                        }
+                    },
+                    error: function (message) {
+                        alert("提交数据失败！");
+                    }
+                });
+            }
+            // 选定默认
+            function defaultsChange() {
+
+            }
+        </script>
     </body>
 </html>
