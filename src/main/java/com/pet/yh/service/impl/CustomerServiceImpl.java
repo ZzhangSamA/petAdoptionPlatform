@@ -16,4 +16,13 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return false;
     }
+
+    public boolean register(Customer customer) {
+        int register = this.customerMapper.register(customer);
+
+        if(register>0){
+            return true;
+        }
+        return false;
+    }
 }

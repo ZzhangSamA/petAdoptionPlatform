@@ -373,24 +373,35 @@
                                                     <div class="login-toggle-btn">
                                                         <input type="checkbox">
                                                         <label>记住我</label>
-                                                        <a href="#">忘记密码?</a>
+                                                        <!--<a href="#">忘记密码?</a>-->
                                                     </div>
-                                                    <input type="button" class="login-register-btn" value="登录" onclick="dologin()" style="height: 30px;width: 60px;background-color: #7e4c4f;"/>
-                                                </div>
+                                                    <div class="button-box" style="text-align: center">
+                                                        <button type="button" value="登录" onclick="dologin()">登录</button>
+                                                    </div>
+                                                    </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
                                 <div id="lg2" class="tab-pane">
                                     <div class="login-form-container">
                                         <div class="login-register-form">
-                                            <form action="#" method="post">
-                                                <input type="text" name="user-name" placeholder="请输入用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-                                                <input type="password" name="user-password" placeholder="请输入密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-                                                <input type="text" name="user-telephone" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-                                                <input type="email" name="user-email" placeholder="请输入邮箱" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                            <form action="#" method="post" id="registerform">
+                                                <input type="text" name="rcustomername" id="rcustomername" placeholder="请输入用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rname()"><span id="hint" style="color: red"></span>
+                                                <input type="password" name="rpassword" id="rpassword" placeholder="请输入密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rpwd()"><span id="hint1" style="color: red"></span>
+                                                <input type="text" name="telephone" id="telephone" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rtel()"><span id="hint2" style="color: red"></span>
+                                                <input type="email" name="email" id="email" placeholder="请输入邮箱"
+                                                       onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="remail()"><span id="hint3" style="color: red"></span>
+                                                <div class="button-box">
+                                                    <button type="button" id="ebtn" disabled="disabled" onclick="doemail()" ></font>获取邮箱验证码</button>
+                                                </div>
+                                                    <input type="text" name="verification" id="verification" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="ver()"><span id="hint4" style="color: red"></span>
                                                 <div class="button-box" style="text-align: center">
-                                                    <button type="submit"><span>注册</span></button>
+                                                    <button type="button" onclick="doregister()" id="rbtn" disabled="disabled" ><span>注册</span></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -509,6 +520,107 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/jquery.validate-1.13.1.js"></script>
     <script>
+
+        function rname() {
+            var rcustomername=$("#rcustomername").val();
+            var rcustomername1=/^[a-z]{2,10}/i;
+            if(rcustomername.length==0)
+            {
+                $("#hint").html("账号不能为空");
+                return false;
+            }else if(!rcustomername1.test(rcustomername)){
+                $("#hint").html("请输入2-10的字母");
+                return false;
+            }else {
+                $("#hint").remove();
+            }
+        }
+
+        function rpwd() {
+        var rpassword=$("#rpassword").val();
+        var rpassword1=/^[0-9]{5,10}/;
+        if(rpassword.length==0)
+        {
+            $("#hint1").html("密码不可以为空");
+            return false;
+        }else if(!rpassword1.test(rpassword)){
+            $("#hint1").html("请输入5-10位的数字密码");
+            return false;
+        }else {
+            $("#hint1").remove();
+        }}
+
+        function rtel() {
+            var telephone = $("#telephone").val();
+            var telephone1 = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            if(telephone.length==0){
+                $("#hint2").html("电话不可以为空");
+                return false;
+            }else if(!telephone1.test(telephone)){
+                $("#hint2").html("请输入合法电话");
+                return false;
+            }else {
+                $("#hint2").remove();
+            }
+        }
+
+        function remail() {
+        var email=$("#email").val();
+        var email1=/^[\w]+(\.[\w]+)*@(163)+(\.[\w]+)+$/;
+        if(email.length==0){
+            $("#hint3").html("email不可以为空");
+            return false;
+        }else if(!email1.test(email)){
+            $("#hint3").html("请输入合法的163电子邮件");
+            return false;
+        }else {
+            $("#hint3").remove();
+            $("#ebtn").attr("disabled",false);
+        }}
+
+        function doemail() {
+            var email=$("#email").val();
+            var email1=/^[\w]+(\.[\w]+)*@(163)+(\.[\w]+)+$/;
+            if(email.length==0 || !email1.test(email)){  //验证邮箱是否正确
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: 'emailCheck',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "email":$("#email").val()
+                }),
+
+                success: function(response){
+                    // alert(response);
+                    console.log(response);
+                    if(response==true){
+                        new invokeSettime("#send"); //发送正确后，调用方法，开始倒计时
+                        $("#showTooltips").attr("href","javascript:");
+                        $("#showTooltips").css("background-color","rgba(26,173,25,0.5)");
+                    }else {
+                        alert("验证码发送失败");
+                    }
+                },
+                error: function (message) {
+                    console.log(message);
+                },
+                dataType: 'json'
+            });
+        }
+        function ver() {
+            var verification=$("#verification").val();
+            if(verification.length==0){
+                $("#hint4").html("验证码不能为空");
+                return false;
+            }else if(verification.length==4){
+                $("#hint4").remove();
+                $("#rbtn").attr("disabled",false);
+            }
+        }
+
+
         function dologin() {
 
             $.ajax({
@@ -521,11 +633,10 @@
                 }),
 
                 success: function(response){
-                    alert(response);
+                    // alert(response);
                     console.log(response);
                     if(response==true){
                         location.href="index.html";
-                        // window.location.href = "index.html";
                     }else {
                         alert("用户名或密码错误");
                     }
@@ -537,6 +648,34 @@
             });
         }
 
+        function doregister(){
+            $.ajax({
+                type: 'POST',
+                url: 'register',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "customerName":$("#rcustomername").val(),
+                    "password":$("#rpassword").val(),
+                    "telephone":$("#telephone").val(),
+                    "email":$("#email").val()
+                }),
+
+                success: function(response){
+                    alert(response);
+                    console.log(response);
+                    if(response==true){
+                        alert("注册成功,请登录");
+                        location.href="login-register.html";
+                    }else {
+                        alert("您输入的信息有误,请重新输入");
+                    }
+                },
+                error: function (message) {
+                    console.log(message);
+                },
+                dataType: 'json'
+            });
+        }
         // //一、定义一个获取DOM元素的方法
         //      var $ = function(selector){
         //              return  document.querySelector(selector);
@@ -654,6 +793,50 @@
                 }
             }
         })
+
+        // $("#registerform").validate({
+        //     rules:{
+        //         rcustomername:{
+        //             required: true,
+        //             minlength: 2,
+        //             maxlength: 16
+        //         },
+        //         rpassword:{
+        //             required: true,
+        //             minlength: 5,
+        //             maxlength: 16
+        //         },
+        //         telephone: {
+        //             required:true,
+        //             minlength:11,
+        //             isMobile:true
+        //         },
+        //         email: {
+        //             required:true,
+        //             email:true
+        //         }
+        //     },
+        //     messages:{
+        //         rcustomername:{
+        //             required:"请输入用户名",
+        //             minlength:"至少输入{0}个字符"
+        //         },
+        //         rpassword:{
+        //             required:"请输入密码",
+        //             minlength:"至少输入{0}个字符"
+        //         },
+        //         telephone: {
+        //             required:"请输入手机号",
+        //             minlength:"请输入11位手机号",
+        //             isMobile:"请输入正确格式的手机号"
+        //         },
+        //         email: {
+        //             required:"请输入邮箱",
+        //             email:"请输入正确格式的邮箱"
+        //         }
+        //     }
+        // })
+
     </script>
     </body>
 </html>

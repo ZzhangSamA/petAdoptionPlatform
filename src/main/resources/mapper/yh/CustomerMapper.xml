@@ -25,7 +25,7 @@
 
   <!--注册-->
   <insert id="register" parameterType="com.pet.yh.pojo.Customer">
-    insert into customer values(default ,#{customerName},#{password},#{name},#{email},#{birthday},#{sex},#{telephone},default ,default ,1)
+    insert into customer(customer_name,password,telephone,email) values(#{customerName},#{password},#{telephone},#{email})
   </insert>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--

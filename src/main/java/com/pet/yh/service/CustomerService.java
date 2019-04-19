@@ -4,4 +4,6 @@ import com.pet.yh.pojo.Customer;
 
 public interface CustomerService {
     boolean loginCheck(Customer customer);
+
+    boolean register(Customer customer);
 }
