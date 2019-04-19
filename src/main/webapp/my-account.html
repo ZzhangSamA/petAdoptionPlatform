@@ -352,7 +352,7 @@
                             <div id="faq" class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1">Edit your account information </a></h5>
+                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1">编辑你的详细信息 </a></h5>
                                     </div>
                                     <div id="my-account-1" class="panel-collapse collapse show">
                                         <div class="panel-body">
@@ -407,7 +407,7 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>2</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-2">Change your password </a></h5>
+                                        <h5 class="panel-title"><span>2</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-2">更改密码 </a></h5>
                                     </div>
                                     <div id="my-account-2" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -497,7 +497,7 @@
                         </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>4</span> <a href="wishlist.html">Modify your wish list   </a></h5>
+                                        <h5 class="panel-title"><span>4</span> <a href="wishlist.html">我的收藏   </a></h5>
                                     </div>
                                 </div>
                             </div>
@@ -629,13 +629,22 @@
                     traditional: true,
                     success:function (response) {
                          console.log(response);
+                         var sexx = null;
+                         var c = null;
                         $(response).each(function (index,item) {
+                            if(item.sex==0){
+                                sexx = "";
+                            }else if(item.sex==1){
+                                sexx = "男";
+                            }else {
+                                sexx = "女";
+                            }
 
                             $("#tbody").append("<tr>"+
                                 "<td style=\"text-align: center\">"+index+"</td>"+
-                                "<td style=\"text-align: center\"><input value='"+item.isDefault+"' onclick='defaultsChange()' name='defaultsAddress' type=\"radio\" style=\" height: 20px;\"></td>"+
+                                "<td style=\"text-align: center\"><input  value='"+item.isDefault+"' onclick='defaultsChange("+item.addressId+")' name='defaultsAddress' type=\"radio\" style=\" height: 20px;\"></td>"+
+                                "<td style=\"text-align: center\">"+sexx+"</td>"+
                                 "<td style=\"text-align: center\">"+item.name+"</td>"+
-                                "<td style=\"text-align: center\">"+item.sex+"</td>"+
                                 "<td style=\"text-align: center\">"+item.postalCode+"</td>"+
                                 "<td style=\"text-align: center\">"+item.address+"</td>"+
                                 "<td class=\"product-wishlist-cart\" style=\"text-align: center\">"+
@@ -646,6 +655,19 @@
                                 "</td>"+
                                 "</tr>");
                         })
+                        $("input:radio[name=defaultsAddress]").each(function(i,val){
+                            console.log(val)
+                            // var $vall = $(val)
+                            // console.log($vall)
+                            if (val.value==1){
+                                val.checked="checked";
+                            }
+                        });
+                        // if ($("input:radio[name=defaultsAddress]:checked").length == $("input:checkbox[name=defaultsAddress]").length) {
+                        //     $("#allElection").prop("checked", true);
+                        // }else {
+                        //     $("#allElection").prop("checked", false);
+                        // }
                     },
                     error:function (response) {
                         console.log(response)
@@ -656,27 +678,49 @@
             //删除地址
             function remove(addressId) {
                 $.ajax({
-                    url : "remove",
-                    cache:false,
-                    type : "POST",
-                    async: false,//true为异步，false为同步
-                    data: {"addressId":addressId},  //传入组装的参数
-                    success: function (addressId) {
-                        if (result == 1){
-                            alert("删除成功");
-                            window.location.reload();
-                        }else {
-                            alert("删除失败")
+                    type: "POST",//数据发送的方式（post 或者 get）
+                    url: "remove",//要发送的后台地址
+                    data: {"addressId": addressId}
+                    ,//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
+                    dataType: "json",//后台处理后返回的数据格式
+                    success: function (responseText) {//ajax请求成功后触发的方法
+                        if (responseText == true) {
+                            window.location.href = "my-account.html";
+                        } else {
+                            alert('删除失败');
                         }
                     },
-                    error: function (message) {
-                        alert("提交数据失败！");
+                    error: function (msg) {//ajax请求失败后触发的方法
+                        alert(msg);//弹出错误信息
                     }
+
                 });
             }
             // 选定默认
-            function defaultsChange() {
+            function defaultsChange(addressId) {
+                //1.提交数据到服务器并获取返回值
+                $.ajax({
 
+                    type: 'POST',
+                    url: 'defaultAddress',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        "customerId":1,
+                        "addressId":addressId
+                    }),
+                    //2.根据返回值提示并跳转
+                    success:function (response) {
+                        if(response==true){
+                            alert("更改默认地址成功");
+                        }else{
+                            alert("修改失败");
+                        }
+                    },
+                    error:function (response) {
+                        alert("服务器内部错误,修改失败");
+                    },
+                    dataType: 'json'
+                })
             }
         </script>
     </body>
