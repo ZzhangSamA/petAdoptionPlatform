@@ -17,6 +17,7 @@ public class ShippingAddressController {
 
     @RequestMapping(value = "selectFromAddress",method = RequestMethod.POST)
     public List<ShippingAddress> selectFromAddress(@RequestParam int customerId){
+
         return this.shippingAddressService.selectFromAddress(customerId);
     }
 
