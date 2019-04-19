@@ -157,4 +157,13 @@
   <update id="delAddress" parameterType="com.pet.lxw.pojo.ShippingAddress">
     update shipping_address set status = 0 where address_id = #{addressId}
   </update>
+
+
+  <!--默认收货地址选定-->
+  <update id="defaultAddress" parameterType="com.pet.lxw.pojo.ShippingAddress">
+    UPDATE shipping_address set `is_default` =
+    (CASE when address_id=#{addressId} THEN 1
+    ELSE 0 end) where customer_id = #{customerId}
+  </update>
+
 </mapper>
