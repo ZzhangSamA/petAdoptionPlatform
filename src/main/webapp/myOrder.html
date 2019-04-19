@@ -578,20 +578,20 @@
                           "<td class=\" \" >" +
                           ""+item1.number+"\n" +
                           "</td>\n" +
-                          "<td class=\"\" ><a href=\"\">申请售后</a></td>\n" +
+                          "<td class=\"\" ></td>\n" +
                           // "<td>1100</td>\n" +
-                          "<td class=\"\" style=\"width: 20%\">"+11+"</td>\n" +
-                          "<td>确认收货</td>\n" +
+                          "<td class=\"\" style=\"width: 20%\"></td>\n" +
+                          "<td></td>\n" +
                           "</tbody>"
                  })
                  var String1="<div style='margin: 2% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
                      "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
                      "<tr>\n" +
-                     "                                    <th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
-                     "                                    <th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
-                     "                                </tr>\n" +
-                     "                                </tbody>"+String+"</table>" +
-                     "                        </div>"
+                     "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                     "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
+                     "</tr>\n" +
+                     "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款：1100</td><td><a class='hover-blue' href='#'>申请售后</a></td> <td colspan='1' style='font-size: large'><div>物流派送中</div><div><a class='hover-blue' style='word-break: break-all' href='#'>订单详情</a></div></td><td colspan='1' style='font-size: large'><div style='border: 1px solid;border-color: green'><a class='hover-blue'>确认收货</a></div></td> </tr> </tbody></table> " +
+                     "</div>"
                  $(String1).insertAfter($("#orderHead"))
 
              })
