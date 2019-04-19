@@ -27,4 +27,12 @@
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".html"></property>
     </bean>
+
+    <!--<mvc:interceptors>-->
+    <!--&lt;!&ndash;配置登录拦截器&ndash;&gt;-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/*.html"/>-->
+    <!--<bean class="com.pet.yh.interceptor.MyInterceptor"/>-->
+    <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 </beans>
