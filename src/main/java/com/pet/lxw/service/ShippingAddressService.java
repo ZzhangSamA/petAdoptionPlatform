@@ -13,4 +13,6 @@ public interface ShippingAddressService{
     boolean addAddress(ShippingAddress shippingAddress);
 
     boolean updateAddress(ShippingAddress shippingAddress);
+
+    boolean defaultAddress(ShippingAddress record);
 }

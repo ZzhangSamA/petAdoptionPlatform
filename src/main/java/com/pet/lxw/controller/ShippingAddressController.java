@@ -41,4 +41,11 @@ public class ShippingAddressController {
         boolean flag = this.shippingAddressService.updateAddress(shippingAddress);
         return flag;
     }
+
+    @RequestMapping(value = "defaultAddress",method = RequestMethod.POST)
+    public Object defaultAddress(@RequestBody ShippingAddress shippingAddress){
+        //System.out.println(shippingAddress);
+        boolean flag = this.shippingAddressService.defaultAddress(shippingAddress);
+        return flag;
+    }
 }

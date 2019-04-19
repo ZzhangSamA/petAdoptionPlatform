@@ -39,6 +39,14 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
         return false;
     }
 
+    public boolean defaultAddress(ShippingAddress record) {
+        boolean flag = false;
+        if (this.shippingAddressMapper.defaultAddress(record)>0){
+            return true;
+        }
+        return false;
+    }
+
 
 }
 
