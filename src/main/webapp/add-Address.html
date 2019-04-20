@@ -363,8 +363,7 @@
                                 <div class="panel-body">
                                     <div class="billing-information-wrapper">
                                         <div class="account-info-wrapper">
-                                            <h4>原地址:</h4>
-                                                <input id="myAddress" type="text" style="text-align: center;color:#7e4c4f " value="原地址">
+                                            <h4>新增你的地址:</h4>
                                         </div>
                                         <div class="entries-wrapper" >
                                             <div class="row">
@@ -415,7 +414,7 @@
                                                 <a href="#"><i class="ti-arrow-up"></i> back</a>
                                             </div>
                                             <div class="billing-btn">
-                                                <button onclick="updateAddress()" type="button">确认</button>
+                                                <button onclick="addAddress()" type="button">确认</button>
                                             </div>
                                         </div>
                                     </div>
@@ -547,25 +546,9 @@
 
 
 
-    var addressId = window.location.search.split("=")[1];
-    // alert(addressId);
-    jq.ajax({
-        async:false,
-        type: 'GET',
-        url: 'selectOneAddress?addressId=' + addressId,
-        contentType: "application/json; charset=utf-8",
-        success:function (response) {
-            console.log(response);
+    var customerId = window.location.search.split("=")[1];
 
-            jq("#myAddress").val("姓名："+response.name+"       地址："+response.address);
-        },
-        error:function (response) {
-            console.error(response);
-        },
-        dataType: 'json'
-    })
-
-    function updateAddress() {
+    function addAddress() {
         // 1.提交数据到服务器并获取返回值
 
         var myAddrezz = jq("#addr-show02").val()+jq("#detailAddress").val()
@@ -581,10 +564,10 @@
         jq.ajax({
             async:false,
             type: 'POST',
-            url: 'updateAddress',
+            url: 'addAddress',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
-                "addressId":addressId,
+                "customerId":customerId,
                 "name":jq("#cName").val(),
                 "postalCode":jq("#postalCode").val(),
                 "sex":sexx,

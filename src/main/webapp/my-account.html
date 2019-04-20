@@ -354,7 +354,7 @@
                                     <div class="panel-heading">
                                         <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1">编辑你的详细信息 </a></h5>
                                     </div>
-                                    <div id="my-account-1" class="panel-collapse collapse show">
+                                    <div id="my-account-1" class="panel-collapse collapse ">
                                         <div class="panel-body">
                                             <div class="billing-information-wrapper">
                                                 <div class="account-info-wrapper">
@@ -457,6 +457,7 @@
                                                     <th style="width: 130px ;text-align: center">你的名称</th>
                                                     <th style="width: 130px ;text-align: center">你的邮箱</th>
                                                     <th style="width: 500px ;text-align: center">详细地址</th>
+                                                    <th width="100" style="text-align: center">增加地址</th>
                                                     <th width="100" style="text-align: center">更改地址</th>
                                                     <th width="100" style="text-align: center">删除地址</th>
                                                 </tr>
@@ -630,10 +631,9 @@
                     success:function (response) {
                          console.log(response);
                          var sexx = null;
-                         var c = null;
                         $(response).each(function (index,item) {
                             if(item.sex==0){
-                                sexx = "";
+                                sexx = "保密";
                             }else if(item.sex==1){
                                 sexx = "男";
                             }else {
@@ -647,8 +647,11 @@
                                 "<td style=\"text-align: center\">"+item.name+"</td>"+
                                 "<td style=\"text-align: center\">"+item.postalCode+"</td>"+
                                 "<td style=\"text-align: center\">"+item.address+"</td>"+
-                                "<td class=\"product-wishlist-cart\" style=\"text-align: center\">"+
-                                " <a href=\"change-address.html\">修改</a>"+
+                                "<td class=\"billing-btn\" style=\"text-align: center\">"+
+                                " <button type='button' onclick='jumpAdd("+item.customerId+")'>增加</button>"+
+                                "</td>"+
+                                "<td class=\"billing-btn\" style=\"text-align: center\">"+
+                                " <button type='button' onclick='jumpToEdit("+item.addressId+")'>修改</button>"+
                                 "</td>"+
                                 "<td class=\"billing-btn\" style=\"text-align: center\">"+
                                 " <button type='button' onclick='remove("+item.addressId+")'>删除</button>"+
@@ -721,6 +724,15 @@
                     },
                     dataType: 'json'
                 })
+            }
+
+            function jumpToEdit(addressId) {
+                var url = "change-address.html?addressId="+addressId;
+                window.location.href = url;
+            }
+            function jumpAdd(customerId) {
+                var urll = "add-Address.html?customerId="+customerId;
+                window.location.href =urll ;
             }
         </script>
     </body>
