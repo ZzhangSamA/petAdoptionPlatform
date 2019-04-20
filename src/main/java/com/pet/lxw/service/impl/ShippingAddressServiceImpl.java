@@ -18,6 +18,10 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
         return this.shippingAddressMapper.selectFromAddress(customerId);
     }
 
+    public ShippingAddress selectOneAddress(int addressId) {
+        return this.shippingAddressMapper.selectOneAddress(addressId);
+    }
+
     public int delAddress(Integer addressId) {
         return this.shippingAddressMapper.delAddress(addressId);
     }

@@ -8,6 +8,8 @@ public interface ShippingAddressService{
 
     List<ShippingAddress> selectFromAddress(int customerId);
 
+    ShippingAddress selectOneAddress(int addressId);
+
     int delAddress(Integer addressId);
 
     boolean addAddress(ShippingAddress shippingAddress);

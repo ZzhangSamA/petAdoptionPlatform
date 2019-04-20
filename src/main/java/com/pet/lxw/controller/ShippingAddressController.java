@@ -21,6 +21,11 @@ public class ShippingAddressController {
         return this.shippingAddressService.selectFromAddress(customerId);
     }
 
+    @RequestMapping(value = "selectOneAddress")
+    public ShippingAddress selectOneAddress(@RequestParam int addressId){
+        return this.shippingAddressService.selectOneAddress(addressId);
+    }
+
     @RequestMapping(value = "remove",method = RequestMethod.POST)
     public int remove(@Param("addressId") String addressId) {
         int id = Integer.parseInt(addressId);
@@ -30,14 +35,13 @@ public class ShippingAddressController {
 
     @RequestMapping(value = "addAddress",method = RequestMethod.POST)
     public Object addAddress(@RequestBody ShippingAddress shippingAddress){
-        //System.out.println(shippingAddress);
+        System.out.println(shippingAddress);
         boolean flag = this.shippingAddressService.addAddress(shippingAddress);
         return flag;
     }
 
     @RequestMapping(value = "updateAddress",method = RequestMethod.POST)
     public Object updateAddress(@RequestBody ShippingAddress shippingAddress){
-        //System.out.println(shippingAddress);
         boolean flag = this.shippingAddressService.updateAddress(shippingAddress);
         return flag;
     }
