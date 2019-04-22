@@ -54,7 +54,7 @@
     where order_id = #{orderId,jdbcType=INTEGER}
   </select>
   <select id="getOrderCount" parameterType="int" resultType="int">
-    select count(*) from t_order where customer_id=#{customerId}
+    select count(*) from t_order where status &lt;&gt; 0 and customer_id=#{customerId}
   </select>
     <select id="getStatus" parameterType="String" resultType="int">
         select status from t_order where order_number=#{orderNumber}
@@ -175,6 +175,9 @@
     <update id="delivery" parameterType="com.pet.hpq.pojo.TOrder">
         update t_order set status=4 where order_number=#{orderNumber}
     </update>
+  <update id="refuseOrder" parameterType="com.pet.hpq.pojo.TOrder">
+    update t_order set status=0 where order_number=#{orderNumber}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.pet.hpq.pojo.TOrder" >
     <!--
       WARNING - @mbggenerated
