@@ -3750,6 +3750,19 @@ input.cart-plus-minus-box {
 .table-content table td.product-remove a:hover {
     color: #7e4c4f;
 }
+#simplyBody{
+    position: fixed;
+    width: 476px;
+    height: 216px;
+    top: 50%;
+    left: 50%;
+    margin: -188px 0 0 -238px;
+    border: 1px solid #948497;
+    background-color: #fff;
+    display: block;
+    border-radius: 8px;
+
+}
 .transaction-status{
     background: #d8d8d8;
     border-radius: 5px;
