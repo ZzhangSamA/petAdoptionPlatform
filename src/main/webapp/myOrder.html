@@ -341,8 +341,8 @@
         <div class="breadcrumb-content text-center">
             <h2>我的订单</h2>
             <ul>
-                <li><a href="index.html">home</a></li>
-                <li class="active">Cart Page</li>
+                <li><a href="index.html">主页</a></li>
+                <li class="active">order Page</li>
             </ul>
         </div>
     </div>
@@ -371,84 +371,89 @@
                         </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="cart-shiping-update-wrapper">
-                                <div class="cart-shiping-update">
-                                    <a href="#">Continue Shopping</a>
-                                    <button>Update Shopping Cart</button>
-                                </div>
-                                <div class="cart-clear">
-                                    <a href="#">Clear Shopping Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <!--</form>-->
-            </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="cart-tax">
-                            <h4 class="cart-bottom-title">Estimate Shipping And Tax</h4>
-                            <div class="tax-wrapper">
-                                <p>Enter your destination to get a shipping estimate.</p>
-                                <div class="tax-select-wrapper">
-                                    <div class="tax-select">
-                                        <label>
-                                            Country
-                                        </label>
-                                        <select class="email s-email s-wid">
-                                            <option>Bangladesh</option>
-                                            <option>Albania</option>
-                                            <option>Åland Islands</option>
-                                            <option>Afghanistan</option>
-                                            <option>Belgium</option>
-                                        </select>
-                                    </div>
-                                    <div class="tax-select">
-                                        <label>
-                                            State/Province
-                                        </label>
-                                        <select class="email s-email s-wid">
-                                            <option>Bangladesh</option>
-                                            <option>Albania</option>
-                                            <option>Åland Islands</option>
-                                            <option>Afghanistan</option>
-                                            <option>Belgium</option>
-                                        </select>
-                                    </div>
-                                    <div class="tax-select">
-                                        <label>
-                                            Zip/Postal Code
-                                        </label>
-                                        <input type="text" placeholder="1234567">
-                                    </div>
-                                    <button class="cart-btn-2" type="submit">Get A Quote</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="discount-code-wrapper">
-                            <h4 class="cart-bottom-title">DISCOUNT CODES</h4>
-                            <div class="discount-code">
-                                <p>Enter your coupon code if you have one.</p>
-                                <form>
-                                    <input type="text" required="" name="name">
-                                    <button class="cart-btn-2" type="submit">Get A Quote</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="grand-totall">
-                            <span>Subtotal:   $155.00</span>
-                            <h5>Grand Total:   $353.00</h5>
-                            <a href="#">Proceed To Checkout</a>
-                            <p>Checkout with Multiple Addresses</p>
-                        </div>
-                    </div>
+                <div class="pagination-style text-center mt-10" id="liChange">
+                    <ul>
+
+                    </ul>
                 </div>
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-12">-->
+                            <!--<div class="cart-shiping-update-wrapper">-->
+                                <!--<div class="cart-shiping-update">-->
+                                    <!--<a href="#">Continue Shopping</a>-->
+                                    <!--<button>Update Shopping Cart</button>-->
+                                <!--</div>-->
+                                <!--<div class="cart-clear">-->
+                                    <!--<a href="#">Clear Shopping Cart</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--&lt;!&ndash;</form>&ndash;&gt;-->
+            <!--</div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-lg-4 col-md-6">-->
+                        <!--<div class="cart-tax">-->
+                            <!--<h4 class="cart-bottom-title">Estimate Shipping And Tax</h4>-->
+                            <!--<div class="tax-wrapper">-->
+                                <!--<p>Enter your destination to get a shipping estimate.</p>-->
+                                <!--<div class="tax-select-wrapper">-->
+                                    <!--<div class="tax-select">-->
+                                        <!--<label>-->
+                                            <!--Country-->
+                                        <!--</label>-->
+                                        <!--<select class="email s-email s-wid">-->
+                                            <!--<option>Bangladesh</option>-->
+                                            <!--<option>Albania</option>-->
+                                            <!--<option>Åland Islands</option>-->
+                                            <!--<option>Afghanistan</option>-->
+                                            <!--<option>Belgium</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                    <!--<div class="tax-select">-->
+                                        <!--<label>-->
+                                            <!--State/Province-->
+                                        <!--</label>-->
+                                        <!--<select class="email s-email s-wid">-->
+                                            <!--<option>Bangladesh</option>-->
+                                            <!--<option>Albania</option>-->
+                                            <!--<option>Åland Islands</option>-->
+                                            <!--<option>Afghanistan</option>-->
+                                            <!--<option>Belgium</option>-->
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                    <!--<div class="tax-select">-->
+                                        <!--<label>-->
+                                            <!--Zip/Postal Code-->
+                                        <!--</label>-->
+                                        <!--<input type="text" placeholder="1234567">-->
+                                    <!--</div>-->
+                                    <!--<button class="cart-btn-2" type="submit">Get A Quote</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-6">-->
+                        <!--<div class="discount-code-wrapper">-->
+                            <!--<h4 class="cart-bottom-title">DISCOUNT CODES</h4>-->
+                            <!--<div class="discount-code">-->
+                                <!--<p>Enter your coupon code if you have one.</p>-->
+                                <!--<form>-->
+                                    <!--<input type="text" required="" name="name">-->
+                                    <!--<button class="cart-btn-2" type="submit">Get A Quote</button>-->
+                                <!--</form>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-12">-->
+                        <!--<div class="grand-totall">-->
+                            <!--<span>Subtotal:   $155.00</span>-->
+                            <!--<h5>Grand Total:   $353.00</h5>-->
+                            <!--<a href="#">Proceed To Checkout</a>-->
+                            <!--<p>Checkout with Multiple Addresses</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -557,52 +562,362 @@
 <script src="assets/js/ajax-mail.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/plugins.js"></script>
-<script src="assets/js/main.js"></script>
+<script  src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/alert.js"></script>
+
 <script>
-    $.ajax({
-        type: "POST",
-        url: "getOrders",
-        contentType: "application/json;charset=utf-8",
-        success:function(text){
-         if (text!=null){
-             var String="";
-             $(text).each(function (index,item) {
-                 $(item.goodsInfoDtos).each(function (index1,item1) {
-                      String+="<tbody style=\"border: none\">" +
-                          "<tr>" +
-                          "<td class=\"\" style=\"width: 20%\" >\n" +
-                          "<a href=\"#\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
-                          "</td>" +
-                          "<td class=\"\" ><a href=\"#\">"+item1.goodsName+"</a></td>\n" +
-                          "<td class=\"\" ><span class=\"amount\">"+item1.preferentialPrice+"</span></td>\n" +
-                          "<td class=\" \" >" +
-                          ""+item1.number+"\n" +
-                          "</td>\n" +
-                          "<td class=\"\" ></td>\n" +
-                          // "<td>1100</td>\n" +
-                          "<td class=\"\" style=\"width: 20%\"></td>\n" +
-                          "<td></td>\n" +
-                          "</tbody>"
-                 })
-                 var String1="<div style='margin: 2% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
-                     "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
-                     "<tr>\n" +
-                     "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
-                     "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
-                     "</tr>\n" +
-                     "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款：1100</td><td><a class='hover-blue' href='#'>申请售后</a></td> <td colspan='1' style='font-size: large'><div>物流派送中</div><div><a class='hover-blue' style='word-break: break-all' href='#'>订单详情</a></div></td><td colspan='1' style='font-size: large'><div style='border: 1px solid;border-color: green'><a class='hover-blue'>确认收货</a></div></td> </tr> </tbody></table> " +
-                     "</div>"
-                 $(String1).insertAfter($("#orderHead"))
+    getOrders(1);
+    function getOrders(newCurrentPage){
+        $.ajax({
+            type: "POST",
+            url: "getOrders",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "currentPage": newCurrentPage
+            }),
+            success:function(text){
+                if (text!=null){
+                    $("#orders").remove();
+                    var String1="";
+                    $(text.orderDto).each(function (index,item) {
+                        var String="";
+                        var orderNumber=item.orderNumber;
+                        $(item.goodsInfoDtos).each(function (index1,item1) {
+                            String+="<tbody style=\"border: none\">" +
+                                "<tr>" +
+                                "<td class=\"\" style=\"width: 20%\" >\n" +
+                                "<a href=\"javascript:void(0);\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
+                                "</td>" +
+                                "<td class=\"\" ><div><a href=\"#\">"+item1.goodsName+"</a></div><div><p>规格："+item1.parameterName+"</p></div></td>\n" +
+                                "<td class=\"\" ><div><del style='color: #9c9c9c'>￥"+item1.parameterPrice+"</del></div><div><span class=\"amount\">￥"+item1.preferentialPrice+"</span></div></td>\n" +
+                                "<td class=\" \" >" +
+                                ""+item1.number+"\n" +
+                                "</td>\n" +
+                                "<td class=\"\" ></td>\n" +
+                                // "<td>1100</td>\n" +
+                                "<td class=\"\" style=\"width: 20%\"></td>\n" +
+                                "<td></td>\n" +
+                                "</tbody>"
+                        })
 
-             })
-         }
-        },
-        error: function (message) {
-            alert("404");
-        },
+                        if (item.status==1){
+                            String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
+                                "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
+                                "<tr>\n" +
+                                "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                                "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
+                                "</tr>\n" +
+                                "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
+                                "<div id='message'>等待付款</div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'></a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div ><a class='transaction-status'  style='color: red;'  href='#'>立即付款</a> </div>" +
+                                "<div><a class='hover-blue refuseOrder' href='javascript:void(0);' >取消订单</a> </div></td> </tr>" +
+                                "</tbody></table> " +
+                                "</div>"
 
-        dataType: "json"
-    });
+                        }else if(item.status==2){
+                            String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table class='newTable' style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
+                                "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
+                                "<tr>\n" +
+                                "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                                "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
+                                "</tr>\n" +
+                                "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
+                                "<div id='message'>等待发货</div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div ><a class='transaction-status hover-blue refuseOrder'  style='color: green' >取消订单</a> </div>" +
+                                "</td> </tr>" +
+                                "</tbody></table> " +
+                                "</div>"
+
+                        }else if (item.status==3){
+                            String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table class='newtable' style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
+                                "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
+                                "<tr>\n" +
+                                "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                                "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
+                                "</tr>\n" +
+                                "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
+                                "<div id='message'>已发货</div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div ><a class='transaction-status confirm'>确认收货</a> </div>" +
+                                "</td> </tr>" +
+                                "</tbody></table> " +
+                                "</div>"
+                        }
+                else if(item.status==4){
+                            String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
+                                "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
+                                "<tr>\n" +
+                                "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                                "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
+                                "</tr>\n" +
+                                "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
+                                "<div id='message'>交易成功</div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div ><a class='transaction-status'  style='color: blue'  href='#'>评价</a> </div>" +
+                                "</td> </tr>" +
+                                "</tbody></table> " +
+                                "</div>"
+
+                        }else if(item.status==5){
+                            String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
+                                "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
+                                "<tr>\n" +
+                                "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                                "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
+                                "</tr>\n" +
+                                "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
+                                "<div id='message'>交易成功</div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div ><a class='transaction-status'  style='color: blue'  href='#'>再次评价</a> </div>" +
+                                "</td> </tr>" +
+                                "</tbody></table> " +
+                                "</div>"
+                        }else if(item.status==6){
+                            String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
+                                "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
+                                "<tr>\n" +
+                                "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
+                                "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
+                                "</tr>\n" +
+                                "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
+                                "<div id='message'>交易成功</div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div><div><a href='javascript:void(0);'>已评价</a> </div></td><td colspan='1' style='font-size: large'>" +
+                                "</td> </tr>" +
+                                "</tbody></table> " +
+                                "</div>"
+                        }
+
+                    })
+                    $(String1).insertAfter($("#orderHead"));
+                }
+                $("#liChange ul li").remove();
+                var totalpage=text.splitPage.totalPage;
+                var currentPage=text.splitPage.currentPage;
+                var setNode="";
+                $("#liChange ul li").remove();
+                var totalpage=text.splitPage.totalPage;
+                var currentPage=text.splitPage.currentPage;
+                var setNode="";
+                setNode+= "<li class=\"notRemove disabled\">\n" +
+                    "<a href=\"#\" class=\"btn btn-primary btn-lg\" onclick='getOrders(1)'>首页</a>\n" +
+                    "</li>"
+                var currentPageDel=currentPage-1;
+                if (currentPage==1){
+                    setNode+="<li class=\"notRemove \" id=\"firstLi\">\n" +
+                        "<a href=\"javascript:void(0);\" class=\"btn btn-primary btn-lg disabled\"  ><i class=\"icon-arrow-left\"></i></a>\n" +
+                        "</li>"
+                }else{
+                    setNode+="<li class=\"notRemove \" id=\"firstLi\">\n" +
+                        "<a href=\"javascript:void(0);\" class=\"btn btn-primary btn-lg\" onclick='getOrders("+currentPageDel+")'  ><i class=\"icon-arrow-left\"></i></a>\n" +
+                        "</li>"
+                }
+                for (var i = 1;i<=totalpage;i++){
+                    if (currentPage==i){
+                        setNode+="<li id='firstLi"+i+"'>\n" +
+                            "<a href=\"javascript:void(0);\" onclick='getOrders("+i+")' class=\"btn btn-primary btn-lg active\">"+i+"</a>\n" +
+                            "</li>"
+                    }else {
+                        setNode+="<li id='firstLi"+i+"'>\n" +
+                            "<a href=\"javascript:void(0);\" onclick='getOrders("+i+")' class=\"btn btn-primary btn-lg \">"+i+"</a>\n" +
+                            "</li>"
+                    }
+
+                }
+                var currentPageAdd=currentPage+1
+                if(currentPage==totalpage){
+                    setNode+=" <li class=\" notRemove\">\n" +
+                        "<a class=\"btn btn-primary btn-lg disabled\" href=\"javascript:void(0);\"><i class=\"icon-arrow-right\"></i></a>\n" +
+                        "</li>"
+                }else {
+                    setNode+=" <li class=\" notRemove\">\n" +
+                        "<a class=\"btn btn-primary btn-lg \" href=\"javascript:void(0);\" onclick='getOrders("+currentPageAdd+")'><i class=\"icon-arrow-right\"></i></a>\n" +
+                        "</li>"
+                }
+                setNode+="   <li class=\"notRemove\">\n" +
+                    "<a href=\"#\" class=\"btn btn-primary btn-lg\" onclick='getOrders("+totalpage+")' >尾页</a>\n" +
+                    "</li>"
+                $("#liChange ul").append(setNode)
+
+            },
+            error: function (message) {
+                alert("404");
+            },
+
+            dataType: "json"
+        });
+    }
+
+    //以点击事件为例，其他事件绑定道理一样
+    $('body').on('click','.confirm',function(){
+        var htmlValue = "<div id=\"simplyBody\">\n" +
+         "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
+         "<div style=\"margin: 2% 30%\"><h2>确认收货？</h2></div>\n" +
+         "<div style=\"margin: 10%\">\n" +
+         "<span class='transaction-status checked' style=\"margin: 0 60% 0 0\" id=\"checked\"><a>是</a></span>\n" +
+         "<span class='transaction-status noChecked' id=\"noChecked\"><a>否</a></span>\n" +
+         "</div>\n" +
+         "</div>";
+         $("html").append(htmlValue);
+         $("body").css("overflow","hidden")
+    })
+    $("html").on("click",".noChecked",function () {
+        $("#simplyBody").remove()
+        $("body").css("overflow","auto")
+    })
+    $("html").on("click",".checked",function () {
+        $("#simplyBody").remove();
+        $("body").css("overflow","auto");
+                   var ac = $(".confirm").parents("table").find(".orderNumber").html();
+                   var bc = ac.split("：")[1];
+                   var height = $(window).height();
+                   var width = $(window).width();
+                   var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+                       '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+                   $("html").append(htmlValue);
+
+                   $.ajax({
+                       async: true,
+                       cache: false,
+                       traditional: true,
+                       type: "POST",
+                       url: "delivery",
+                       contentType: "application/json;charset=utf-8",
+                       data: JSON.stringify({
+                           "orderNumber":bc
+                       }),
+                       success:function(text){
+                           $(".loading_masker").remove()
+                         if (text==0){
+                            alert("错误，确认失败")
+                         }else if (text==1){
+                             window.location.reload()
+                         }
+                       },
+                       error: function (text) {
+                           alert("服务器错误，确认失败");
+                       },
+
+                       dataType: "json"
+                   });
+    })
+    $('body').on('click','.refuseOrder',function(){
+        var htmlValue = "<div id=\"simplyBody\">\n" +
+            "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
+            "<div style=\"margin: 2% 20%\"><h2>确认取消订单？</h2></div>\n" +
+            "<div style=\"margin: 10%\">\n" +
+            "<span class='transaction-status checkOrder' style=\"margin: 0 60% 0 0\" id=\"checked\"><a>是</a></span>\n" +
+            "<span class='transaction-status noCheckOrder' id=\"noChecked\"><a>否</a></span>\n" +
+            "</div>\n" +
+            "</div>";
+        $("html").append(htmlValue);
+        $("body").css("overflow","hidden")
+    })
+    $("html").on("click",".noCheckOrder",function () {
+        $("#simplyBody").remove()
+        $("body").css("overflow","auto")
+    })
+    $("html").on("click",".checkOrder",function () {
+        $("#simplyBody").remove();
+        $("body").css("overflow","auto");
+        var ed = $(".refuseOrder").parents("table").find(".orderNumber").html();
+        console.log(ed)
+        var cd = ed.split("：")[1];
+        var height = $(window).height();
+        var width = $(window).width();
+        var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+            '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+        $("html").append(htmlValue);
+
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "refuseOrder",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "orderNumber":cd
+            }),
+            success:function(text){
+                $(".loading_masker").remove()
+                if (text==0){
+                    alert("错误，确认失败")
+                }else if (text==1){
+                    window.location.reload()
+                }
+            },
+            error: function (text) {
+                alert("服务器错误，确认失败");
+            },
+
+            dataType: "json"
+        });
+    })
+    // $(".transaction-status").click(function () {
+    //     alert(222)
+    // })
+
+    // $(".body").on("click",".transaction-status",function () {
+    //
+    //
+    // });
+    // $('body').on("click",".confirm",function (e) {
+    //     //第一个参数是提示信息
+    //     //第二个参数是点击确定的回调函数，如果需要操作数据，必须传参数event
+    //     //第三个参数是获取当前事件的，不传获取不到节点
+    //     jqAlert.Confirm('确定收货了吗？',function (event) {
+    //        if($(".dz_alertSure").click()){
+    //            var ac = $(".confirm").parents("table").find(".orderNumber").html();
+    //            var bc = ac.split("：")[1];
+    //            var height = $(window).height();
+    //            var width = $(window).width();
+    //            var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+    //                '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+    //            $("html").append(htmlValue);
+    //
+    //            $.ajax({
+    //                async: true,
+    //                cache: false,
+    //                traditional: true,
+    //                type: "POST",
+    //                url: "delivery",
+    //                contentType: "application/json;charset=utf-8",
+    //                data: JSON.stringify({
+    //                    "orderNumber":bc
+    //                }),
+    //                success:function(text){
+    //                    $(".loading_masker").remove()
+    //                  if (text==0){
+    //                     alert("错误，确认失败")
+    //                  }else if (text==1){
+    //                      window.location.reload()
+    //                  }
+    //                },
+    //                error: function (text) {
+    //                    alert("服务器错误，确认失败");
+    //                },
+    //
+    //                dataType: "json"
+    //            });
+    //
+    //        }
+    //     },e);
+    // })
+
 </script>
 </body>
 </html>

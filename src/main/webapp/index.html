@@ -28,10 +28,15 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="welcome-area">
-                                <p>欢迎来到宠物领养平台! </p>
+                                <p class="123456">欢迎来到宠物领养平台! </p>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-12">
+                        <div class="col-lg-2 col-md-2 col-2">
+                            <div class="myOrder">
+                                <p><a href="myOrder.html">我的订单</a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-4">
                             <div class="account-curr-lang-wrap f-right">
                                 <ul>
                                     <li class="top-hover"><a href="#">$Doller (US) <i class="icon-arrow-down"></i></a>
@@ -79,43 +84,9 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="mega-menu-position"><a href="shop-page.html">宠物口粮</a>
-                                            <ul class="mega-menu">
-                                                <li>
-                                                    <ul>
-                                                        <li class="mega-menu-title">狗粮</li>
-                                                        <li><a href="shop-page.html">鸡蛋</a></li>
-                                                        <li><a href="shop-page.html">胡萝卜</a></li>
-                                                        <li><a href="shop-page.html">大马哈鱼鱼</a></li>
-                                                        <li><a href="shop-page.html">花生酱</a></li>
-                                                        <li><a href="shop-page.html">葡萄糖</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <ul>
-                                                        <li class="mega-menu-title">猫粮</li>
-                                                        <li><a href="shop-page.html">肉</a></li>
-                                                        <li><a href="shop-page.html">鱼</a></li>
-                                                        <li><a href="shop-page.html">鸡蛋</a></li>
-                                                        <li><a href="shop-page.html">青菜</a></li>
-                                                        <li><a href="shop-page.html">奶酪</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <ul>
-                                                        <li class="mega-menu-title">鱼食</li>
-                                                        <li><a href="shop-page.html">米</a></li>
-                                                        <li><a href="shop-page.html">蔬菜</a></li>
-                                                        <li><a href="shop-page.html">奶酪</a></li>
-                                                        <li><a href="shop-page.html">小麦</a></li>
-                                                        <li><a href="shop-page.html">农耕</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <ul>
-                                                        <li><a href="shop-page.html"><img alt="" src="assets/img/banner/menu-img-4.jpg"></a></li>
-                                                    </ul>
-                                                </li>
+                                        <li class="mega-menu-position"><a href="shop-page.html">宠物生活</a>
+                                            <ul class="mega-menu" id="goodsTypeDate">
+
                                             </ul>
                                         </li>
                                         <li><a href="#">页面</a>
@@ -1010,5 +981,48 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                getAllGoodsType();
+            })
+            function getAllGoodsType() {
+                $.ajax({
+
+                    type: 'POST',
+                    url: 'getAllGoodType',
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (responseText) {
+                        console.log(responseText);
+                        var str="";
+                        $(responseText).each(function (index, itme) {
+                            str+="<li> <ul> <li class=\"mega-menu-title\">"+itme.goodsTypeName+"</li>";
+
+                            $(itme.children).each(function (index1, itmetext) {
+                                str+=" <li><a a href=\"shop-page.html?goodsTypeId="+itmetext.goodsTypeId+"\">"+itmetext.goodsTypeName+"</a></li>";
+                            })
+
+                            str+="</ul></li>";
+                        })
+                        str+=" <li>\n" +
+                            "<ul>\n" +
+                            "<li><a href=\"shop-page.html\"><img alt=\"\" src=\"assets/img/banner/menu-img-4.jpg\"></a></li>\n" +
+                            "</ul>\n" +
+                            "</li>"
+                        $("#goodsTypeDate").html(str);
+
+                    },
+                    error: function (message) {
+                        console.log(message);
+
+                    },
+                    dataType: 'json'
+                });
+            }
+            function hrefTo(id) {
+                var url = "shop-page.html?goodsTypeId="+id;
+                window.location.href=url;
+            }
+        </script>
     </body>
 </html>

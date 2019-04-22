@@ -18,6 +18,10 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
         return this.shippingAddressMapper.selectFromAddress(customerId);
     }
 
+    public ShippingAddress selectOneAddress(int addressId) {
+        return this.shippingAddressMapper.selectOneAddress(addressId);
+    }
+
     public int delAddress(Integer addressId) {
         return this.shippingAddressMapper.delAddress(addressId);
     }
@@ -34,6 +38,14 @@ public class ShippingAddressServiceImpl implements ShippingAddressService{
 
         boolean flag = false;
         if (this.shippingAddressMapper.updateAddress(shippingAddress)>0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean defaultAddress(ShippingAddress record) {
+        boolean flag = false;
+        if (this.shippingAddressMapper.defaultAddress(record)>0){
             return true;
         }
         return false;

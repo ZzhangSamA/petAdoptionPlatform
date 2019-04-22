@@ -53,11 +53,17 @@
     from t_order
     where order_id = #{orderId,jdbcType=INTEGER}
   </select>
+  <select id="getOrderCount" parameterType="int" resultType="int">
+    select count(*) from t_order where status &lt;&gt; 0 and customer_id=#{customerId}
+  </select>
+    <select id="getStatus" parameterType="String" resultType="int">
+        select status from t_order where order_number=#{orderNumber}
+    </select>
 
-  <select id="getOrdersByCustomId" parameterType="int" resultMap="TOrderDtoMap">
+  <select id="getOrdersByCustomId" parameterType="com.pet.hpq.vo.OrderInfoVo" resultMap="TOrderDtoMap">
     SELECT tab1.order_number,tab1.create_time,tab1.total_price,tab1.`status`,tab1.goods_id,tab1.goods_name,tab1.number,tab1.goods_total_price,gp.parameter_name,gp.parameter_price,gp.parameter_icon,gp.preferential_price
     from(select DATE_FORMAT(ot.create_time,'%Y-%c-%d') create_time,ot.order_number,gi.goods_id,gi.goods_name,og.parameter_id,ot.status,ot.total_price,og.number,og.total_price goods_total_price
-         from t_order ot,order_goods og,goods_info gi where ot.customer_id=#{customer_id} and ot.order_id=og.order_id and og.goods_id=gi.goods_id)as tab1,goods_parameter gp where gp.parameter_id=tab1.parameter_id
+    from (SELECT * FROM t_order where customer_id=#{customer.customerId} and status &lt;&gt; 0 limit #{splitPage.start},#{splitPage.pageSize}) ot,order_goods og,goods_info gi where ot.order_id=og.order_id and og.goods_id=gi.goods_id)as tab1,goods_parameter gp where gp.parameter_id=tab1.parameter_id ORDER BY create_time desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
@@ -166,6 +172,12 @@
       </if>
     </trim>
   </insert>
+    <update id="delivery" parameterType="com.pet.hpq.pojo.TOrder">
+        update t_order set status=4 where order_number=#{orderNumber}
+    </update>
+  <update id="refuseOrder" parameterType="com.pet.hpq.pojo.TOrder">
+    update t_order set status=0 where order_number=#{orderNumber}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.pet.hpq.pojo.TOrder" >
     <!--
       WARNING - @mbggenerated
