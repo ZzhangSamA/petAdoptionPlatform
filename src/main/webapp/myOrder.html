@@ -605,7 +605,7 @@
                                 "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
                                 "<tr>\n" +
                                 "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
-                                "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
+                                "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
@@ -613,7 +613,7 @@
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'></a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status'  style='color: red;'  href='#'>立即付款</a> </div>" +
-                                "<div><a class='hover-blue' >取消订单</a> </div></td> </tr>" +
+                                "<div><a class='hover-blue refuseOrder' href='javascript:void(0);' >取消订单</a> </div></td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
 
@@ -622,14 +622,14 @@
                                 "<tbody style=\"table-layout: fixed;width: 100%;\">\n" +
                                 "<tr>\n" +
                                 "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
-                                "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
+                                "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>等待发货</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
-                                "<div ><a class='transaction-status'  style='color: green' >取消订单</a> </div>" +
+                                "<div ><a class='transaction-status hover-blue refuseOrder'  style='color: green' >取消订单</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -642,7 +642,7 @@
                                 "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>已发货</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
@@ -659,10 +659,10 @@
                                 "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a>物流详情</div></td><td colspan='1' style='font-size: large'>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status'  style='color: blue'  href='#'>评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
@@ -676,7 +676,7 @@
                                 "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
@@ -692,7 +692,7 @@
                                 "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div><div><a href='javascript:void(0);'>已评价</a> </div></td><td colspan='1' style='font-size: large'>" +
@@ -767,18 +767,18 @@
          "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
          "<div style=\"margin: 2% 30%\"><h2>确认收货？</h2></div>\n" +
          "<div style=\"margin: 10%\">\n" +
-         "<span class=\"transaction-status\" style=\"margin: 0 60% 0 0\" id=\"checked\"><a>是</a></span>\n" +
-         "<span class=\"transaction-status\" id=\"noChecked\"><a>否</a></span>\n" +
+         "<span class='transaction-status checked' style=\"margin: 0 60% 0 0\" id=\"checked\"><a>是</a></span>\n" +
+         "<span class='transaction-status noChecked' id=\"noChecked\"><a>否</a></span>\n" +
          "</div>\n" +
          "</div>";
          $("html").append(htmlValue);
          $("body").css("overflow","hidden")
     })
-    $("html").on("click","#noChecked",function () {
+    $("html").on("click",".noChecked",function () {
         $("#simplyBody").remove()
         $("body").css("overflow","auto")
     })
-    $("html").on("click","#checked",function () {
+    $("html").on("click",".checked",function () {
         $("#simplyBody").remove();
         $("body").css("overflow","auto");
                    var ac = $(".confirm").parents("table").find(".orderNumber").html();
@@ -814,8 +814,59 @@
                        dataType: "json"
                    });
     })
+    $('body').on('click','.refuseOrder',function(){
+        var htmlValue = "<div id=\"simplyBody\">\n" +
+            "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
+            "<div style=\"margin: 2% 20%\"><h2>确认取消订单？</h2></div>\n" +
+            "<div style=\"margin: 10%\">\n" +
+            "<span class='transaction-status checkOrder' style=\"margin: 0 60% 0 0\" id=\"checked\"><a>是</a></span>\n" +
+            "<span class='transaction-status noCheckOrder' id=\"noChecked\"><a>否</a></span>\n" +
+            "</div>\n" +
+            "</div>";
+        $("html").append(htmlValue);
+        $("body").css("overflow","hidden")
+    })
+    $("html").on("click",".noCheckOrder",function () {
+        $("#simplyBody").remove()
+        $("body").css("overflow","auto")
+    })
+    $("html").on("click",".checkOrder",function () {
+        $("#simplyBody").remove();
+        $("body").css("overflow","auto");
+        var ed = $(".refuseOrder").parents("table").find(".orderNumber").html();
+        console.log(ed)
+        var cd = ed.split("：")[1];
+        var height = $(window).height();
+        var width = $(window).width();
+        var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+            '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+        $("html").append(htmlValue);
 
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "refuseOrder",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "orderNumber":cd
+            }),
+            success:function(text){
+                $(".loading_masker").remove()
+                if (text==0){
+                    alert("错误，确认失败")
+                }else if (text==1){
+                    window.location.reload()
+                }
+            },
+            error: function (text) {
+                alert("服务器错误，确认失败");
+            },
 
+            dataType: "json"
+        });
+    })
     // $(".transaction-status").click(function () {
     //     alert(222)
     // })
