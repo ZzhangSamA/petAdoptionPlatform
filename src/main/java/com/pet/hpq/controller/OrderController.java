@@ -34,5 +34,11 @@ public class OrderController {
         return delivery;
     }
 
+    @RequestMapping(value = "refuseOrder",method = RequestMethod.POST)
+    public Object refuseOrder(@RequestBody(required = false)TOrder tOrder){
+        int refuseOrder = orderService.refuseOrder(tOrder);
+        return refuseOrder;
+    }
+
 
 }

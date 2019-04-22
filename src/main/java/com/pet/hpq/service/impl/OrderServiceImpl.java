@@ -49,4 +49,13 @@ public class OrderServiceImpl implements OrderService {
         }
         return 0;
     }
+
+    public int refuseOrder(TOrder tOrder) {
+        int status = tOrderMapper.getStatus(tOrder.getOrderNumber());
+        System.out.println(status);
+        if (status==1||status==2){
+           return tOrderMapper.refuseOrder(tOrder);
+        }
+        return 0;
+    }
 }

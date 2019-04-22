@@ -13,4 +13,5 @@ public interface OrderService {
     TOrder getOrderById(int orderId);
     int getOrderCount(int CustomerId);
     int delivery(TOrder tOrder);
+    int refuseOrder(TOrder tOrder);
 }
