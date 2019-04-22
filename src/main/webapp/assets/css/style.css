@@ -1466,6 +1466,23 @@ textarea:focus {
     color: #fff;
     margin: 14px 0 0;
 }
+.myOrder{
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+.myOrder > p {
+
+    margin: 10% 10% 0;
+}
+
+.myOrder>p a{
+    color: #fff;
+}
+.table-content table-responsive #firstTh{
+    width: 50%;
+    height: 20%;
+}
 .account-curr-lang-wrap ul li {
     display: inline-block;
     list-style: outside none none;
@@ -3382,12 +3399,13 @@ input.cart-plus-minus-box {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    width: 40px;
+
+    width: 50px;
 }
 .pagination-style ul li a i {
     font-size: 10px;
 }
-.pagination-style ul li a.active,
+
 .pagination-style ul li a:hover {
     background-color: #7e4c4f;
     color: #fff;
@@ -3508,7 +3526,12 @@ input.cart-plus-minus-box {
     width: 1px;
 }
 .description-review-topbar a.active {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
     border-bottom: 2px solid #7e4c4f;
+    display: none;
     color: #7e4c4f;
 }
 .description-review-topbar a:last-child::before {
@@ -3648,12 +3671,16 @@ input.cart-plus-minus-box {
     border-radius: 0;
     border-style: solid;
     border-width: 1px;
-    width: 100%;
+
+}
+.hover-blue:hover{
+    color:blue;
 }
 .table-content table th,
 .table-content table td {
     border-bottom: 1px solid #e5e5e5;
 }
+
 .table-content table th {
     border-top: medium none;
     color: #333;
@@ -3722,6 +3749,20 @@ input.cart-plus-minus-box {
 .table-content table td.product-name a:hover,
 .table-content table td.product-remove a:hover {
     color: #7e4c4f;
+}
+.transaction-status{
+    background: #d8d8d8;
+    border-radius: 5px;
+    display: inline-block;
+    color: #000101;
+    font-weight: 600;
+    line-height: 1;
+    padding: 16px 27px;
+    text-transform: uppercase;
+}
+.transaction-status:hover{
+    background-color: #7e4c4f;
+    color: #fff;
 }
 .product-quantity .dec.qtybutton {
     border-right: 1px solid #e5e5e5;
