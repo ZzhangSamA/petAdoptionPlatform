@@ -1,10 +1,9 @@
-package com.pet.rsx.mapper;
+package com.pet.rsx.service;
 
 import com.pet.rsx.pojo.GoodsImg;
 
 import java.util.List;
 
-public interface GoodsImgMapper {
+public interface GoodsImageService {
     List<GoodsImg> getImageById(GoodsImg goodsImg);
-
 }

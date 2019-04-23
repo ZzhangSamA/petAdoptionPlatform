@@ -84,43 +84,9 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="mega-menu-position"><a href="shop-page.html">宠物口粮</a>
-                                        <ul class="mega-menu">
-                                            <li>
-                                                <ul>
-                                                    <li class="mega-menu-title">狗粮</li>
-                                                    <li><a href="shop-page.html">鸡蛋</a></li>
-                                                    <li><a href="shop-page.html">胡萝卜</a></li>
-                                                    <li><a href="shop-page.html">大马哈鱼鱼</a></li>
-                                                    <li><a href="shop-page.html">花生酱</a></li>
-                                                    <li><a href="shop-page.html">葡萄糖</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="mega-menu-title">猫粮</li>
-                                                    <li><a href="shop-page.html">肉</a></li>
-                                                    <li><a href="shop-page.html">鱼</a></li>
-                                                    <li><a href="shop-page.html">鸡蛋</a></li>
-                                                    <li><a href="shop-page.html">青菜</a></li>
-                                                    <li><a href="shop-page.html">奶酪</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="mega-menu-title">鱼食</li>
-                                                    <li><a href="shop-page.html">米</a></li>
-                                                    <li><a href="shop-page.html">蔬菜</a></li>
-                                                    <li><a href="shop-page.html">奶酪</a></li>
-                                                    <li><a href="shop-page.html">小麦</a></li>
-                                                    <li><a href="shop-page.html">农耕</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li><a href="shop-page.html"><img alt="" src="assets/img/banner/menu-img-4.jpg"></a></li>
-                                                </ul>
-                                            </li>
+                                    <li class="mega-menu-position"><a href="shop-page.html">宠物生活</a>
+                                        <ul class="mega-menu" id="goodsTypeDate">
+
                                         </ul>
                                     </li>
                                     <li><a href="#">页面</a>
@@ -175,7 +141,8 @@
                                 </ul>
                             </nav>
                         </div>
-                    </div>                        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-8 col-7">
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-8 col-sm-8 col-7">
                     <div class="search-login-cart-wrapper">
                         <div class="header-search same-style">
                             <button class="search-toggle">
@@ -355,11 +322,11 @@
                         <div class="shop-topbar-wrapper">
                             <div class="product-sorting-wrapper">
                                 <div class="product-show shorting-style">
-                                    <label>Showing <span>1-20</span> of <span>100</span> Results</label>
-                                    <select>
-                                        <option value="">12</option>
-                                        <option value="">24</option>
-                                        <option value="">36</option>
+                                    <label>每页展示</label>
+                                    <select id="pageSize" onchange="innitPage(1)">
+                                        <option value="12">12</option>
+                                        <option value="24">24</option>
+                                        <option value="36">36</option>
                                     </select>
                                 </div>
                             </div>
@@ -372,8 +339,8 @@
                         </div>
                         <div class="grid-list-product-wrapper">
                             <div class="product-view product-grid">
-                                <div class="row">
-                                    <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
+                                <div class="row" id="shopData">
+                 <!--                   <div class="product-width col-lg-6 col-xl-4 col-md-6 col-sm-6">
                                         <div class="product-wrapper mb-10">
                                             <div class="product-img">
                                                 <a href="product-details.html">
@@ -777,22 +744,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
-                                <div class="pagination-style text-center mt-10">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="icon-arrow-left"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li>
-                                            <a class="active" href="#"><i class="icon-arrow-right"></i></a>
-                                        </li>
+                                <div class="pagination-style text-center mt-10" id="">
+                                    <ul  class="pagination" id = "pagination">
+                                        <li class="disabled" ><a href="#">上一页</a></li>
+                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+
+                                        <li><a href="#">下一页</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -801,17 +760,17 @@
                     <div class="col-lg-3">
                         <div class="shop-sidebar">
                             <div class="shop-widget">
-                                <h4 class="shop-sidebar-title">Search Products</h4>
+                                <h4 class="shop-sidebar-title">商品搜索</h4>
                                 <div class="shop-search mt-25 mb-50">
                                     <form class="shop-search-form">
-                                        <input type="text" placeholder="Find a product">
-                                        <button type="submit">
+                                        <input type="text" placeholder="Find a product" id="search">
+                                        <button  onclick="innitPage(1)">
                                             <i class="icon-magnifier"></i>
                                         </button>
                                     </form>
                                 </div>
                             </div>
-                            <div class="shop-widget">
+                     <!--       <div class="shop-widget">
                                 <h4 class="shop-sidebar-title">Filter By Price</h4>
                                  <div class="price_filter mt-25">
                                     <div id="slider-range"></div>
@@ -820,12 +779,12 @@
                                             <label>price : </label>
                                             <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
                                         </div>
-                                        <button type="button">Filter</button> 
+                                        <button type="button">Filter</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">Food Category </h4>
+                            </div>-->
+                           <!-- <div class="shop-widget mt-50">
+                                <h4 class="shop-sidebar-title">商品分类 </h4>
                                  <div class="shop-list-style mt-20">
                                     <ul>
                                         <li><a href="#">Canned Food</a></li>
@@ -836,20 +795,20 @@
                                         <li><a href="#">Frozen Food</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">Top Brands </h4>
+                                <h4 class="shop-sidebar-title">热搜品牌 </h4>
                                  <div class="shop-list-style mt-20">
                                     <ul>
-                                        <li><a href="#">Authority</a></li>
-                                        <li><a href="#">AvoDerm Natural</a></li>
-                                        <li><a href="#">Bil-Jac</a></li>
-                                        <li><a href="#">Blue Buffalo</a></li>
-                                        <li><a href="#">Castor & Pollux</a></li>
+                                        <li><a href="#">品牌</a></li>
+                                        <li><a href="#">品牌</a></li>
+                                        <li><a href="#">品牌</a></li>
+                                        <li><a href="#">品牌</a></li>
+                                        <li><a href="#">品牌</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="shop-widget mt-50">
+                          <!--  <div class="shop-widget mt-50">
                                 <h4 class="shop-sidebar-title">Health Consideration </h4>
                                  <div class="shop-list-style mt-20">
                                     <ul>
@@ -860,8 +819,8 @@
                                         <li><a href="#">Immune System  <span>22</span></a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="shop-widget mt-50">
+                            </div>-->
+                       <!--     <div class="shop-widget mt-50">
                                 <h4 class="shop-sidebar-title">Nutritional Option </h4>
                                  <div class="shop-list-style mt-20">
                                     <ul>
@@ -869,7 +828,7 @@
                                         <li><a href="#">Natural <span>22</span></a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -902,26 +861,26 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                             <div class="footer-widget mb-30 pl-50">
-                                <h4 class="footer-title">USEFUL LINKS</h4>
+                                <h4 class="footer-title">快速链接</h4>
                                 <div class="footer-content">
                                     <ul>
-                                        <li><a href="#">Help & Contact Us</a></li>
-                                        <li><a href="#">Returns & Refunds</a></li>
-                                        <li><a href="#">Online Stores</a></li>
-                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">帮助 & 联系我们</a></li>
+                                        <li><a href="#">退货 & 退款</a></li>
+                                        <li><a href="#">在线商店</a></li>
+                                        <li><a href="#">条款 & 条件</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-2 col-md-6 col-sm-6">
                             <div class="footer-widget mb-30 pl-70">
-                                <h4 class="footer-title">HELP</h4>
+                                <h4 class="footer-title">帮助</h4>
                                 <div class="footer-content">
                                     <ul>
-                                        <li><a href="#">Faq's </a></li>
-                                        <li><a href="#">Pricing Plans</a></li>
-                                        <li><a href="#">Order Traking</a></li>
-                                        <li><a href="#">Returns </a></li>
+                                        <li><a href="#">常见问题解答 </a></li>
+                                        <li><a href="#">价格计划</a></li>
+                                        <li><a href="#">订单交易</a></li>
+                                        <li><a href="#">返回 </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -929,7 +888,7 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <div class="footer-widget">
                                 <div class="newsletter-wrapper">
-                                    <p>Subscribe to our newsletter and get 10% off your first purchase..</p>
+                                    <p>订阅我们的时事通讯，即可享受首次购物的10％折扣..</p>
                                     <div class="newsletter-style">
                                         <div id="mc_embed_signup" class="subscribe-form">
                                             <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -1069,5 +1028,154 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            getAllGoodsType();
+            innitPage(1)
+        })
+        function getAllGoodsType() {
+            $.ajax({
+
+                type: 'POST',
+                url: 'getAllGoodType',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (responseText) {
+                    console.log(responseText);
+                    var str="";
+                    $(responseText).each(function (index, itme) {
+                        str+="<li> <ul> <li class=\"mega-menu-title\">"+itme.goodsTypeName+"</li>";
+
+                        $(itme.children).each(function (index1, itmetext) {
+                            str+=" <li><a a href=\"shop-page.html?goodsTypeId="+itmetext.goodsTypeId+"\">"+itmetext.goodsTypeName+"</a></li>";
+                        })
+
+                        str+="</ul></li>";
+                    })
+                    str+=" <li>\n" +
+                        "<ul>\n" +
+                        "<li><a href=\"shop-page.html\"><img alt=\"\" src=\"assets/img/banner/menu-img-4.jpg\"></a></li>\n" +
+                        "</ul>\n" +
+                        "</li>"
+                    $("#goodsTypeDate").html(str);
+
+                },
+                error: function (message) {
+                    console.log(message);
+
+                },
+                dataType: 'json'
+            });
+        }
+        function hrefTo(id) {
+            var url = "shop-page.html?goodsTypeId="+id;
+            window.location.href=url;
+        }
+        
+        function innitPage(currentPage,brandId) {
+
+            var goodsTypeId = window.location.search.split("=")[1];
+            $.ajax({
+
+                type: 'POST',
+                url: 'getGoodsInfoBy',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                data:JSON.stringify({
+                    "search":$("#search").val(),
+                    "brandId":brandId,
+                    "goodsTypeId":goodsTypeId,
+                    "splitePageBean":{
+                        "currentPage":currentPage,
+                        "pageSize":$("#pageSize").val()
+                    }
+                }),
+                success: function (responseText) {
+                    var splitePageBean = responseText.splitePageBean;
+                    var str1 ="";
+                    $("#pagination").empty();
+                    if(splitePageBean.currentPage==1){
+                        str1 = "<li class=\"disabled\" disabled='disabled'><a href=\"#\">上一页</a></li>";
+                    }else{
+                        str1 = "<li><a href=\"#\" onclick='innitPage("+( parseInt(splitePageBean.currentPage)-1)+")' >上一页</a></li>";
+                    }
+                    for(var i=1;i<=splitePageBean.pageCount;i++){
+                        if(i==splitePageBean.currentPage){
+                            str1 += "<li class=\"active\"><a href=\"#\" onclick='innitPage("+i+")'>"+i+"</a></li>"
+                        }else {
+                            str1 += "<li><a href=\"#\" onclick='innitPage("+i+")'>"+i+"</a></li>"
+
+                        }
+                    }
+                    if(splitePageBean.currentPage==splitePageBean.pageCount){
+                        str1 += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
+                    }else{
+                        str1 += "<li><a href=\"#\" onclick='initPage("+( parseInt(splitePageBean.currentPage)+1)+")'>下一页</a></li>";
+                    }
+                    $("#pagination").html(str1);
+                    var goodsInfos = responseText.goodsInfos;
+                    var  str ="";
+                    $(goodsInfos).each(function (index,item) {
+                        str+= "  <div class=\"product-width col-lg-6 col-xl-4 col-md-6 col-sm-6\">\n" +
+                            "                                        <div class=\"product-wrapper mb-10\">\n" +
+                            "                                            <div class=\"product-img\">\n" +
+                            "                                                <a href=\"product-details.html?goodsInfoId="+item.goodsId+"\">\n" +
+                            "                                                    <img src=\"assets/img/product/"+item.goodsImage+"\" alt=\"\">\n" +
+                            "                                                </a>\n" +
+                            "                                                <div class=\"product-action\">\n" +
+                            "                                                    <a title=\"Quick View\" data-toggle=\"modal\" data-target=\"#exampleModal\" href=\"#\">\n" +
+                            "                                                        <i class=\"ti-plus\"></i>\n" +
+                            "                                                    </a>\n" +
+                            "                                                    <a title=\"Add To Cart\" href=\"#\">\n" +
+                            "                                                        <i class=\"ti-shopping-cart\"></i>\n" +
+                            "                                                    </a>\n" +
+                            "                                                </div>\n" +
+                            "                                                <div class=\"product-action-wishlist\">\n" +
+                            "                                                    <a title=\"Wishlist\" href=\"#\">\n" +
+                            "                                                        <i class=\"ti-heart\"></i>\n" +
+                            "                                                    </a>\n" +
+                            "                                                </div>\n" +
+                            "                                            </div>\n" +
+                            "                                            <div class=\"product-content\">\n" +
+                            "                                                <h4><a href=\"product-details.html?goodsInfoId="+item.goodsId+"\">"+item.goodsName+"</a></h4>\n" +
+                            "                                                <div class=\"product-price\">\n" +
+                            "                                                    <span class=\"new\">"+item.showPrice+" </span>\n" +
+                            // "                                                    <span class=\"old\">$50.00</span>\n" +
+                            "                                                </div>\n" +
+                            "                                            </div>\n" +
+                            "                                            <div class=\"product-list-content\">\n" +
+                            "                                                <h4><a href=\"#\">"+item.goodsName+"</a></h4>\n" +
+                            "                                                <div class=\"product-price\">\n" +
+                            "                                                    <span class=\"new\">"+item.showPrice+" </span>\n" +
+                            "                                                </div>\n" +
+                            "                                                <p>"+item.goodsDetails+"</p>\n" +
+                            "                                                <div class=\"product-list-action\">\n" +
+                            "                                                    <div class=\"product-list-action-left\">\n" +
+                            "                                                        <a class=\"addtocart-btn\" title=\"Add to cart\" href=\"#\"><i class=\"ion-bag\"></i> 加入购物车</a>\n" +
+                            "                                                    </div>\n" +
+                            "                                                    <div class=\"product-list-action-right\">\n" +
+                            "                                                        <a title=\"Wishlist\" href=\"#\"><i class=\"ti-heart\"></i></a>\n" +
+                            "                                                        <a title=\"Quick View\" data-toggle=\"modal\" data-target=\"#exampleModal\" href=\"#\"><i class=\"ti-plus\"></i></a>\n" +
+                            "                                                    </div>\n" +
+                            "                                                </div>\n" +
+                            "                                            </div>\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>";
+                    })
+                    $("#shopData").html(str);
+                   if (!str){
+                       alert("此类商品未添加")
+                   }
+
+                },
+                error: function (message) {
+                    console.log(message);
+
+                },
+                dataType: 'json'
+            });
+        }
+
+    </script>
     </body>
 </html>
