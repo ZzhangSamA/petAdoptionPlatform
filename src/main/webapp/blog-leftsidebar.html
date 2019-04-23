@@ -484,8 +484,8 @@
                             </div>
                         </div>
                         <!--博客分页-->
-                        <div class="pagination-style text-center mt-10" id="splitPage">
-                            <ul>
+                        <div class="pagination-style text-center mt-10" >
+                            <ul id="splitPage">
                                 <li>
                                     <a href="#"><i class="icon-arrow-left"></i></a>
                                 </li>
@@ -505,104 +505,104 @@
                     <div class="col-lg-3 col-md-4">
                         <div class="shop-sidebar blog-mrg">
                             <div class="shop-widget">
-                                <h4 class="shop-sidebar-title">搜索产品</h4>
+                                <h4 class="shop-sidebar-title">搜索博客</h4>
                                 <div class="shop-search mt-25 mb-50">
                                     <form class="shop-search-form">
-                                        <input type="text" id="searchtxt" placeholder="Find a product">
-                                        <button type="submit">
+                                        <input type="text" id="searchtxt" placeholder="输入你想找的标题">
+                                        <button type="button" onclick="initArticlePage(1)">
                                             <i class="icon-magnifier"></i>
                                         </button>
                                     </form>
                                 </div>
                             </div>
                             <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">食品分类 </h4>
+                                <h4 class="shop-sidebar-title">分类标签 </h4>
                                  <div class="shop-list-style mt-20">
-                                    <ul>
-                                        <li><a href="#">Canned Food</a></li>
-                                        <li><a href="#">Dry Food</a></li>
-                                        <li><a href="#">Food Pouches</a></li>
-                                        <li><a href="#">Food Toppers</a></li>
-                                        <li><a href="#">Fresh Food</a></li>
-                                        <li><a href="#">Frozen Food</a></li>
+                                    <ul id="labelList">
+                                        <!--<li><a href="#">Canned Food</a></li>-->
+                                        <!--<li><a href="#">Dry Food</a></li>-->
+                                        <!--<li><a href="#">Food Pouches</a></li>-->
+                                        <!--<li><a href="#">Food Toppers</a></li>-->
+                                        <!--<li><a href="#">Fresh Food</a></li>-->
+                                        <!--<li><a href="#">Frozen Food</a></li>-->
                                     </ul>
                                 </div>
                             </div>
-                            <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">顶级品牌 </h4>
-                                 <div class="shop-list-style mt-20">
-                                    <ul>
-                                        <li><a href="#">Authority</a></li>
-                                        <li><a href="#">AvoDerm Natural</a></li>
-                                        <li><a href="#">Bil-Jac</a></li>
-                                        <li><a href="#">Blue Buffalo</a></li>
-                                        <li><a href="#">Castor & Pollux</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">标签 </h4>
-                                 <div class="shop-list-style mt-20">
-                                    <ul>
-                                        <li><a href="#">Food </a></li>
-                                        <li><a href="#">Fish </a></li>
-                                        <li><a href="#">Dog </a></li>
-                                        <li><a href="#">Cat  </a></li>
-                                        <li><a href="#">Pet </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">健康考虑 </h4>
-                                 <div class="shop-list-style mt-20">
-                                    <ul>
-                                        <li><a href="#">Bone Development <span>18</span></a></li>
-                                        <li><a href="#">Digestive Care <span>22</span></a></li>
-                                        <li><a href="#">General Health <span>19</span></a></li>
-                                        <li><a href="#">Hip & Joint  <span>41</span></a></li>
-                                        <li><a href="#">Immune System  <span>22</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="shop-widget mt-50">
-                                <h4 class="shop-sidebar-title">营养选择 </h4>
-                                 <div class="shop-list-style mt-20">
-                                    <ul>
-                                        <li><a href="#">Grain Free  <span>18</span></a></li>
-                                        <li><a href="#">Natural <span>22</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <!--<div class="shop-widget mt-50">-->
+                                <!--<h4 class="shop-sidebar-title">顶级品牌 </h4>-->
+                                 <!--<div class="shop-list-style mt-20">-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Authority</a></li>-->
+                                        <!--<li><a href="#">AvoDerm Natural</a></li>-->
+                                        <!--<li><a href="#">Bil-Jac</a></li>-->
+                                        <!--<li><a href="#">Blue Buffalo</a></li>-->
+                                        <!--<li><a href="#">Castor & Pollux</a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="shop-widget mt-50">-->
+                                <!--<h4 class="shop-sidebar-title">标签 </h4>-->
+                                 <!--<div class="shop-list-style mt-20">-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Food </a></li>-->
+                                        <!--<li><a href="#">Fish </a></li>-->
+                                        <!--<li><a href="#">Dog </a></li>-->
+                                        <!--<li><a href="#">Cat  </a></li>-->
+                                        <!--<li><a href="#">Pet </a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="shop-widget mt-50">-->
+                                <!--<h4 class="shop-sidebar-title">健康考虑 </h4>-->
+                                 <!--<div class="shop-list-style mt-20">-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Bone Development <span>18</span></a></li>-->
+                                        <!--<li><a href="#">Digestive Care <span>22</span></a></li>-->
+                                        <!--<li><a href="#">General Health <span>19</span></a></li>-->
+                                        <!--<li><a href="#">Hip & Joint  <span>41</span></a></li>-->
+                                        <!--<li><a href="#">Immune System  <span>22</span></a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="shop-widget mt-50">-->
+                                <!--<h4 class="shop-sidebar-title">营养选择 </h4>-->
+                                 <!--<div class="shop-list-style mt-20">-->
+                                    <!--<ul>-->
+                                        <!--<li><a href="#">Grain Free  <span>18</span></a></li>-->
+                                        <!--<li><a href="#">Natural <span>22</span></a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
                             <div class="shop-widget mt-50">
                                 <h4 class="shop-sidebar-title">最近贴文 </h4>
-                                <div class="recent-post-wrapper mt-25">
-                                    <div class="single-recent-post mb-20">
-                                        <div class="recent-post-img">
-                                            <a href="#"><img src="assets/img/blog/blog-s1.jpg" alt=""></a>
-                                        </div>
-                                        <div class="recent-post-content">
-                                            <h4><a href="#">My Dog, Aren</a></h4>
-                                            <span>April 19, 2018 </span>
-                                        </div>
-                                    </div>
-                                    <div class="single-recent-post mb-20">
-                                        <div class="recent-post-img">
-                                            <a href="#"><img src="assets/img/blog/blog-s2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="recent-post-content">
-                                            <h4><a href="#">My Dog, Tomy</a></h4>
-                                            <span>April 19, 2018 </span>
-                                        </div>
-                                    </div>
-                                    <div class="single-recent-post">
-                                        <div class="recent-post-img">
-                                            <a href="#"><img src="assets/img/blog/blog-s3.jpg" alt=""></a>
-                                        </div>
-                                        <div class="recent-post-content">
-                                            <h4><a href="#">My Dog, Suju</a></h4>
-                                            <span>April 19, 2018 </span>
-                                        </div>
-                                    </div>
+                                <div class="recent-post-wrapper mt-25" id="newArticle">
+                                    <!--<div class="single-recent-post mb-20">-->
+                                        <!--<div class="recent-post-img">-->
+                                            <!--<a href="#"><img src="assets/img/blog/blog-s1.jpg" alt=""></a>-->
+                                        <!--</div>-->
+                                        <!--<div class="recent-post-content">-->
+                                            <!--<h4><a href="#">My Dog, Aren</a></h4>-->
+                                            <!--<span>April 19, 2018 </span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="single-recent-post mb-20">-->
+                                        <!--<div class="recent-post-img">-->
+                                            <!--<a href="#"><img src="assets/img/blog/blog-s2.jpg" alt=""></a>-->
+                                        <!--</div>-->
+                                        <!--<div class="recent-post-content">-->
+                                            <!--<h4><a href="#">My Dog, Tomy</a></h4>-->
+                                            <!--<span>April 19, 2018 </span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="single-recent-post">-->
+                                        <!--<div class="recent-post-img">-->
+                                            <!--<a href="#"><img src="assets/img/blog/blog-s3.jpg" alt=""></a>-->
+                                        <!--</div>-->
+                                        <!--<div class="recent-post-content">-->
+                                            <!--<h4><a href="#">My Dog, Suju</a></h4>-->
+                                            <!--<span>April 19, 2018 </span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
@@ -804,6 +804,16 @@
         <script src="assets/js/main.js"></script>
     </body>
 <script>
+    /**初始化分类列表**/
+    $.get("getLabelList").done(function (data) {
+        $(data).each(function (index, item) {
+            $("#labelList").append("<li><i class=\"fa fa-newspaper-o pink \"></i> <a href=\"#\" onclick='searchByLabel(\""+item.labelName+"\")' >"+item.labelName+"</a></li>");
+        })
+    });
+    /**按分类搜索**/
+    function searchByLabel(labelName) {
+        initArticlePage(1,labelName);
+    }
 
 /**初始化博客列表页面**/
 function initArticlePage(currentPage,labelName) {
@@ -817,7 +827,7 @@ function initArticlePage(currentPage,labelName) {
             "articleTitle": searchtxt,
             "page": {
                 "currentPage": currentPage,
-                "pageSize": 8
+                "pageSize": 6
             }
 
         }),
@@ -833,11 +843,11 @@ function initArticlePage(currentPage,labelName) {
                     "                                    <div class=\"blog-content\">\n" +
                     "                                        <div class=\"blog-meta\">\n" +
                     "                                            <ul>\n" +
-                    "                                                <li>作者: <span>item.user_name</span></li>\n" +
-                    "                                                <li>item.create_time</li>\n" +
+                    "                                                <li>作者: <span>"+item.user_name+"</span></li>\n" +
+                    "                                                <li>"+item.create_time+"</li>\n" +
                     "                                            </ul>\n" +
                     "                                        </div>\n" +
-                    "                                        <h4><a href=\"blog-details.html?articleId=\"+item.article_id+\"\">item.article_title</a></h4>\n" +
+                    "                                        <h4><a href=\"blog-details.html?articleId=\"+item.article_id+\"\">"+item.article_title+"</a></h4>\n" +
                     "                                    </div>\n" +
                     "                                </div>\n" +
                     "                            </div>"));
@@ -846,22 +856,22 @@ function initArticlePage(currentPage,labelName) {
             var str ="";
             $("#splitPage").empty();
             if(page.currentPage==1){
-                str = "<li class=\"disabled\"><a href=\"#\" onclick='initPage("+(page.currentPage-1)+")'>上一页</a></li>";
+                str = "<li class=\"disabled\"><a>✖</a></li>";
             }else{
-                str = "<li><a href=\"#\" onclick='initPage("+(page.currentPage-1)+")'>上一页</a></li>";
+                str = "<li><a href=\"#\" onclick='initArticlePage("+(page.currentPage-1)+")'>上一页</a></li>";
             }
             for(var i=1;i<=page.pageCount;i++){
                 if(i==page.currentPage){
-                    str += "<li class=\"active\"><a href=\"#\" onclick='initPage("+i+")'>"+i+"</a></li>"
+                    str += "<li class=\"active\"><a onclick='initArticlePage("+i+")'>当前页</a></li>"
                 }else {
-                    str += "<li><a href=\"#\" onclick='initPage("+i+")'>"+i+"</a></li>"
+                    str += "<li><a href=\"#\" onclick='initArticlePage("+i+")'>"+i+"</a></li>"
 
                 }
             }
             if(page.currentPage==page.pageCount){
-                str += "<li class=\"disabled\"><a href=\"#\" onclick='initPage("+(page.currentPage+1)+")'>下一页</a></li>";
+                str += "<li class=\"disabled\"><a>✖</a></li>";
             }else{
-                str += "<li><a href=\"#\" onclick='initPage("+(page.currentPage+1)+")'>下一页</a></li>";
+                str += "<li><a href=\"#\" onclick='initArticlePage("+(page.currentPage+1)+")'>下一页</a></li>";
             }
             $("#splitPage").html(str);
         },
@@ -873,5 +883,19 @@ function initArticlePage(currentPage,labelName) {
 }
 initArticlePage(1,null);
 
+    /**最新博客**/
+    $.get("getNewArticle").done(function (data) {
+        $(data).each(function (index, item) {
+            $("#newArticle").append("<div class=\"single-recent-post mb-20\">\n" +
+                "                                        <div class=\"recent-post-img\">\n" +
+                "                                            <a href=\"blog-details.html?articleId="+item.article_id+"\"><img src=\""+item.article_pic+"\" alt=\"\"></a>\n" +
+                "                                        </div>\n" +
+                "                                        <div class=\"recent-post-content\">\n" +
+                "                                            <h4><a href=\"blog-details.html?articleId="+item.article_id+"\">"+item.article_title+"</a></h4>\n" +
+                "                                            <span>"+item.create_time+"</span>\n" +
+                "                                        </div>\n" +
+                "                                    </div>");
+        })
+    });
 </script>
 </html>

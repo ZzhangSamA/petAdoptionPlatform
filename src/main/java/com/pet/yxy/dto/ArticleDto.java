@@ -8,6 +8,15 @@ public class ArticleDto {
     private String user_name;
     private String label_name;
     private String article_pic;
+    private String article_content;
+
+    public String getArticle_content() {
+        return article_content;
+    }
+
+    public void setArticle_content(String article_content) {
+        this.article_content = article_content;
+    }
 
     public String getArticle_pic() {
         return article_pic;
@@ -75,6 +84,7 @@ public class ArticleDto {
                 ", user_name='" + user_name + '\'' +
                 ", label_name='" + label_name + '\'' +
                 ", article_pic='" + article_pic + '\'' +
+                ", article_content='" + article_content + '\'' +
                 '}';
     }
 }
