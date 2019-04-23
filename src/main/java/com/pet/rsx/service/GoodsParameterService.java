@@ -1,8 +1,7 @@
-package com.pet.rsx.mapper;
+package com.pet.rsx.service;
 
 import com.pet.rsx.pojo.GoodsParameter;
 
-public interface GoodsParameterMapper {
+public interface GoodsParameterService {
     double getPrice(GoodsParameter goodsParameter);
-
 }

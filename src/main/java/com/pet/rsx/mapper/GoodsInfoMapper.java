@@ -1,5 +1,11 @@
 package com.pet.rsx.mapper;
 
-public interface GoodsInfoMapper {
+import com.pet.rsx.dto.GoodsInfo;
+import com.pet.rsx.vo.GoodsInfoVo;
 
+import java.util.List;
+
+public interface GoodsInfoMapper {
+    List<GoodsInfo> getGoodsInfoBy(GoodsInfoVo goodsInfoVo);
+    int getGoodsInfoCount(GoodsInfoVo goodsInfoVo);
 }

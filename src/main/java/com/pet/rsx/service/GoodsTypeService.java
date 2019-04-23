@@ -1,10 +1,9 @@
-package com.pet.rsx.mapper;
+package com.pet.rsx.service;
 
 import com.pet.rsx.dto.GoodsTypeDto;
 
 import java.util.List;
 
-public interface GoodsTypeMapper {
-
+public interface GoodsTypeService {
     List<GoodsTypeDto> getAllGoodsType();
 }

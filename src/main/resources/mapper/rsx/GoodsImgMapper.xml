@@ -8,4 +8,7 @@
     <result column="is_cover" jdbcType="BIT" property="isCover" />
   </resultMap>
 
+  <select id="getImageById" parameterType="com.pet.rsx.pojo.GoodsImg" resultMap="BaseResultMap">
+    select * from goods_img where goods_id = #{goodsId}
+  </select>
 </mapper>
