@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="assets/css/meanmenu.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <!--快递鸟-->
-    <link rel="stylesheet" href="KDNWidget/KDNWidget.css" />
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -373,7 +371,6 @@
                         </table>
                         </div>
                     </div>
-                <div id="getExpress"></div>
                 <div class="pagination-style text-center mt-10" id="liChange">
                     <ul>
 
@@ -567,8 +564,6 @@
 <script src="assets/js/plugins.js"></script>
 <script  src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/alert.js"></script>
-<!--快递鸟-->
-<script src="KDNWidget/KDNWidget.js"></script>
 
 <script>
     getOrders(1);
@@ -587,59 +582,23 @@
                     $(text.orderDto).each(function (index,item) {
                         var String="";
                         var orderNumber=item.orderNumber;
-                        var status=item.status;
                         $(item.goodsInfoDtos).each(function (index1,item1) {
-                            if (item1.goodsStatus == 1){
-                                String+="<tbody style=\"border: none\">" +
-                                    "<tr>" +
-                                    "<td class=\"\" style=\"width: 20%\" >\n" +
-                                    "<a href=\"javascript:void(0);\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
-                                    "</td>" +
-                                    "<td class=\"\" ><div><a href=\"#\">"+item1.goodsName+"</a></div><div><p>规格："+item1.parameterName+"</p></div></td>\n" +
-                                    "<td class=\"\" ><div><del style='color: #9c9c9c'>￥"+item1.parameterPrice+"</del></div><div><span class=\"amount\">￥"+item1.preferentialPrice+"</span></div></td>\n" +
-                                    "<td class=\" \" >" +
-                                    ""+item1.number+"\n" +
-                                    "</td>\n" +
-                                    "<td class='nAfterSale'><div><a  href='javascript:void(0);'>售后处理中</a></div><div><a class='hover-blue' href='javascript:void(0);' onclick='getReturn("+orderNumber+","+item1.ogId+")'>查看售后详情</a></div></td>\n" +
-                                    // "<td>1100</td>\n" +
-                                    "<td class=\"\" style=\"width: 20%\"></td>\n" +
-                                    "<td></td>\n" +
-                                    "</tbody>"
-                            } else if(item1.goodsStatus==0){
-                                String+="<tbody style=\"border: none\">" +
-                                    "<tr>" +
-                                    "<td class=\"\" style=\"width: 20%\" >\n" +
-                                    "<a href=\"javascript:void(0);\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
-                                    "</td>" +
-                                    "<td class=\"\" ><div><a href=\"#\">"+item1.goodsName+"</a></div><div><p>规格："+item1.parameterName+"</p></div></td>\n" +
-                                    "<td class=\"\" ><div><del style='color: #9c9c9c'>￥"+item1.parameterPrice+"</del></div><div><span class=\"amount\">￥"+item1.preferentialPrice+"</span></div></td>\n" +
-                                    "<td class=\" \" >" +
-                                    ""+item1.number+"\n" +
-                                    "</td>\n" +
-                                    "<td class='nAfterSale'><div></div><a class='hover-blue' href='javascript:void(0);'>联系客服</a></div><div><a class='hover-blue' href='javascript:void(0);' onclick='getStatus("+orderNumber+","+item1.ogId+")'>申请退换款</a></div></td>\n" +
-                                    // "<td>1100</td>\n" +
-                                    "<td class=\"\" style=\"width: 20%\"></td>\n" +
-                                    "<td></td>\n" +
-                                    "</tbody>"
-                            } else if(item1.gooodsStatus==2){
-                                String+="<tbody style=\"border: none\">" +
-                                    "<tr>" +
-                                    "<td class=\"\" style=\"width: 20%\" >\n" +
-                                    "<a href=\"javascript:void(0);\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
-                                    "</td>" +
-                                    "<td class=\"\" ><div><a href=\"#\">"+item1.goodsName+"</a></div><div><p>规格："+item1.parameterName+"</p></div></td>\n" +
-                                    "<td class=\"\" ><div><del style='color: #9c9c9c'>￥"+item1.parameterPrice+"</del></div><div><span class=\"amount\">￥"+item1.preferentialPrice+"</span></div></td>\n" +
-                                    "<td class=\" \" >" +
-                                    ""+item1.number+"\n" +
-                                    "</td>\n" +
-                                    "<td class='nAfterSale'><div></div><a  href='javascript:void(0);'>已退款</a></div><div><a class='hover-blue' href='javascript:void(0);' onclick='getReturn("+orderNumber+","+item1.ogId+")'>查看售后详情</a></div></td>\n" +
-                                    // "<td>1100</td>\n" +
-                                    "<td class=\"\" style=\"width: 20%\"></td>\n" +
-                                    "<td></td>\n" +
-                                    "</tbody>"
-                            }
-
-                        });
+                            String+="<tbody style=\"border: none\">" +
+                                "<tr>" +
+                                "<td class=\"\" style=\"width: 20%\" >\n" +
+                                "<a href=\"javascript:void(0);\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
+                                "</td>" +
+                                "<td class=\"\" ><div><a href=\"#\">"+item1.goodsName+"</a></div><div><p>规格："+item1.parameterName+"</p></div></td>\n" +
+                                "<td class=\"\" ><div><del style='color: #9c9c9c'>￥"+item1.parameterPrice+"</del></div><div><span class=\"amount\">￥"+item1.preferentialPrice+"</span></div></td>\n" +
+                                "<td class=\" \" >" +
+                                ""+item1.number+"\n" +
+                                "</td>\n" +
+                                "<td class=\"\" ></td>\n" +
+                                // "<td>1100</td>\n" +
+                                "<td class=\"\" style=\"width: 20%\"></td>\n" +
+                                "<td></td>\n" +
+                                "</tbody>"
+                        })
 
                         if (item.status==1){
                             String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
@@ -649,7 +608,7 @@
                                 "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>等待付款</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'></a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
@@ -666,9 +625,9 @@
                                 "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>联系客服</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>等待发货</div>" +
-                                "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status hover-blue refuseOrder'  style='color: green' >取消订单</a> </div>" +
                                 "</td> </tr>" +
@@ -683,15 +642,14 @@
                                 "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>已发货</div>" +
-                                "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics' onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status confirm'>确认收货</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
-
                         }
                 else if(item.status==4){
                             String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
@@ -701,10 +659,10 @@
                                 "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
-                                "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status'  style='color: blue'  href='#'>评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
@@ -718,11 +676,11 @@
                                 "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
-                                "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
-                                "<div ><a class='transaction-status'  style='color: blue'  href='#'>再次评价</a> </div>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "<div ><a class='transaction-status'  style='color: blue'  href='order_goods_evaluation.html?orderNumber="+item.orderNumber+"'>再次评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -734,10 +692,10 @@
                                 "<th  colspan=\"5\">订单编号："+item.orderNumber+"</th>\n" +
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
-                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
+                                "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'>申请售后</a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
-                                "<div><a class='hover-blue' style='word-break: break-all'  href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div><div><a href='javascript:void(0);'>已评价</a> </div></td><td colspan='1' style='font-size: large'>" +
+                                "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'>订单详情</a>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div><div><a href='javascript:void(0);'>已评价</a> </div></td><td colspan='1' style='font-size: large'>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -801,16 +759,6 @@
 
             dataType: "json"
         });
-    }
-
-    function getExpress() {
-        KDNWidget.run({
-            serviceType: "B",
-            expCode:"YTO",
-            expNo:"805288023381685896",
-            showType:"pop",
-            container: "getExpress"
-        })
     }
 
     //以点击事件为例，其他事件绑定道理一样
@@ -918,37 +866,58 @@
 
             dataType: "json"
         });
-    });
-function getStatus(orderNumber,ogId) {
-                  $.ajax({
-                      async: true,
-                      cache: false,
-                      traditional: true,
-                      type: "POST",
-                      url: "checkedDeliver",
-                      contentType: "application/json;charset=utf-8",
-                      data: JSON.stringify({
-                          "orderNumber":orderNumber
-                      }),
-                      success:function(text){
-                        if (text==0){
-                           alert("交易已超过15天或订单还未付款，不支持售后")
-                        }else if (text==1){
-                            window.location.href="applyRouter.html?orderNumber="+orderNumber+"&&ogId="+ogId
-                        }
-                      },
-                      error: function (text) {
-                          alert("服务器错误，确认失败");
-                      },
+    })
+    // $(".transaction-status").click(function () {
+    //     alert(222)
+    // })
 
-                      dataType: "json"
-                  });
-}
+    // $(".body").on("click",".transaction-status",function () {
+    //
+    //
+    // });
+    // $('body').on("click",".confirm",function (e) {
+    //     //第一个参数是提示信息
+    //     //第二个参数是点击确定的回调函数，如果需要操作数据，必须传参数event
+    //     //第三个参数是获取当前事件的，不传获取不到节点
+    //     jqAlert.Confirm('确定收货了吗？',function (event) {
+    //        if($(".dz_alertSure").click()){
+    //            var ac = $(".confirm").parents("table").find(".orderNumber").html();
+    //            var bc = ac.split("：")[1];
+    //            var height = $(window).height();
+    //            var width = $(window).width();
+    //            var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+    //                '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+    //            $("html").append(htmlValue);
+    //
+    //            $.ajax({
+    //                async: true,
+    //                cache: false,
+    //                traditional: true,
+    //                type: "POST",
+    //                url: "delivery",
+    //                contentType: "application/json;charset=utf-8",
+    //                data: JSON.stringify({
+    //                    "orderNumber":bc
+    //                }),
+    //                success:function(text){
+    //                    $(".loading_masker").remove()
+    //                  if (text==0){
+    //                     alert("错误，确认失败")
+    //                  }else if (text==1){
+    //                      window.location.reload()
+    //                  }
+    //                },
+    //                error: function (text) {
+    //                    alert("服务器错误，确认失败");
+    //                },
+    //
+    //                dataType: "json"
+    //            });
+    //
+    //        }
+    //     },e);
+    // })
 
-function getReturn(orderNumber,ogId) {
-
-    window.location.href="returnDetail.html?orderNumber="+orderNumber+"&&ogId="+ogId
-}
 </script>
 </body>
 </html>
