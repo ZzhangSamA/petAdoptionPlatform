@@ -21,9 +21,9 @@ public class LogisticsController {
 
     @RequestMapping(value = "getReturnMessage",method = RequestMethod.POST)
     public Object getReturnMessage(@RequestBody(required = false)ReturnMessageVo returnMessageVo, HttpSession httpSession){
-//        Customer customer1 = new Customer();
-//        customer1.setCustomerId(2);
-//        httpSession.setAttribute("customer",customer1);
+        Customer customer1 = new Customer();
+        customer1.setCustomerId(2);
+        httpSession.setAttribute("customer",customer1);
         Customer customer = (Customer)httpSession.getAttribute("customer");
         returnMessageVo.setCustomerId(customer.getCustomerId());
         int i = returnSale.addReturnSale(returnMessageVo);
@@ -33,6 +33,11 @@ public class LogisticsController {
     public Object getReturnDetail(@RequestBody(required = false)ReturnMessageVo returnMessageVo, HttpSession httpSession){
 
         return returnSale.getReturnDetail(returnMessageVo);
+    }
+    @RequestMapping(value = "againRefuse",method = RequestMethod.POST)
+    public Object againRefuse(@RequestBody(required = false)ReturnMessageVo returnMessageVo, HttpSession httpSession){
+
+        return returnSale.againRefuse(returnMessageVo);
     }
 
 }

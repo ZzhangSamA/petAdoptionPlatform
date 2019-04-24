@@ -11,6 +11,7 @@ public class ReturnDetailDto {
     private String applyDesc;
     private String orderNumber;
     private String returnNumber;
+    private String refuseDesc;
     private int status;
 
     public String getGoodsName() {
@@ -75,6 +76,14 @@ public class ReturnDetailDto {
 
     public void setReturnNumber(String returnNumber) {
         this.returnNumber = returnNumber;
+    }
+
+    public String getRefuseDesc() {
+        return refuseDesc;
+    }
+
+    public void setRefuseDesc(String refuseDesc) {
+        this.refuseDesc = refuseDesc;
     }
 
     public int getStatus() {
