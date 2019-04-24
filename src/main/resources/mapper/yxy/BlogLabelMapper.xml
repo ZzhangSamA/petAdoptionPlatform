@@ -135,4 +135,9 @@
       rank = #{rank,jdbcType=TINYINT}
     where label_id = #{labelId,jdbcType=INTEGER}
   </update>
+
+  <select id="getLabelList" resultMap="BaseResultMap">
+    select * from blog_label where status=1
+  </select>
+
 </mapper>

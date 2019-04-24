@@ -1,6 +1,9 @@
 package com.pet.yxy.mapper;
 
+import com.pet.yxy.dto.ArticleDto;
 import com.pet.yxy.pojo.BlogArticle;
+
+import java.util.List;
 
 public interface BlogArticleMapper {
     /**
@@ -58,4 +61,13 @@ public interface BlogArticleMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(BlogArticle record);
+
+    public List<ArticleDto> initArticlePage(BlogArticle blogArticle);
+
+    public int getTotalCount(BlogArticle blogArticle);
+
+    public List<BlogArticle> getNewArticle();
+
+    public List<ArticleDto> getArticleDetail(BlogArticle blogArticle);
+
 }

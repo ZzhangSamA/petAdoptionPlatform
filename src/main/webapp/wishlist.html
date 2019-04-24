@@ -9,7 +9,7 @@
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 		
-		<!-- all css here -->
+		<!-- all css here  -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/animate.css">
         <link rel="stylesheet" href="assets/css/simple-line-icons.css">
@@ -349,85 +349,59 @@
         </div>
          <!-- shopping-cart-area start -->
         <div class="cart-main-area pt-95 pb-100">
-            <div class="container">
-                <h3 class="page-title">我的收藏</h3>
+            <div class="container" align="center">
+                <h3 class="page-title" >我的收藏</h3>
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12" >
                         <form action="#">
-                            <div class="table-content table-responsive">
+                            <div class="table-content table-responsive" >
                                 <table>
                                     <thead>
                                         <tr>
+                                            <th><input id="allElection" onclick="booksChange()" type="checkbox" style=" width: 23px;"></th>
                                             <th>图片</th>
                                             <th>产品名称</th>
-                                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价格</th>
+                                            <th>价格</th>
                                             <th style="text-align: center;">取消收藏</th>
-                                            <!--<th>收藏时间</th>-->
-                                            <!--<th>Qty</th>-->
-                                            <!--<th>Subtotal</th>-->
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/img/cart/cart-3.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Dry Dog Food</a></td>
-                                            <td class="product-price-cart" ><span class="amount">￥110.00</span></td>
-                                            <!--<td class="product-quantity">-->
-                                                <!--<div class="cart-plus-minus">-->
-                                                    <!--<input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">-->
-                                                <!--</div>-->
+                                    <tbody id="tbody">
+                                        <!--<tr>-->
+                                            <!--<td class="product-thumbnail">-->
+                                                <!--<a href="#"><img src="assets/img/product/product-5.jpg" alt=""></a>-->
                                             <!--</td>-->
-                                            <!--<td class="product-subtotal">$110.00</td>-->
+                                            <!--<td class="product-name"><a href="#">Dry Dog Food</a></td>-->
+                                            <!--<td class="product-price-cart" ><span class="amount">￥110.00</span></td>-->
                                             <!--<td class="product-wishlist-cart">-->
-                                                <!--<a href="#">添加</a>-->
+                                                <!--<a href="#">取消收藏</a>-->
                                             <!--</td>-->
-                                            <td class="product-wishlist-cart">
-                                                <a href="#">取消收藏</a>
-                                            </td>
 
-                                        </tr>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/img/cart/cart-4.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Cat Buffalo Food</a></td>
-                                            <td class="product-price-cart"><span class="amount">￥150.00</span></td>
-                                            <!--<td class="product-quantity">-->
-                                                <!--<div class="cart-plus-minus">-->
-                                                    <!--<input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">-->
-                                                <!--</div>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td class="product-thumbnail">-->
+                                                <!--<a href="#"><img src="assets/img/cart/cart-4.jpg" alt=""></a>-->
                                             <!--</td>-->
-                                            <!--<td class="product-subtotal">$150.00</td>-->
+                                            <!--<td class="product-name"><a href="#">Cat Buffalo Food</a></td>-->
+                                            <!--<td class="product-price-cart"><span class="amount">￥150.00</span></td>-->
                                             <!--<td class="product-wishlist-cart">-->
-                                                <!--<a href="#">添加</a>-->
+                                                <!--<a href="#">取消收藏</a>-->
                                             <!--</td>-->
-                                            <td class="product-wishlist-cart">
-                                                <a href="#">取消收藏</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/img/cart/cart-5.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Legacy Dog Food</a></td>
-                                            <td class="product-price-cart"><span class="amount">￥170.00</span></td>
-                                            <!--<td class="product-quantity">-->
-                                                <!--<div class="cart-plus-minus">-->
-                                                    <!--<input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">-->
-                                                <!--</div>-->
+                                        <!--</tr>-->
+                                        <!--<tr>-->
+                                            <!--<td class="product-thumbnail">-->
+                                                <!--<a href="#"><img src="assets/img/cart/cart-5.jpg" alt=""></a>-->
                                             <!--</td>-->
-                                            <!--<td class="product-subtotal">$170.00</td>-->
+                                            <!--<td class="product-name"><a href="#">Legacy Dog Food</a></td>-->
+                                            <!--<td class="product-price-cart"><span class="amount">￥170.00</span></td>-->
                                             <!--<td class="product-wishlist-cart">-->
-                                                <!--<a href="#">添加</a>-->
+                                                <!--<a href="#">取消收藏</a>-->
                                             <!--</td>-->
-                                            <td class="product-wishlist-cart">
-                                                <a href="#">取消收藏</a>
-                                            </td>
-                                        </tr>
+                                        <!--</tr>-->
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="billing-btn" style="text-align: center">
+                                <button type="button" onclick='delByMore()' >批量删除</button>
                             </div>
                         </form>
                     </div>
@@ -539,5 +513,114 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+
+        <script type="text/javascript">
+            initPage();
+            function initPage(){
+                // $("#tbody").empty("");
+                $.ajax({
+                    type: 'POST',
+                    url: 'selectFromCustomerId',
+                    data:{
+                        "customerId":1
+                    },
+                    traditional: true,
+                    success:function (response) {
+                        console.log(response);
+                        $(response).each(function (index,item) {
+                            $("#tbody").append("<tr>"+
+                                    "<td style=\"text-align: center\"><input onclick='anbooksChange()' name='booksId' value="+item.collectionId+" class='ids' style=\" width: 23px;\"type=\"checkbox\"></td>"+
+                                "<td class=\"product-thumbnail\">"+
+                                "<a href=\"product-details.html\"><img src="+item.goods_img[0].goodsImage+"></a>"+
+                                "</td>"+
+                                // "<td style=\"text-align: center\">"+item.goods_img[0].goodsImage+"</td>"+
+                                "<td style=\"text-align: center\">"+item.goods_info[0].goodsName+"</td>"+
+                                "<td style=\"text-align: center\">"+item.goods_info[0].showPrice+"</td>"+
+                                "<td class=\"billing-btn\" style=\"text-align: center\">"+
+                                " <button type='button' onclick='removeCollection("+item.collectionId+")'>取消收藏</button>"+
+                                "</td>"+
+                                "</tr>");
+                        })
+                    },
+                    error:function (response) {
+                        console.log(response)
+                    },
+                    dataType: 'json'
+                });
+            }
+            //删除地址
+            function removeCollection(collectionId) {
+                $.ajax({
+                    type: "POST",//数据发送的方式（post 或者 get）
+                    url: "removeCollection",//要发送的后台地址
+                    data: {"collectionId": collectionId}
+                    ,//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
+                    dataType: "json",//后台处理后返回的数据格式
+                    success: function (responseText) {//ajax请求成功后触发的方法
+                        if (responseText == true) {
+                            window.location.href = "wishlist.html";
+                        } else {
+                            alert('删除失败');
+                        }
+                    },
+                    error: function (msg) {//ajax请求失败后触发的方法
+                        alert(msg);//弹出错误信息
+                    }
+
+                });
+            }
+            // 实现 checkbox 分选与全选绑定
+            function booksChange() {
+                if ($("#allElection").is(":checked")) {
+                    for(var i =0;i<$("input:checkbox[name=booksId]").length;i++){
+                        var element = $("input:checkbox[name=booksId]")[i];
+                        $(element).prop("checked", true);
+                    }
+                } else {
+                    // $("input:checkbox[name=booksId]").prop("checked", false)
+                    for(var i =0;i<$("input:checkbox[name=booksId]").length;i++){
+                        var element = $("input:checkbox[name=booksId]")[i];
+                        $(element).prop("checked", false);
+                    }
+                }
+            }
+
+            function anbooksChange(){
+                if ($("input:checkbox[name=booksId]:checked").length == $("input:checkbox[name=booksId]").length) {
+                    $("#allElection").prop("checked", true);
+                }else {
+                    $("#allElection").prop("checked", false);
+                }
+            }
+
+            //批量删除
+            function delByMore(){
+                //获取选中id
+                var idList = new Array();
+                //遍历checked选择器
+                $(".ids:checked").each(function () {
+                    var id = $(this).val();
+                    idList.push(id);
+                })
+                $.ajax({
+                    type: 'GET',
+                    url: 'delByForeach',
+                    contentType: "application/json;charset=utf-8",
+                    data: {"ids[]":idList},
+                    success:function (response) {
+                        if(response == "true"){
+                            alert("批量删除成功")
+                        }else {
+                            alert("批量删除失败")
+                        }
+                        window.location.reload();
+                    },
+                    error:function (response) {
+                        console.log(response)
+                    }
+                });
+
+            }
+        </script>
     </body>
 </html>

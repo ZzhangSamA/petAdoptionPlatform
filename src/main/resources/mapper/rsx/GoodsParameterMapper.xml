@@ -12,4 +12,7 @@
     <result column="status" jdbcType="BIT" property="status" />
   </resultMap>
 
+  <select id="getPrice" resultType="double" parameterType="com.pet.rsx.pojo.GoodsParameter">
+    SELECT  preferential_price FROM goods_parameter where parameter_id = #{parameterId};
+  </select>
 </mapper>

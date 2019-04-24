@@ -13,10 +13,107 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.pet.rsx.pojo.GoodsInfo">
-    <result column="goods_details" jdbcType="LONGVARCHAR" property="goodsDetails" />
+  <resultMap id="goodsInfoMap" type="com.pet.rsx.dto.GoodsInfo">
+
+    <id property="goodsId" column="goods_id"></id>
+    <result property="brandId" column="brand_id"></result>
+    <result property="goodsTypeId" column="goods_type_id"></result>
+    <result property="goodsName" column="goods_name"></result>
+    <result property="goodsTitle" column="goods_title"></result>
+    <result property="goodsDetails" column="goods_details"></result>
+    <result property="goodsImage" column="goods_image"></result>
+    <result property="goodsTypeName" column="goods_type_name"></result>
+    <result property="showPrice" column="show_price"></result>
+    <collection property="goodsParameters" ofType="com.pet.rsx.pojo.GoodsParameter">
+      <id column="parameter_id" jdbcType="INTEGER" property="parameterId" />
+      <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+      <result column="parameter_name" jdbcType="VARCHAR" property="parameterName" />
+      <result column="parameter_icon" jdbcType="VARCHAR" property="parameterIcon" />
+      <result column="parameter_price" jdbcType="DOUBLE" property="parameterPrice" />
+      <result column="stock" jdbcType="INTEGER" property="stock" />
+      <result column="preferential_price" jdbcType="DOUBLE" property="preferentialPrice" />
+      <result column="status" jdbcType="BIT" property="status" />
+    </collection>
   </resultMap>
+<select id="getGoodsInfoBy" parameterType="com.pet.rsx.vo.GoodsInfoVo" resultMap="goodsInfoMap">
+  SELECT gm.*,gp.parameter_name,gp.parameter_price,gp.preferential_price,gp.parameter_id from  (SELECT gb.*,b.brand_name FROM(	SELECT
+  g.*, gt.goods_type_name
+  FROM
+  (
+  SELECT
+  g1.goods_id,
+  g1.goods_type_id,
+  g1.brand_id,
+  g1.goods_title,
+  g1.goods_name,
+  g1.goods_details,
+  g1.show_price,
+  g2.goods_image
+  FROM
+  goods_info g1
+  LEFT JOIN goods_img g2 ON g1.goods_id = g2.goods_id
+  WHERE
+  g1.`status` = 1
+
+  ) g,
+  goods_type gt
+  WHERE
+  g.goods_type_id = gt.goods_type_id) gb ,brand b where
+  b.brand_id=gb.brand_id
+  <if test="goodsTypeId !=null and goodsTypeId !=''">
+    and goods_type_id = #{goodsTypeId}
+  </if>
+  <if test="brandId !=null and brandId !=''">
+    and brand_id = #{brandId}
+  </if>
+  <if test="search !=null and search !=''">
+    and goods_title like  concat('%',concat(#{search},'%'))
+  </if>
+  <if test="goodsId !=null and goodsId !=''">
+    and goods_id = #{goodsId}
+  </if>
+
+  limit #{splitePageBean.start},#{splitePageBean.pageSize}
+  ) gm LEFT JOIN goods_parameter gp on gp.goods_id= gm.goods_id and status=1
 
 
+
+
+</select>
+
+<select id="getGoodsInfoCount" parameterType="com.pet.rsx.vo.GoodsInfoVo" resultType="int">
+  SELECT count(1) FROM(	SELECT
+  g.*, gt.goods_type_name
+  FROM
+  (
+  SELECT
+  g1.goods_id,
+  g1.goods_type_id,
+  g1.brand_id,
+  g1.goods_title,
+  g1.goods_name,
+  g1.goods_details,
+  g1.show_price,
+  g2.goods_image
+  FROM
+  goods_info g1
+  LEFT JOIN goods_img g2 ON g1.goods_id = g2.goods_id
+  WHERE
+  g1.`status` = 1
+  ) g,
+  goods_type gt
+  WHERE
+  g.goods_type_id = gt.goods_type_id) gb ,brand b where
+  b.brand_id=gb.brand_id
+  <if test="goodsTypeId !=null and goodsTypeId !=''">
+    and goods_type_id = #{goodsTypeId}
+  </if>
+  <if test="brandId !=null and brandId !=''">
+    and brand_id = #{brandId}
+  </if>
+  <if test="search !=null and search !=''">
+    and goods_title like  concat('%',concat(#{search},'%'))
+  </if>
+</select>
 
 </mapper>
