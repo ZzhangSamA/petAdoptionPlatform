@@ -19,7 +19,7 @@ public class ArticleController {
     @RequestMapping(value = "initArticlePage",method = RequestMethod.POST)
     public Object initArticlePage(@RequestBody BlogArticle blogArticle) {
         if(blogArticle.getPage() != null) {
-            blogArticle.getPage().setTotalCount(articleService.getTotalCount());
+            blogArticle.getPage().setTotalCount(articleService.getTotalCount(blogArticle));
         }
         List<ArticleDto> articleDtoList = articleService.initArticlePage(blogArticle);
         ArticleVo articleVo = new ArticleVo();
@@ -27,4 +27,23 @@ public class ArticleController {
         articleVo.setPage(blogArticle.getPage());
         return articleVo;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "getLabelList",method = RequestMethod.GET)
+    public Object getLabelList() {
+        return articleService.getLabelList();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "getNewArticle",method = RequestMethod.GET)
+    public Object getNewArticle() {
+        return articleService.getNewArticle();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "getArticleDetail",method = RequestMethod.POST)
+    public Object getArticleDetail(@RequestBody BlogArticle blogArticle) {
+        return articleService.getArticleDetail(blogArticle);
+    }
+
 }
