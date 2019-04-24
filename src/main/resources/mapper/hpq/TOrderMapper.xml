@@ -10,7 +10,7 @@
     <result column="customer_id" property="customerId" jdbcType="INTEGER" />
     <result column="address_id" property="addressId" jdbcType="INTEGER" />
     <result column="order_number" property="orderNumber" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
@@ -25,7 +25,9 @@
     <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
     <result column="status" property="status" jdbcType="TINYINT" />
     <collection property="goodsInfoDtos" ofType="com.pet.hpq.dto.GoodsInfoDto">
+      <id column="og_id" property="ogId" jdbcType="INTEGER"/>
       <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+      <result column="goods_status" property="goodsStatus" jdbcType="INTEGER" />
       <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
       <result column="parameter_name" property="parameterName" jdbcType="VARCHAR" />
       <result column="parameter_price" property="parameterPrice" jdbcType="DECIMAL" />
@@ -34,6 +36,31 @@
       <result column="number" property="number" jdbcType="INTEGER"/>
       <result column="goods_total_price" property="goodsTotalPrice" jdbcType="DECIMAL" />
     </collection>
+  </resultMap>
+
+
+  <resultMap id="orderDetailMap" type="com.pet.hpq.dto.OrderDetail">
+    <id column="order_number" property="orderNumber" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="logistics_name" property="logisticsName" jdbcType="VARCHAR" />
+    <result column="order_remarks" property="message" jdbcType="VARCHAR" />
+    <result column="name" property="consignee" jdbcType="VARCHAR" />
+    <result column="phone" property="consigneePhone" jdbcType="VARCHAR" />
+    <result column="logistics_number" property="logisticsNumber" jdbcType="INTEGER" />
+    <result column="address" property="deliveryAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="goodsMap" type="com.pet.hpq.dto.GoodsDto">
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="parameter_name" property="parameterName" jdbcType="VARCHAR" />
+    <result column="parameter_icon" property="parameterIcon" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="refuseGoodsMap" type="com.pet.hpq.dto.GoodsDto">
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="parameter_name" property="parameterName" jdbcType="VARCHAR" />
+    <result column="parameter_icon" property="parameterIcon" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER"/>
+    <result column="postage" property="postage" jdbcType="DECIMAL"/>
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -53,6 +80,9 @@
     from t_order
     where order_id = #{orderId,jdbcType=INTEGER}
   </select>
+  <select id="getCreatTime" resultMap="BaseResultMap" parameterType="com.pet.hpq.pojo.TOrder">
+    select create_time,status from t_order where status &lt;&gt; 0 and order_number=#{orderNumber}
+  </select>
   <select id="getOrderCount" parameterType="int" resultType="int">
     select count(*) from t_order where status &lt;&gt; 0 and customer_id=#{customerId}
   </select>
@@ -61,9 +91,25 @@
     </select>
 
   <select id="getOrdersByCustomId" parameterType="com.pet.hpq.vo.OrderInfoVo" resultMap="TOrderDtoMap">
-    SELECT tab1.order_number,tab1.create_time,tab1.total_price,tab1.`status`,tab1.goods_id,tab1.goods_name,tab1.number,tab1.goods_total_price,gp.parameter_name,gp.parameter_price,gp.parameter_icon,gp.preferential_price
-    from(select DATE_FORMAT(ot.create_time,'%Y-%c-%d') create_time,ot.order_number,gi.goods_id,gi.goods_name,og.parameter_id,ot.status,ot.total_price,og.number,og.total_price goods_total_price
-    from (SELECT * FROM t_order where customer_id=#{customer.customerId} and status &lt;&gt; 0 limit #{splitPage.start},#{splitPage.pageSize}) ot,order_goods og,goods_info gi where ot.order_id=og.order_id and og.goods_id=gi.goods_id)as tab1,goods_parameter gp where gp.parameter_id=tab1.parameter_id ORDER BY create_time desc
+    SELECT tab1.order_number,tab1.goods_status,tab1.og_id,tab1.create_time,tab1.total_price,tab1.`status`,tab1.goods_id,tab1.goods_name,tab1.number,tab1.goods_total_price,gp.parameter_name,gp.parameter_price,gp.parameter_icon,gp.preferential_price
+    from(select DATE_FORMAT(ot.create_time,'%Y-%c-%d') create_time,og.status goods_status,og.og_id,ot.order_number,gi.goods_id,gi.goods_name,og.parameter_id,ot.status,ot.total_price,og.number,og.total_price goods_total_price
+    from (SELECT * FROM t_order where customer_id=#{customer.customerId} and status &lt;&gt; 0 ORDER BY create_time desc  limit #{splitPage.start},#{splitPage.pageSize}) ot,order_goods og,goods_info gi where ot.order_id=og.order_id and og.goods_id=gi.goods_id)as tab1,goods_parameter gp where gp.parameter_id=tab1.parameter_id
+  </select>
+  <select id="getOrderDetail" parameterType="com.pet.hpq.pojo.TOrder" resultMap="orderDetailMap">
+    SELECT ot.`status`,ot.order_number,ot.order_remarks,sa.`name`,sa.phone,sa.address,l.logistics_name,ol.logistics_number from t_order ot,shipping_address sa,order_logistics ol,logistics l
+    where order_number=#{orderNumber} and ot.address_id=sa.address_id and ot.customer_id=#{customerId}
+      and ot.order_id=ol.order_id and ol.logistics_id=l.logistics_id and ot.`status` &lt;&gt; 0
+  </select>
+  <select id="getGoodsInfo" parameterType="com.pet.hpq.vo.GoodsOrderVo" resultMap="goodsMap" >
+    SELECT  gi.goods_name,gp.parameter_name,gp.parameter_icon from t_order ot,order_goods og,goods_info gi,goods_parameter gp
+    where ot.order_number=#{orderNumber} and og.og_id=#{ogId} and og.goods_id=gi.goods_id and og.parameter_id=gp.parameter_id
+  </select>
+  <select id="getRefuseGoods" parameterType="com.pet.hpq.vo.GoodsOrderVo" resultMap="refuseGoodsMap">
+    SELECT  gi.goods_name,gp.parameter_name,gp.parameter_icon,og.postage,og.number,og.total_price from t_order ot,order_goods og,goods_info gi,goods_parameter gp
+    where ot.order_number=#{orderNumber} and og.og_id=#{ogId} and og.goods_id=gi.goods_id and og.parameter_id=gp.parameter_id
+  </select>
+  <select id="checkStatus" parameterType="com.pet.hpq.vo.ReturnMessageVo" resultType="com.pet.hpq.dto.StatusDto">
+    select ot.status tOderStatus ,og.`status` goodsStatus from t_order ot,order_goods og where ot.customer_id=#{customerId} and ot.order_number= #{orderNumber} and ot.order_id=og.order_id
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
@@ -172,6 +218,9 @@
       </if>
     </trim>
   </insert>
+  <update id="setStatus" parameterType="com.pet.hpq.vo.ChangeGoodsStatusVo">
+     update order_goods set status=#{status} where og_id=#{ogId}
+  </update>
     <update id="delivery" parameterType="com.pet.hpq.pojo.TOrder">
         update t_order set status=4 where order_number=#{orderNumber}
     </update>

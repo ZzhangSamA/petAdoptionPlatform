@@ -3358,6 +3358,7 @@ input.cart-plus-minus-box {
     padding: 12px 22px;
     text-transform: uppercase;
 }
+
 .product-list-action-left a:hover {
     background-color: #333;
 }
@@ -3762,6 +3763,13 @@ input.cart-plus-minus-box {
     display: block;
     border-radius: 8px;
 
+}
+.table-list{
+    width: 236px;
+    line-height: 1.5;
+    margin: 10px 8px 0 20px;
+    display: list-item;
+    text-align: -webkit-match-parent;
 }
 .transaction-status{
     background: #d8d8d8;

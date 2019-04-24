@@ -1,5 +1,7 @@
 package com.pet.rsx.pojo;
 
+import java.math.BigDecimal;
+
 public class GoodsParameter {
     private Integer parameterId;
 
@@ -9,11 +11,11 @@ public class GoodsParameter {
 
     private String parameterIcon;
 
-    private Double parameterPrice;
+    private BigDecimal parameterPrice;
 
     private Integer stock;
 
-    private Double preferentialPrice;
+    private BigDecimal preferentialPrice;
 
     private Boolean status;
 
@@ -49,11 +51,11 @@ public class GoodsParameter {
         this.parameterIcon = parameterIcon == null ? null : parameterIcon.trim();
     }
 
-    public Double getParameterPrice() {
+    public BigDecimal getParameterPrice() {
         return parameterPrice;
     }
 
-    public void setParameterPrice(Double parameterPrice) {
+    public void setParameterPrice(BigDecimal parameterPrice) {
         this.parameterPrice = parameterPrice;
     }
 
@@ -65,12 +67,12 @@ public class GoodsParameter {
         this.stock = stock;
     }
 
-    public Double getPreferentialPrice() {
-        return preferentialPrice;
+    public void setPreferentialPrice(BigDecimal preferentialPrice) {
+        this.preferentialPrice = preferentialPrice;
     }
 
-    public void setPreferentialPrice(Double preferentialPrice) {
-        this.preferentialPrice = preferentialPrice;
+    public BigDecimal getPreferentialPrice() {
+        return preferentialPrice;
     }
 
     public Boolean getStatus() {
