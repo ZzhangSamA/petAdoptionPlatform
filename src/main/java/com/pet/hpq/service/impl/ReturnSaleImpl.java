@@ -1,0 +1,58 @@
+package com.pet.hpq.service.impl;
+
+import com.pet.hpq.dto.ReturnDetailDto;
+import com.pet.hpq.dto.StatusDto;
+import com.pet.hpq.mapper.SalesReturnMapper;
+import com.pet.hpq.mapper.TOrderMapper;
+import com.pet.hpq.service.ReturnSale;
+import com.pet.hpq.vo.ChangeGoodsStatusVo;
+import com.pet.hpq.vo.ReturnMessageVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+@Service
+public class ReturnSaleImpl implements ReturnSale {
+
+    @Autowired(required = false)
+    SalesReturnMapper salesReturnMapper;
+    @Autowired(required = false)
+    TOrderMapper tOrderMapper;
+
+    @Transactional
+    public int addReturnSale(ReturnMessageVo returnMessageVo) {
+        int returnStatus = returnMessageVo.getStatus();
+        if (returnStatus==1||returnStatus==2){
+            StatusDto statusDto = tOrderMapper.checkStatus(returnMessageVo);
+            int orderStatus = statusDto.gettOderStatus();
+            int goodsStatus = statusDto.getGoodsStatus();
+            System.out.println(orderStatus);
+            System.out.println(goodsStatus);
+            if (goodsStatus!=1&&goodsStatus!=2) {
+                if (orderStatus == 1) {
+                    return 0;
+                }
+                if ((orderStatus == 2 || orderStatus == 3 && returnStatus == 1)||(orderStatus == 4 || orderStatus == 5 || orderStatus == 6 && returnStatus == 2)) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMwwDDkkmmss");
+                    Date date =new Date();
+                    String format = dateFormat.format(date);
+                    format+=returnMessageVo.getOgId();
+                    returnMessageVo.setReturnNumber(format);
+                    salesReturnMapper.insertSelective(returnMessageVo);
+                    ChangeGoodsStatusVo changeGoodsStatusVo = new ChangeGoodsStatusVo();
+                    changeGoodsStatusVo.setOgId(returnMessageVo.getOgId());
+                    changeGoodsStatusVo.setStatus(1);
+                    return  tOrderMapper.setStatus(changeGoodsStatusVo);
+                }
+            }
+        }
+        return 0;
+    }
+
+    public ReturnDetailDto getReturnDetail(ReturnMessageVo returnMessageVo) {
+        return salesReturnMapper.getReturnDetail(returnMessageVo);
+    }
+}
