@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="assets/css/meanmenu.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <!--快递鸟-->
+    <link rel="stylesheet" href="KDNWidget/KDNWidget.css" />
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -371,6 +373,7 @@
                         </table>
                         </div>
                     </div>
+                <div id="getExpress"></div>
                 <div class="pagination-style text-center mt-10" id="liChange">
                     <ul>
 
@@ -564,6 +567,8 @@
 <script src="assets/js/plugins.js"></script>
 <script  src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/alert.js"></script>
+<!--快递鸟-->
+<script src="KDNWidget/KDNWidget.js"></script>
 
 <script>
     getOrders(1);
@@ -681,7 +686,7 @@
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>已发货</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics' onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status confirm'>确认收货</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
@@ -699,7 +704,7 @@
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status'  style='color: blue'  href='#'>评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
@@ -716,7 +721,7 @@
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
                                 "<div ><a class='transaction-status'  style='color: blue'  href='#'>再次评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
@@ -732,7 +737,7 @@
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all'  href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
-                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'>物流详情</a></div><div><a href='javascript:void(0);'>已评价</a> </div></td><td colspan='1' style='font-size: large'>" +
+                                "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div><div><a href='javascript:void(0);'>已评价</a> </div></td><td colspan='1' style='font-size: large'>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -796,6 +801,16 @@
 
             dataType: "json"
         });
+    }
+
+    function getExpress() {
+        KDNWidget.run({
+            serviceType: "B",
+            expCode:"YTO",
+            expNo:"805288023381685896",
+            showType:"pop",
+            container: "getExpress"
+        })
     }
 
     //以点击事件为例，其他事件绑定道理一样
