@@ -2,6 +2,7 @@ package com.pet.rsx.dto;
 
 import com.pet.rsx.pojo.GoodsParameter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class GoodsInfo {
@@ -13,7 +14,7 @@ public class GoodsInfo {
     private String goodsDetails;
     private String goodsImage;
     private String goodsTypeName;
-    private String showPrice;
+    private BigDecimal showPrice;
     private List<GoodsParameter> goodsParameters;
 
     public Integer getGoodsId() {
@@ -80,11 +81,11 @@ public class GoodsInfo {
         this.goodsTypeName = goodsTypeName;
     }
 
-    public String getShowPrice() {
+    public BigDecimal getShowPrice() {
         return showPrice;
     }
 
-    public void setShowPrice(String showPrice) {
+    public void setShowPrice(BigDecimal showPrice) {
         this.showPrice = showPrice;
     }
 
