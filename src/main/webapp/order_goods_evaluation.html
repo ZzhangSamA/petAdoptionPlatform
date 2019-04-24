@@ -572,39 +572,7 @@
         })
     }
 
-    initPage();
-    function initPage(){
-        // $("#tbody").empty("");
-        $.ajax({
-            type: 'POST',
-            url: 'selectFromCustomerId',
-            data:{
-                "customerId":1
-            },
-            traditional: true,
-            success:function (response) {
-                console.log(response);
-                $(response).each(function (index,item) {
-                    $("#tbody").append("<tr>"+
-                        "<td style=\"text-align: center\"><input onclick='anbooksChange()' name='booksId' value="+item.collectionId+" class='ids' style=\" width: 23px;\"type=\"checkbox\"></td>"+
-                        "<td class=\"product-thumbnail\">"+
-                        "<a href=\"product-details.html\"><img src="+item.goods_img[0].goodsImage+"></a>"+
-                        "</td>"+
-                        // "<td style=\"text-align: center\">"+item.goods_img[0].goodsImage+"</td>"+
-                        "<td style=\"text-align: center\">"+item.goods_info[0].goodsName+"</td>"+
-                        "<td style=\"text-align: center\">"+item.goods_info[0].showPrice+"</td>"+
-                        "<td class=\"billing-btn\" style=\"text-align: center\">"+
-                        " <button type='button' onclick='removeCollection("+item.collectionId+")'>取消收藏</button>"+
-                        "</td>"+
-                        "</tr>");
-                })
-            },
-            error:function (response) {
-                console.log(response)
-            },
-            dataType: 'json'
-        });
-    }
+
 
 </script>
 
