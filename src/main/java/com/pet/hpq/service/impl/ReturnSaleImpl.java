@@ -27,14 +27,21 @@ public class ReturnSaleImpl implements ReturnSale {
         int returnStatus = returnMessageVo.getStatus();
         if (returnStatus==1||returnStatus==2){
             StatusDto statusDto = tOrderMapper.checkStatus(returnMessageVo);
+            int count = salesReturnMapper.checkCount(returnMessageVo);
+            System.out.println(count);
+            if (count!=0){
+                return 0;
+            }
             int orderStatus = statusDto.gettOderStatus();
             int goodsStatus = statusDto.getGoodsStatus();
-            System.out.println(orderStatus);
             System.out.println(goodsStatus);
             if (goodsStatus!=1&&goodsStatus!=2) {
+                System.out.println(12345);
+                System.out.println(orderStatus);
                 if (orderStatus == 1) {
                     return 0;
                 }
+                System.out.println(123456);
                 if ((orderStatus == 2 || orderStatus == 3 && returnStatus == 1)||(orderStatus == 4 || orderStatus == 5 || orderStatus == 6 && returnStatus == 2)) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMwwDDkkmmss");
                     Date date =new Date();
@@ -45,6 +52,7 @@ public class ReturnSaleImpl implements ReturnSale {
                     ChangeGoodsStatusVo changeGoodsStatusVo = new ChangeGoodsStatusVo();
                     changeGoodsStatusVo.setOgId(returnMessageVo.getOgId());
                     changeGoodsStatusVo.setStatus(1);
+                    System.out.println(456789);
                     return  tOrderMapper.setStatus(changeGoodsStatusVo);
                 }
             }
@@ -54,5 +62,20 @@ public class ReturnSaleImpl implements ReturnSale {
 
     public ReturnDetailDto getReturnDetail(ReturnMessageVo returnMessageVo) {
         return salesReturnMapper.getReturnDetail(returnMessageVo);
+    }
+
+    public int againRefuse(ReturnMessageVo returnMessageVo) {
+
+        int i = salesReturnMapper.checkStatus(returnMessageVo);
+        if (i==0){
+            ChangeGoodsStatusVo changeGoodsStatusVo = new ChangeGoodsStatusVo();
+            changeGoodsStatusVo.setStatus(0);
+            changeGoodsStatusVo.setOgId(returnMessageVo.getOgId());
+            tOrderMapper.setStatus(changeGoodsStatusVo);
+            int changeStatus = salesReturnMapper.changeStatus(returnMessageVo);
+            return changeStatus;
+        }
+
+        return 0;
     }
 }

@@ -7,4 +7,6 @@ public interface ReturnSale {
     int addReturnSale(ReturnMessageVo returnMessageVo);
 
     ReturnDetailDto getReturnDetail(ReturnMessageVo returnMessageVo);
+
+    int againRefuse(ReturnMessageVo returnMessageVo);
 }
