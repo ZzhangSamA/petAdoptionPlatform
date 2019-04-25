@@ -90,8 +90,8 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="mega-menu-position"><a href="shop-page.html">宠物口粮</a>
-                                    <ul class="mega-menu">
+                                <li class="mega-menu-position"><a href="shop-page.html">宠物生活</a>
+                                    <ul class="mega-menu" id="goodsTypeDate">
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title">狗粮</li>
@@ -600,7 +600,46 @@ var statuss;
 
 
 </script>
+<script type="text/javascript">
 
+    $(function () {
+        getAllGoodsType();
+    })
+    function getAllGoodsType() {
+        $.ajax({
+
+            type: 'POST',
+            url: 'getAllGoodType',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (responseText) {
+                console.log(responseText);
+                var str="";
+                $(responseText).each(function (index, itme) {
+                    str+="<li> <ul> <li class=\"mega-menu-title\">"+itme.goodsTypeName+"</li>";
+
+                    $(itme.children).each(function (index1, itmetext) {
+                        str+=" <li><a a href=\"shop-page.html?goodsTypeId="+itmetext.goodsTypeId+"\">"+itmetext.goodsTypeName+"</a></li>";
+                    })
+
+                    str+="</ul></li>";
+                })
+                str+=" <li>\n" +
+                    "<ul>\n" +
+                    "<li><a href=\"shop-page.html\"><img alt=\"\" src=\"assets/img/banner/menu-img-4.jpg\"></a></li>\n" +
+                    "</ul>\n" +
+                    "</li>"
+                $("#goodsTypeDate").html(str);
+
+            },
+            error: function (message) {
+                console.log(message);
+
+            },
+            dataType: 'json'
+        });
+    }
+</script>
 
 </body>
 </html>
