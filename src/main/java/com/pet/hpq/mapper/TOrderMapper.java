@@ -86,4 +86,11 @@ public interface TOrderMapper {
      * @return
      */
     Integer updateByPayInfo(PaymentVo paymentVo);
+
+    /**
+     * 根据订单编号获取TOrder对象
+     * @param orderNumber
+     * @return
+     */
+    TOrder getOrderByOrderNumber(String orderNumber);
 }
