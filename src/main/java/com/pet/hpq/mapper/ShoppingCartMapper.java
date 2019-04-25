@@ -41,4 +41,5 @@ public interface ShoppingCartMapper {
     int addShoppingCart(ShoppingCarVo shoppingCarVo);
 
     int addOneOrderGoods(ShoppingCarVo shoppingCarVo);
+
 }
