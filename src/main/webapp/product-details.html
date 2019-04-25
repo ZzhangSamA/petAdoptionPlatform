@@ -1188,7 +1188,10 @@
                     "number":number,
                 }),
                 success:function (response) {
-                 window.location.href="cart.html"
+                   if (response==1){
+                       window.location.href="cart.html"
+                   }
+                 //
                 },
                 error:function (response) {
                     alert("服务器内部错误,收藏失败");
