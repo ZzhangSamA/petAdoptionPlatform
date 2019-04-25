@@ -1,11 +1,13 @@
 package com.pet.lxw.controller;
 
+import com.pet.yh.pojo.Customer;
 import com.pet.lxw.pojo.GoodsCollection;
 import com.pet.lxw.service.GoodsCollectionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +19,10 @@ public class GoodsCollectionController {
     GoodsCollectionService goodsCollectionService;
 
     //查
-    @RequestMapping(value = "selectFromCustomerId",method = RequestMethod.POST)
-    public List<GoodsCollection> selectFromCustomerId(@RequestParam int customerId){
-        List<GoodsCollection> list =this.goodsCollectionService.selectFromCustomerId(customerId);
+    @RequestMapping(value = "selectFromCustomerId",method = RequestMethod.GET)
+    public List<GoodsCollection> selectFromCustomerId(HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        List<GoodsCollection> list =this.goodsCollectionService.selectFromCustomerId(customer.getCustomerId());
         return list;
     }
 
@@ -54,7 +57,7 @@ public class GoodsCollectionController {
         return this.goodsCollectionService.selectC(goodsCollection);
     }
 
-    //单查
+    //改
     @RequestMapping(value = "changedFromHeart",method = RequestMethod.POST)
     public int changedFromHeart(@RequestBody GoodsCollection goodsCollection){
         return this.goodsCollectionService.changedFromHeart(goodsCollection);
