@@ -118,7 +118,7 @@ public class CustomerController {
 //        if(customer1.getCustomerId()==0){
 //            return false+"";
 //        }
-        customer.setCustomerId(72);
+        customer.setCustomerId(customer.getCustomerId());
         boolean flag = this.customerService.updateCustomer(customer);
         return flag;
     }
