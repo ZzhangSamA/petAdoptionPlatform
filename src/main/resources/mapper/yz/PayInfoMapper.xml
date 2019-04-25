@@ -16,16 +16,6 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="BIT" />
   </resultMap>
-
-  <resultMap id="PayInfoDtoResultMap" type="com.pet.yz.dto.PayInfoDto">
-    <id column="pay_id" property="payId"  jdbcType="INTEGER" />
-    <result column="platform_name" property="platformName" jdbcType="INTEGER" />
-    <result column="customer_name" property="customerName" jdbcType="INTEGER" />
-    <result column="order_number" property="orderNumber" jdbcType="VARCHAR" />
-    <result column="serial_number" property="serialNumber" jdbcType="DECIMAL" />
-    <result column="money" property="money" jdbcType="BIT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-  </resultMap>
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbggenerated
@@ -181,41 +171,4 @@
       status = #{status,jdbcType=BIT}
     where pay_id = #{payId,jdbcType=INTEGER}
   </update>
-
-  <!--伪删除-->
-  <update id="deletePayInfo" parameterType="int">
-    update pay_info set status = 0 where pay_id = #{payId}
-  </update>
-
-  <!--查询分页数据-->
-  <select id="getPayInfoDtoList" parameterType="com.pet.yz.vo.PayInfoVo" resultMap="PayInfoDtoResultMap">
-    select * from (select p.pay_id,p.serial_number,p.create_time,p.money,o.order_number,c.customer_name,pp.platform_name
-from pay_info p,t_order o,customer c,pay_platform pp where p.`status` =
-and p.customer_id = c.customer_id and o.order_id = p.order_id and pp.platform_id = p.platform_id) pay
-    <where>
-      1 = 1
-      <if test="customerName != null and customerName != ''">
-          and pay.customer_name = #{customerName}
-      </if>
-      <if test="serialNumber != null and serialNumber != ''">
-          and pay.serial_number = #{serialNumber}
-      </if>
-    </where>
-    limit #{page.startPage},#{page.pageSize}
-  </select>
-
-  <select id="getCount" parameterType="com.pet.yz.vo.PayInfoVo" resultType="int">
-    select count(*) from (select p.pay_id,p.serial_number,p.create_time,p.money,o.order_number,c.customer_name,pp.platform_name
-    from pay_info p,t_order o,customer c,pay_platform pp where p.`status` = 1
-    and p.customer_id = c.customer_id and o.order_id = p.order_id and pp.platform_id = p.platform_id) pay
-    <where>
-      1 = 1
-      <if test="customerName != null and customerName != ''">
-        and pay.customer_name = #{customerName}
-      </if>
-      <if test="serialNumber != null and serialNumber != ''">
-        and pay.serial_number = #{serialNumber}
-      </if>
-    </where>
-  </select>
 </mapper>
