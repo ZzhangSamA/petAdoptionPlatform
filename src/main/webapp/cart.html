@@ -370,7 +370,7 @@
                                     <tbody class="cart">
                                     </tbody>
                                 </table>
-                                <div style="margin: 0 0 0 75%"> <a class="transaction-status">生成订单</a></div>
+                                <div style="margin: 0 0 0 75%"> <a class="transaction-status" onclick="addOrder()">生成订单</a></div>
                             </div>
                         </form>
 
@@ -494,22 +494,23 @@
             success:function(text){
                 var String="";
                 $(text).each(function (index,item) {
-                    String+=" <tr>\n" +
+                    String+=" <tr class='topTr'>\n" +
                         "<td class=\"product-thumbnail\">\n" +
+                            "<input class='hidden' type='hidden' value='cartId="+item.cartId+"&goodsId="+item.goodsId+"&parameterId="+item.parameterId+"'>"+
                         "<a href=\"#\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
                         "</td>\n" +
                         "<td class=\"product-name\"><a href=\"#\">"+item.goodsName+"</a></td>\n" +
                         "<td>"+item.parameterName+"</td>"+
-                        "<td class=\"product-price-cart\"><span class=\"amount\">$"+item.price+"</span></td>\n" +
+                        "<td class=\"product-price-cart\"><span class=\"amount price\" id='price"+index+"'>￥"+item.price+"</span></td>\n" +
                         "<td class=\"product-quantity\">\n" +
                         "<div class=\"cart-plus-minus\">\n" +
-                            "<div class=\"dec qtybutton\">-</div>"+
-                        "<input class=\"cart-plus-minus-box\" type=\"text\" name=\"qtybutton\" value=\""+item.number+"\">\n" +
-                            "<div class=\"inc qtybutton\">+</div>"+
+                            "<div class=\"dec qtybutton  addcc\" onclick='changeValue(1,goodsNumber"+index+",totalPrice"+index+",price"+index+")' >-</div>"+
+                        "<input class=\"cart-plus-minus-box  goodsNumber\" id='goodsNumber"+index+"' type=\"text\" name=\"qtybutton\" value=\""+item.number+"\">\n" +
+                            "<div class=\"inc qtybutton\" onclick='changeValue(2,goodsNumber"+index+",totalPrice"+index+",price"+index+")'>+</div>"+
                         " </div>\n" +
                         " </td>\n" +
-                        "<td class=\"product-subtotal\">$"+item.totalPrice+"</td>\n" +
-                        "<td class=\"product-remove\"><a href=\"#\"><i class=\"ti-trash\"></i></a></td>\n" +
+                        "<td class=\"product-subtotal \" id='totalPrice"+index+"'>￥"+item.totalPrice+"</td>\n" +
+                        "<td class=\"product-remove\"><a href=\"#\"><i class=\"ti-trash\" onclick='removeCart("+item.cartId+")'></i></a></td>\n" +
                         "</tr>"
                 })
                 $(".cart").append(String)
@@ -520,6 +521,89 @@
 
             dataType: "json"
         });
+        function removeCart(cartId) {
+            $.ajax({
+                async: true,
+                cache: false,
+                traditional: true,
+                type: "POST",
+                url: "removeCart",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({
+                    "cartId":cartId
+                }),
+                success:function(text){
+                   if (text==1){
+                       window.location.reload();
+                   } else{
+                       alert("服务器错误")
+                   }
+
+                },
+                error: function (text) {
+                    alert("服务器错误，确认失败");
+                },
+
+                dataType: "json"
+            });
+        }
+
+
+        function changeValue(id,goodsNumber,totalPrice,prices) {
+            if (id == 1) {
+               var nGoodsNumber=Number($(goodsNumber).val())-1
+               if (nGoodsNumber<1){
+                   $(goodsNumber).val(1);
+               }else {
+                   $(goodsNumber).val(nGoodsNumber);
+               }
+
+
+            }
+           else if (id == 2) {
+                var nGoodsNumber= Number($(goodsNumber).val())+1;
+                    $(goodsNumber).val(nGoodsNumber);
+
+            }
+            var number = Number($(prices).html().split("￥")[1]);
+            var number1 = Number($(goodsNumber).val());
+            var c=number*number1;
+            var nTotalPrice=  Number($(goodsNumber).val())*Number($(prices).html().split("￥")[1])
+            $(totalPrice).html("￥"+c);
+
+        }
+        function addOrder() {
+            var array = new Array();
+            $(".hidden").each(function (index,item) {
+                var cartMessage = item.value;
+                var number = $(this).parent(".product-thumbnail").parent(".topTr").find(".goodsNumber").val();
+                var message=cartMessage+"&number="+number;
+                console.log(message)
+                array.push(message)
+            })
+            $.ajax({
+                async: true,
+                cache: false,
+                traditional: true,
+                type: "POST",
+                url: "addOrder",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({
+                    "cartMessage":array
+                }),
+                success:function(text){
+                window.location.href="myOrder.html"
+
+                },
+                error: function (text) {
+                    alert("服务器错误，确认失败");
+                },
+
+                dataType: "json"
+            });
+        }
+
+
     </script>
     </body>
 </html>

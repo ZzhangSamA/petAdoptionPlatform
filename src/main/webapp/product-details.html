@@ -401,7 +401,7 @@
                             </div>
                             <div class="product-list-action">
                                 <div class="product-list-action-left">
-                                    <a class="addtocart-btn" href="#" title="加入购物车">
+                                    <a class="addtocart-btn" href="#" title="加入购物车" onclick="addShoppingCart()">
                                         <i class="ion-bag"></i>
                                         加入购物车
                                     </a>
@@ -409,6 +409,12 @@
                                 <div id="collect" class="product-list-action-right">
                                     <a  type="button" onclick="collection()" title="收藏">
                                         <i id="heart" style="" class="ti-heart"></i>
+                                    </a>
+                                </div>
+                                <div class="product-list-action-right" style="margin: 5% auto">
+                                    <a class="addtocart-btn" onclick="addOrder()">
+                                        <i class="ion-bag"></i>
+                                        购买
                                     </a>
                                 </div>
                             </div>
@@ -902,6 +908,7 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
     <script type="text/javascript">
+        var goodsId = window.location.search.split("=")[1];
         $(function () {
             var price = getGoodsInfoById();
             getImage();
@@ -1020,7 +1027,7 @@
         initPage();
         function initPage(){
 
-            var goodsId = window.location.search.split("=")[1];
+
 
             $.ajax({
                 async:false,
@@ -1165,8 +1172,28 @@
 
 
             }
+        }
 
-
+        function addShoppingCart() {
+            var parameterId = $("#goodsPra").val();
+            var number = $(".cart-plus-minus-box").val();
+            $.ajax({
+                type: 'POST',
+                url: 'addShoppingCart',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "parameterId":parameterId,
+                    "goodsId":goodsId,
+                    "number":number,
+                }),
+                success:function (response) {
+                 window.location.href="cart.html"
+                },
+                error:function (response) {
+                    alert("服务器内部错误,收藏失败");
+                },
+                dataType: 'json'
+            })
         }
     </script>
     </body>
