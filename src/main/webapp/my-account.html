@@ -357,7 +357,7 @@
                             <div id="faq" class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1" onclick="getCustomerInfo()">编辑你的详细信息 </a></h5>
+                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1" onclick="getCustomerInfo()">你的详细信息 </a></h5>
                                     </div>
                                     <div id="my-account-1" class="panel-collapse collapse ">
                                         <div class="panel-body">
@@ -404,9 +404,9 @@
                                                     <div class="billing-back">
                                                         <a href="#"><i class="ti-arrow-up"></i> back</a>
                                                     </div>
-                                                    <div class="billing-btn">
-                                                        <button type="button" onclick="updateCustomer()">修改</button>
-                                                    </div>
+                                                    <!--<div class="billing-btn">-->
+                                                        <!--<button type="button" onclick="updateCustomer()">修改</button>-->
+                                                    <!--</div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -414,7 +414,7 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>2</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-2">更改密码 </a></h5>
+                                        <h5 class="panel-title"><span>2</span> <a href="forget_password.html">更改密码 </a></h5>
                                     </div>
                                     <div id="my-account-2" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -762,7 +762,7 @@
                         }else {
                             $("#woman").attr("checked",true)
                         }
-                        alert(1231545);
+                        // alert(1231545);
                         $("#customername").val(text.customerName);
                         // $("#customersex").val(text.sex);
                         $("#customeremail").val(text.email);
@@ -777,37 +777,37 @@
                 });
             }
             
-            function updateCustomer() {
-                alert($("#customername").val())
-                alert($("#customeremail").val())
-                alert($("#customerbirthday").val())
-                alert($("#customerphone").val())
-
-                //1.提交数据到服务器并获取返回值
-                $.ajax({
-                    type:"POST",
-                    url:"updateCustomer1",
-                    contentType:"application/json; charset=utf-8",
-                    data:JSON.stringify({
-                        "customerName":$("#customername").val(),
-                        "email":$("#customeremail").val(),
-                        "birthday":$("#customerbirthday").val(),
-                        "telephone":$("#customerphone").val()
-                    }),
-                    //2.根据返回值提示并跳转
-                    success:function (response) {
-                        if(response==true){
-                            window.location.href="my-account.html";
-                        }else {
-                            alert("修改失败")
-                        }
-                    },
-                    error:function (response) {
-                        alert("服务器内部错误,修改失败")
-                    },
-                    dataType: 'json'
-                })
-            }
+            // function updateCustomer() {
+            //     alert($("#customername").val())
+            //     alert($("#customeremail").val())
+            //     alert($("#customerbirthday").val())
+            //     alert($("#customerphone").val())
+            //
+            //     //1.提交数据到服务器并获取返回值
+            //     $.ajax({
+            //         type:"POST",
+            //         url:"updateCustomer1",
+            //         contentType:"application/json; charset=utf-8",
+            //         data:JSON.stringify({
+            //             "customerName":$("#customername").val(),
+            //             "email":$("#customeremail").val(),
+            //             "birthday":$("#customerbirthday").val(),
+            //             "telephone":$("#customerphone").val()
+            //         }),
+            //         //2.根据返回值提示并跳转
+            //         success:function (response) {
+            //             if(response==true){
+            //                 window.location.href="my-account.html";
+            //             }else {
+            //                 alert("修改失败")
+            //             }
+            //         },
+            //         error:function (response) {
+            //             alert("服务器内部错误,修改失败")
+            //         },
+            //         dataType: 'json'
+            //     })
+            // }
         </script>
     </body>
 </html>

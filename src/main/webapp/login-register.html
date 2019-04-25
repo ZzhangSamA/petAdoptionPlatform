@@ -375,7 +375,7 @@
                                                 </div>
                                                 <div class="button-box">
                                                     <div class="login-toggle-btn">
-                                                        <input type="checkbox" id="within_a_week"  style="zoom:120%;">&nbsp;记住密码
+                                                        <input type="checkbox" id="within_a_week"  style="zoom:120%;" checked="checked">&nbsp;记住密码
                                                         <a href="forget_password.html" class="fr org">忘记密码？</a>
                                                     </div>
                                                     <div class="button-box" style="text-align: center" >
@@ -643,7 +643,14 @@
         //登录
         var week=$('#within_a_week');
         function dologin() {
+            if(week.prop("checked")){
 
+                // document.cookie="rem=true;path=/"
+                document.cookie="customerName="+$("#customername").val();
+                document.cookie="password="+$("#passWord").val();
+            }else{
+                document.cookie="rem=;path=/"
+            }
             $.ajax({
                 type: 'POST',
                 url: 'loginCheck',
@@ -654,16 +661,10 @@
                 }),
 
                 success: function(response){
-                    alert(response);
+                    // alert(response);
                     console.log(response);
                     if(response==true){
-                        if(week.prop("checked")){
-                            document.cookie="rem=true;path=/"
-                            document.cookie="customerName="+customername+";path=/";
-                            document.cookie="password="+passWord+";path=/";
-                        }else{
-                            document.cookie="rem=;path=/"
-                        }
+
                         location.href="index.html";
                     }else {
                         alert("用户名或密码错误");
@@ -690,7 +691,7 @@
                 }),
 
                 success: function(response){
-                    alert(response);
+                    // alert(response);
                     console.log(response);
                     if(response==true){
                         alert("注册成功,请登录");
@@ -722,23 +723,28 @@
         //记住密码
         var passFlag1 = false;
         var customerNameFlag = false;
-        var customername = $('#customername');
+        var customername = $('#customername').val();
         var password = $('#passWord');
         window.onload = function() {
-            var rem = document.cookie.split("rem=")[1];
-            var remem = rem.split(';')[0];
-            week.prop("checked",remem);
-            if(week.prop("checked")){
-                //获取cookie
-                var c1=document.cookie.split("customerName=")[1];
-                var customerName=c1.split(";")[0];
-                var p1=document.cookie.split("password=")[1];
-                var passWord=p1.split(";")[0];
-                customername.val(customerName);
-                password.val(passWord);
-                passFlag1 = true;
-                customerNameFlag = true;
-            }
+            var rem = document.cookie.split(";")[0];
+            $("#customername").val(rem.split("=")[1]);
+            var mim = document.cookie.split(";")[1];
+            var ii= mim.split("=")[1]
+            $("#passWord").val(""+ii);
+
+            // var remem = rem.split(';')[0];
+            // week.prop("checked",remem);
+            // if(week.prop("checked")){
+            //     //获取cookie
+            //     var c1=document.cookie.split("customerName=")[1];
+            //     var customerName=c1.split(";")[0];
+            //     var p1=document.cookie.split("password=")[1];
+            //     var passWord=p1.split(";")[0];
+            //     customername.val(customerName);
+            //     password.val(passWord);
+            //     passFlag1 = true;
+            //     customerNameFlag = true;
+            // }
         }
 
         var emailbtn=$('#tel_btn');

@@ -882,7 +882,7 @@
                                         <input type="text" value="2" name="qtybutton" class="cart-plus-minus-box">
                                     </div>
                                     <div class="quickview-btn-cart">
-                                        <a class="btn-style" href="#">加入购物车</a>
+                                        <a class="btn-style" href="#" onclick="addShoppingCart()">加入购物车</a>
                                     </div>
                                     <div class="quickview-btn-wishlist">
                                         <a class="btn-hover" href="#"><i class="ti-heart"></i></a>
@@ -1188,6 +1188,29 @@
                 }),
                 success:function (response) {
                  window.location.href="cart.html"
+                },
+                error:function (response) {
+                    alert("服务器内部错误,收藏失败");
+                },
+                dataType: 'json'
+            })
+        }
+
+        function addOrder() {
+            var parameterId = $("#goodsPra").val();
+            var number = $(".cart-plus-minus-box").val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'addOneOrder',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "parameterId":parameterId,
+                    "goodsId":goodsId,
+                    "number":number,
+                }),
+                success:function (response) {
+                    window.location.href="myOrder.html"
                 },
                 error:function (response) {
                     alert("服务器内部错误,收藏失败");
