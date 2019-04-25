@@ -14,6 +14,7 @@ public class GoodsInfoController {
     GoodsInfoService goodsInfoService;
     @RequestMapping(value = "getGoodsInfoBy",method = RequestMethod.POST)
     public Object getGoodsInfoBy(@RequestBody(required = false)GoodsInfoVo goodsInfoVo){
+        System.out.println(goodsInfoVo);
         return goodsInfoService.getGoodsInfoBy(goodsInfoVo);
     }
 }

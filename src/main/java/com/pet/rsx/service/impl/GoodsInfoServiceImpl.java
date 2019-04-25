@@ -22,6 +22,7 @@ public class GoodsInfoServiceImpl implements GoodsInfoService {
         GoodsInfoDto goodsInfoDto = new GoodsInfoDto();
         goodsInfoDto.setSplitePageBean(splitePageBean);
         goodsInfoDto.setGoodsInfos(goodsInfos);
+        System.out.println(goodsInfoDto);
 
         return goodsInfoDto;
     }
