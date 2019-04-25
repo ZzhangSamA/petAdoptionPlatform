@@ -37,4 +37,8 @@ public interface ShoppingCartMapper {
     int addOrderGoods(AddOrderGoodsVo addOrderGoodsVo);
 
     int getOrderId(int OrderNumber);
+
+    int addShoppingCart(ShoppingCarVo shoppingCarVo);
+
+    int addOneOrderGoods(ShoppingCarVo shoppingCarVo);
 }

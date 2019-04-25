@@ -28,6 +28,7 @@ public class LogisticsController {
         returnMessageVo.setCustomerId(customer.getCustomerId());
         int i = returnSale.addReturnSale(returnMessageVo);
         return i;
+
     }
     @RequestMapping(value = "getReturnDetail",method = RequestMethod.POST)
     public Object getReturnDetail(@RequestBody(required = false)ReturnMessageVo returnMessageVo, HttpSession httpSession){

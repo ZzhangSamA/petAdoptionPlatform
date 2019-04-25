@@ -90,4 +90,26 @@ public class OrderServiceImpl implements OrderService {
     public int setStatus(ReturnMessageVo returnMessageVo) {
         return 0;
     }
+
+    /**
+     * 根据订单id获取对象
+     * @param orderId
+     * @return
+     */
+    public TOrder selectByPrimaryKey(Integer orderId) {
+        return tOrderMapper.selectByPrimaryKey(orderId);
+    }
+
+    /**
+     * 根据条件属性修改对象属性
+     * @param tOrder
+     * @return
+     */
+    public Boolean updateByPrimaryKeySelective(TOrder tOrder) {
+        if (tOrderMapper.updateByPrimaryKeySelective(tOrder) > 0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

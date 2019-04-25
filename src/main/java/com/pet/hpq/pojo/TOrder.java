@@ -451,4 +451,24 @@ public class TOrder {
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    @Override
+    public String toString() {
+        return "TOrder{" +
+                "orderId=" + orderId +
+                ", customerId=" + customerId +
+                ", addressId=" + addressId +
+                ", orderNumber='" + orderNumber + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", paymentTime=" + paymentTime +
+                ", consignTime=" + consignTime +
+                ", payId=" + payId +
+                ", expCode='" + expCode + '\'' +
+                ", expNo='" + expNo + '\'' +
+                ", orderRemarks='" + orderRemarks + '\'' +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
 }

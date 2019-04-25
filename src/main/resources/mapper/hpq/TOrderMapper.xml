@@ -316,4 +316,9 @@
     total_price = #{totalPrice,jdbcType=DECIMAL}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
+
+  <!--修改订单状态为：待发货-->
+  <update id="updateByPayInfo" parameterType="com.pet.hpq.vo.PaymentVo">
+    update t_order set status = 2,payment_time = #{paymentTime,jdbcType=TIMESTAMP} where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
 </mapper>
