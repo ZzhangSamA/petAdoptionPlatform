@@ -57,6 +57,5 @@ public class ShoppingCartController {
         Customer customer = (Customer)httpSession.getAttribute("customer");
         shoppingCarVo.setCustomerId(customer.getCustomerId());
         return shoppingCart.addOneOrder(shoppingCarVo);
-
     }
 }

@@ -104,7 +104,6 @@ public class ShoppingCartImpl implements ShoppingCart {
         shoppingCarVo.setTotalPrice(totalPrice);
         shoppingCarVo.setOrderId(addOrderVo.getOrderId());
         return shoppingCartMapper.addOneOrderGoods(shoppingCarVo);
-
     }
 
 

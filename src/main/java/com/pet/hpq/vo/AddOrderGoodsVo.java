@@ -6,7 +6,6 @@ import java.util.List;
 
 public class AddOrderGoodsVo {
     private List<ShoppingCarDto> shoppingCarDtos;
-
     private int orderId;
 
     public List<ShoppingCarDto> getShoppingCarDtos() {
