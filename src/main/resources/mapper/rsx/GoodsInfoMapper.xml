@@ -36,11 +36,11 @@
     </collection>
   </resultMap>
 <select id="getGoodsInfoBy" parameterType="com.pet.rsx.vo.GoodsInfoVo" resultMap="goodsInfoMap">
-  SELECT gm.*,gp.parameter_name,gp.parameter_price,gp.preferential_price,gp.parameter_id from  (SELECT gb.*,b.brand_name FROM(	SELECT
-  g.*, gt.goods_type_name
+  SELECT gm.*,gp.parameter_name,gp.parameter_price,gp.preferential_price,gp.parameter_id from (
+  SELECT gb.*,b.brand_name
+  FROM (SELECT g.*, gt.goods_type_name
   FROM
-  (
-  SELECT
+  (SELECT
   g1.goods_id,
   g1.goods_type_id,
   g1.brand_id,
@@ -53,12 +53,7 @@
   goods_info g1
   LEFT JOIN goods_img g2 ON g1.goods_id = g2.goods_id
   WHERE
-  g1.`status` = 1
-
-  ) g,
-  goods_type gt
-  WHERE
-  g.goods_type_id = gt.goods_type_id) gb ,brand b where
+  g1.`status` = 1 and g2.is_cover = 1) g,goods_type gt WHERE g.goods_type_id = gt.goods_type_id)gb ,brand b where
   b.brand_id=gb.brand_id
   <if test="goodsTypeId !=null and goodsTypeId !=''">
     and goods_type_id = #{goodsTypeId}
@@ -70,23 +65,19 @@
     and goods_title like  concat('%',concat(#{search},'%'))
   </if>
   <if test="goodsId !=null and goodsId !=''">
-    and goods_id = #{goodsId}
+    and gb.goods_id=#{goodsId}
   </if>
-
   limit #{splitePageBean.start},#{splitePageBean.pageSize}
   ) gm LEFT JOIN goods_parameter gp on gp.goods_id= gm.goods_id and status=1
-
-
-
 
 </select>
 
 <select id="getGoodsInfoCount" parameterType="com.pet.rsx.vo.GoodsInfoVo" resultType="int">
-  SELECT count(1) FROM(	SELECT
-  g.*, gt.goods_type_name
+
+  SELECT count(1)
+  FROM (SELECT g.*, gt.goods_type_name
   FROM
-  (
-  SELECT
+  (SELECT
   g1.goods_id,
   g1.goods_type_id,
   g1.brand_id,
@@ -99,11 +90,7 @@
   goods_info g1
   LEFT JOIN goods_img g2 ON g1.goods_id = g2.goods_id
   WHERE
-  g1.`status` = 1
-  ) g,
-  goods_type gt
-  WHERE
-  g.goods_type_id = gt.goods_type_id) gb ,brand b where
+  g1.`status` = 1 and g2.is_cover = 1) g,goods_type gt WHERE g.goods_type_id = gt.goods_type_id)gb ,brand b where
   b.brand_id=gb.brand_id
   <if test="goodsTypeId !=null and goodsTypeId !=''">
     and goods_type_id = #{goodsTypeId}
@@ -114,6 +101,9 @@
   <if test="search !=null and search !=''">
     and goods_title like  concat('%',concat(#{search},'%'))
   </if>
+
+
 </select>
+
 
 </mapper>

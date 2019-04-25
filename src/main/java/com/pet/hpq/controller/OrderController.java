@@ -23,9 +23,6 @@ public class OrderController {
     @RequestMapping(value = "getOrders",method = RequestMethod.POST)
     public Object getOrders(@RequestBody(required = false)SplitPage splitPage, HttpSession httpSession){
         OrderInfoVo orderInfoVo = new OrderInfoVo();
-        Customer customer1 = new Customer();
-        customer1.setCustomerId(2);
-        httpSession.setAttribute("customer",customer1);
         Customer customer = (Customer)httpSession.getAttribute("customer");
         orderInfoVo.setCustomer(customer);
         orderInfoVo.setSplitPage(splitPage);
@@ -45,15 +42,12 @@ public class OrderController {
     }
     @RequestMapping(value = "getOrderDetail",method = RequestMethod.POST)
     public Object getOrderDetail(@RequestBody(required = false)TOrder tOrder,HttpSession httpSession){
-        Customer customer1 = new Customer();
-        customer1.setCustomerId(2);
-        httpSession.setAttribute("customer",customer1);
         Customer customer = (Customer)httpSession.getAttribute("customer");
         Integer customerId = customer.getCustomerId();
         tOrder.setCustomerId(customerId);
-        System.out.println(tOrder.getOrderNumber()+tOrder.getCustomerId());
         OrderDetail orderDetail = orderService.getOrderDetail(tOrder);
         return orderDetail;
+
     }
 
     @RequestMapping(value = "checkedDeliver",method = RequestMethod.POST)

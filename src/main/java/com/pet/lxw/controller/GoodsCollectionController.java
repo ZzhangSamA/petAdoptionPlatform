@@ -1,14 +1,13 @@
 package com.pet.lxw.controller;
 
+import com.pet.yh.pojo.Customer;
 import com.pet.lxw.pojo.GoodsCollection;
 import com.pet.lxw.service.GoodsCollectionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +19,10 @@ public class GoodsCollectionController {
     GoodsCollectionService goodsCollectionService;
 
     //查
-    @RequestMapping(value = "selectFromCustomerId",method = RequestMethod.POST)
-    public List<GoodsCollection> selectFromCustomerId(@RequestParam int customerId){
-        List<GoodsCollection> list =this.goodsCollectionService.selectFromCustomerId(customerId);
+    @RequestMapping(value = "selectFromCustomerId",method = RequestMethod.GET)
+    public List<GoodsCollection> selectFromCustomerId(HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        List<GoodsCollection> list =this.goodsCollectionService.selectFromCustomerId(customer.getCustomerId());
         return list;
     }
 
@@ -43,4 +43,24 @@ public class GoodsCollectionController {
         Boolean flag = this.goodsCollectionService.delByForeach(map);
         return flag.toString();
     }
+
+    //增加收藏
+    @RequestMapping(value = "insertC",method = RequestMethod.POST)
+    public Object insertC(@RequestBody GoodsCollection goodsCollection){
+        System.out.println(goodsCollection);
+        boolean flag = this.goodsCollectionService.insertC(goodsCollection);
+        return flag;
+    }
+    //单查
+    @RequestMapping(value = "selectC",method = RequestMethod.POST)
+    public GoodsCollection selectC(@RequestBody GoodsCollection goodsCollection){
+        return this.goodsCollectionService.selectC(goodsCollection);
+    }
+
+    //改
+    @RequestMapping(value = "changedFromHeart",method = RequestMethod.POST)
+    public int changedFromHeart(@RequestBody GoodsCollection goodsCollection){
+        return this.goodsCollectionService.changedFromHeart(goodsCollection);
+    }
+
 }

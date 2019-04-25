@@ -11,7 +11,7 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="BIT" />
     <result column="telephone" property="telephone" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -27,6 +27,41 @@
   <insert id="register" parameterType="com.pet.yh.pojo.Customer">
     insert into customer(customer_name,password,telephone,email) values(#{customerName},#{password},#{telephone},#{email})
   </insert>
+
+  <!--用户注册时校验-->
+  <select id="registerCustomerCheck" resultType="int" parameterType="com.pet.yh.vo.CustomerVo">
+        select count(1) from customer where customer_name = #{customerName} or email=#{email};
+    </select>
+
+  <!--忘记密码-->
+  <update id="ForgotPassword" parameterType="com.pet.yh.vo.CustomerVo">
+        update customer set password=#{password} where email=#{email}
+  </update>
+
+  <!--信息回显-->
+  <select id="getCustomerInfo" parameterType="int" resultMap="CustomerResultMap">
+      select * from customer where status=1 and customer_id=#{customerId}
+  </select>
+<!--修改用户信息-->
+  <update id="updateCustomer" parameterType="com.pet.yh.pojo.Customer">
+    update customer
+    <set>
+      <if test="customerName!=null and customerName!=''">
+        customer_name=#{customerName},
+      </if>
+      <if test="email!=null and email!=''">
+        email=#{email},
+      </if>
+      <if test="birthday!=null and birthday!=''">
+        birthday=#{birthday},
+      </if>
+      <if test="telephone!=null and telephone!=''">
+        telephone=#{telephone}
+      </if>
+    </set>
+    where customer_id=#{customerId}
+  </update>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

@@ -339,10 +339,10 @@
         <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url(assets/img/banner/banner-2.jpg);">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h2>Cart Page</h2>
+                    <h2>购物车</h2>
                     <ul>
-                        <li><a href="index.html">home</a></li>
-                        <li class="active">Cart Page</li>
+                        <li><a href="index.html">主页</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -350,7 +350,7 @@
          <!-- shopping-cart-area start -->
         <div class="cart-main-area pt-95 pb-100">
             <div class="container">
-                <h3 class="page-title">Your cart items</h3>
+                <h3 class="page-title">商品详情</h3>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                         <form action="#">
@@ -358,137 +358,22 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>Until Price</th>
-                                            <th>Qty</th>
-                                            <th>Subtotal</th>
-                                            <th>Delete</th>
+                                            <th>图片</th>
+                                            <th>商品名</th>
+                                            <th>规格</th>
+                                            <th>价格</th>
+                                            <th>数量</th>
+                                            <th>总价格</th>
+                                            <th>删除</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/img/cart/cart-3.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Dry Dog Food</a></td>
-                                            <td class="product-price-cart"><span class="amount">$110.00</span></td>
-                                            <td class="product-quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">$110.00</td>
-                                            <td class="product-remove"><a href="#"><i class="ti-trash"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/img/cart/cart-4.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Cat Buffalo Food</a></td>
-                                            <td class="product-price-cart"><span class="amount">$150.00</span></td>
-                                            <td class="product-quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">$150.00</td>
-                                            <td class="product-remove"><a href="#"><i class="ti-trash"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img src="assets/img/cart/cart-5.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Legacy Dog Food</a></td>
-                                            <td class="product-price-cart"><span class="amount">$170.00</span></td>
-                                            <td class="product-quantity">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="02">
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">$170.00</td>
-                                            <td class="product-remove"><a href="#"><i class="ti-trash"></i></a></td>
-                                        </tr>
+                                    <tbody class="cart">
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="cart-shiping-update-wrapper">
-                                        <div class="cart-shiping-update">
-                                            <a href="#">Continue Shopping</a>
-                                            <button>Update Shopping Cart</button>
-                                        </div>
-                                        <div class="cart-clear">
-                                            <a href="#">Clear Shopping Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div style="margin: 0 0 0 75%"> <a class="transaction-status" onclick="addOrder()">生成订单</a></div>
                             </div>
                         </form>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="cart-tax">
-                                    <h4 class="cart-bottom-title">Estimate Shipping And Tax</h4>
-                                    <div class="tax-wrapper">
-                                        <p>Enter your destination to get a shipping estimate.</p>
-                                        <div class="tax-select-wrapper">
-                                            <div class="tax-select">
-                                                <label>
-                                                    Country
-                                                </label>
-                                                <select class="email s-email s-wid">
-                                                    <option>Bangladesh</option>
-                                                    <option>Albania</option>
-                                                    <option>Åland Islands</option>
-                                                    <option>Afghanistan</option>
-                                                    <option>Belgium</option>
-                                                </select>
-                                            </div>
-                                            <div class="tax-select">
-                                                <label>
-                                                    State/Province
-                                                </label>
-                                                <select class="email s-email s-wid">
-                                                    <option>Bangladesh</option>
-                                                    <option>Albania</option>
-                                                    <option>Åland Islands</option>
-                                                    <option>Afghanistan</option>
-                                                    <option>Belgium</option>
-                                                </select>
-                                            </div>
-                                            <div class="tax-select">
-                                                <label>
-                                                    Zip/Postal Code
-                                                </label>
-                                                <input type="text" placeholder="1234567">
-                                            </div>
-                                            <button class="cart-btn-2" type="submit">Get A Quote</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="discount-code-wrapper">
-                                    <h4 class="cart-bottom-title">DISCOUNT CODES</h4>
-                                    <div class="discount-code">
-                                        <p>Enter your coupon code if you have one.</p>
-                                        <form>
-                                            <input type="text" required="" name="name">
-                                            <button class="cart-btn-2" type="submit">Get A Quote</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="grand-totall">
-                                    <span>Subtotal:   $155.00</span>
-                                    <h5>Grand Total:   $353.00</h5>
-                                    <a href="#">Proceed To Checkout</a>
-                                    <p>Checkout with Multiple Addresses</p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -598,5 +483,127 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+    <script>
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "getCart",
+            contentType: "application/json;charset=utf-8",
+            success:function(text){
+                var String="";
+                $(text).each(function (index,item) {
+                    String+=" <tr class='topTr'>\n" +
+                        "<td class=\"product-thumbnail\">\n" +
+                            "<input class='hidden' type='hidden' value='cartId="+item.cartId+"&goodsId="+item.goodsId+"&parameterId="+item.parameterId+"'>"+
+                        "<a href=\"#\"><img src=\"assets/img/cart/cart-3.jpg\" alt=\"\"></a>\n" +
+                        "</td>\n" +
+                        "<td class=\"product-name\"><a href=\"#\">"+item.goodsName+"</a></td>\n" +
+                        "<td>"+item.parameterName+"</td>"+
+                        "<td class=\"product-price-cart\"><span class=\"amount price\" id='price"+index+"'>￥"+item.price+"</span></td>\n" +
+                        "<td class=\"product-quantity\">\n" +
+                        "<div class=\"cart-plus-minus\">\n" +
+                            "<div class=\"dec qtybutton  addcc\" onclick='changeValue(1,goodsNumber"+index+",totalPrice"+index+",price"+index+")' >-</div>"+
+                        "<input class=\"cart-plus-minus-box  goodsNumber\" id='goodsNumber"+index+"' type=\"text\" name=\"qtybutton\" value=\""+item.number+"\">\n" +
+                            "<div class=\"inc qtybutton\" onclick='changeValue(2,goodsNumber"+index+",totalPrice"+index+",price"+index+")'>+</div>"+
+                        " </div>\n" +
+                        " </td>\n" +
+                        "<td class=\"product-subtotal \" id='totalPrice"+index+"'>￥"+item.totalPrice+"</td>\n" +
+                        "<td class=\"product-remove\"><a href=\"#\"><i class=\"ti-trash\" onclick='removeCart("+item.cartId+")'></i></a></td>\n" +
+                        "</tr>"
+                })
+                $(".cart").append(String)
+            },
+            error: function (text) {
+                alert("服务器错误，确认失败");
+            },
+
+            dataType: "json"
+        });
+        function removeCart(cartId) {
+            $.ajax({
+                async: true,
+                cache: false,
+                traditional: true,
+                type: "POST",
+                url: "removeCart",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({
+                    "cartId":cartId
+                }),
+                success:function(text){
+                   if (text==1){
+                       window.location.reload();
+                   } else{
+                       alert("服务器错误")
+                   }
+
+                },
+                error: function (text) {
+                    alert("服务器错误，确认失败");
+                },
+
+                dataType: "json"
+            });
+        }
+
+
+        function changeValue(id,goodsNumber,totalPrice,prices) {
+            if (id == 1) {
+               var nGoodsNumber=Number($(goodsNumber).val())-1
+               if (nGoodsNumber<1){
+                   $(goodsNumber).val(1);
+               }else {
+                   $(goodsNumber).val(nGoodsNumber);
+               }
+
+
+            }
+           else if (id == 2) {
+                var nGoodsNumber= Number($(goodsNumber).val())+1;
+                    $(goodsNumber).val(nGoodsNumber);
+
+            }
+            var number = Number($(prices).html().split("￥")[1]);
+            var number1 = Number($(goodsNumber).val());
+            var c=number*number1;
+            var nTotalPrice=  Number($(goodsNumber).val())*Number($(prices).html().split("￥")[1])
+            $(totalPrice).html("￥"+c);
+
+        }
+        function addOrder() {
+            var array = new Array();
+            $(".hidden").each(function (index,item) {
+                var cartMessage = item.value;
+                var number = $(this).parent(".product-thumbnail").parent(".topTr").find(".goodsNumber").val();
+                var message=cartMessage+"&number="+number;
+                console.log(message)
+                array.push(message)
+            })
+            $.ajax({
+                async: true,
+                cache: false,
+                traditional: true,
+                type: "POST",
+                url: "addOrder",
+                contentType: "application/json;charset=utf-8",
+                data: JSON.stringify({
+                    "cartMessage":array
+                }),
+                success:function(text){
+                window.location.href="myOrder.html"
+
+                },
+                error: function (text) {
+                    alert("服务器错误，确认失败");
+                },
+
+                dataType: "json"
+            });
+        }
+
+
+    </script>
     </body>
 </html>

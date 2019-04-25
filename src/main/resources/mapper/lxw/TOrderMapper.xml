@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pet.lxw.mapper.TOrderMapperLu" >
+    <resultMap id="BaseResultMap" type="com.pet.lxw.dto.TOrderDto" >
+        <id column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+        <result column="address_id" property="addressId" jdbcType="INTEGER" />
+        <result column="order_number" property="orderNumber" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+        <result column="consign_time" property="consignTime" jdbcType="TIMESTAMP" />
+        <result column="pay_id" property="payId" jdbcType="INTEGER" />
+        <result column="shipping_number" property="shippingNumber" jdbcType="VARCHAR" />
+        <result column="order_remarks" property="orderRemarks" jdbcType="VARCHAR" />
+        <collection property="goods_img" ofType="com.pet.lxw.dto.GoodsImageDto">
+            <id column="img_id" property="id"></id>
+            <result column="goods_image" property="goodsImage"></result>
+        </collection>
+        <collection property="goods_info" ofType="com.pet.lxw.dto.GoodsNameDto">
+            <id column="goods_id" property="goodsId"></id>
+            <result column="goods_name" property="goodsName"></result>
+            <result column="show_price" property="showPrice"></result>
+        </collection>
+        <collection property="order_goods" ofType="com.pet.lxw.dto.OrderGoodsDto">
+            <id column="og_id" property="ogId"></id>
+            <result column="goods_id" property="goodsId"></result>
+        </collection>
+        <collection property="customer" ofType="com.pet.lxw.dto.CustomerDto">
+            <id column="customer_id" property="id"></id>
+            <result column="customer_name" property="customerName"></result>
+        </collection>
+    </resultMap>
+    <resultMap id="BaseResultMap1" type="com.pet.lxw.pojo.TOrder" >
+        <id column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+        <result column="address_id" property="addressId" jdbcType="INTEGER" />
+        <result column="order_number" property="orderNumber" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+        <result column="consign_time" property="consignTime" jdbcType="TIMESTAMP" />
+        <result column="pay_id" property="payId" jdbcType="INTEGER" />
+        <result column="shipping_number" property="shippingNumber" jdbcType="VARCHAR" />
+        <result column="order_remarks" property="orderRemarks" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        order_id, customer_id, address_id, order_number, status, create_time, update_time,
+        payment_time, consign_time, pay_id, shipping_number, order_remarks
+    </sql>
+
+    <!--全查-->
+    <select id="selectFromTOrder" resultMap="BaseResultMap" parameterType="String" >
+SELECT  c.status,cu.customer_name,c.og_id,c.customer_id,c.goods_id,c.goods_image,c.goods_name,c.create_time,c.order_number FROM
+				(SELECT  b.status,b.og_id,b.customer_id,i.goods_id,i.goods_image,b.goods_name,b.create_time,b.order_number from
+        (SELECT a.status,a.og_id,a.customer_id,a.goods_id,g.goods_name,a.create_time,a.order_number FROM
+        (SELECT t.status,o.og_id,t.customer_id,o.goods_id,t.create_time,t.order_number from
+        (SELECT * from t_order where order_number =#{orderNumber}) t
+        LEFT JOIN (SELECT * FROM order_goods ) o ON t.order_id= o.order_id) a
+        LEFT JOIN (SELECT * FROM goods_info) g ON a.goods_id = g.goods_id) b
+        LEFT JOIN (SELECT*from goods_img WHERE is_cover=1) i ON b.goods_id = i.goods_id)c
+				LEFT JOIN (SELECT * from customer)cu ON cu.customer_id = c.customer_id;
+    </select>
+
+    <update id="updateStatus" parameterType="com.pet.lxw.pojo.TOrder">
+        update t_order set status =#{status} where order_number=#{orderNumber}
+    </update>
+</mapper>

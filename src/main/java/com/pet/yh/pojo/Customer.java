@@ -1,5 +1,6 @@
 package com.pet.yh.pojo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Customer {
@@ -14,9 +15,9 @@ public class Customer {
 
     private String email;
 
-    private Date birthday;
+    private String birthday;
 
-    private Boolean sex;
+    private Integer sex;
 
     private String telephone;
 
@@ -66,23 +67,33 @@ public class Customer {
         this.email = email == null ? null : email.trim();
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
     public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+        if(birthday==null){
+            this.birthday = null;
+            return;
+        }
+        String dateStr = "";
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            dateStr = sdf.format(birthday);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        this.birthday = dateStr;
     }
 
-    public Boolean getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-
-    public void setSex(Boolean sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
-
 
     public String getTelephone() {
         return telephone;
