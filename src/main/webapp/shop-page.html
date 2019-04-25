@@ -151,8 +151,8 @@
                             </button>
                             <div class="search-content">
                                 <form action="#">
-                                    <input type="text" placeholder="Search">
-                                    <button>
+                                    <input type="text" placeholder="Search" id="search1">
+                                    <button onclick="innitPage(1)">
                                         <i class="icon-magnifier"></i>
                                     </button>
                                 </form>
@@ -796,7 +796,7 @@
                                     </ul>
                                 </div>
                             </div>-->
-                            <div class="shop-widget mt-50">
+                 <!--           <div class="shop-widget mt-50">
                                 <h4 class="shop-sidebar-title">热搜品牌 </h4>
                                  <div class="shop-list-style mt-20">
                                     <ul>
@@ -807,7 +807,7 @@
                                         <li><a href="#">品牌</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
                           <!--  <div class="shop-widget mt-50">
                                 <h4 class="shop-sidebar-title">Health Consideration </h4>
                                  <div class="shop-list-style mt-20">
@@ -1074,7 +1074,9 @@
         
         function innitPage(currentPage,brandId) {
 
+            console.log($("#search1").val())
             var goodsTypeId = window.location.search.split("=")[1];
+            console.log(goodsTypeId)
             $.ajax({
 
                 type: 'POST',
@@ -1082,8 +1084,8 @@
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 data:JSON.stringify({
-                    "search":$("#search").val(),
                     "brandId":brandId,
+                    "search":$("#search").val(),
                     "goodsTypeId":goodsTypeId,
                     "splitePageBean":{
                         "currentPage":currentPage,
@@ -1091,6 +1093,7 @@
                     }
                 }),
                 success: function (responseText) {
+                    console.log(responseText);
                     var splitePageBean = responseText.splitePageBean;
                     var str1 ="";
                     $("#pagination").empty();
@@ -1120,7 +1123,7 @@
                             "                                        <div class=\"product-wrapper mb-10\">\n" +
                             "                                            <div class=\"product-img\">\n" +
                             "                                                <a href=\"product-details.html?goodsInfoId="+item.goodsId+"\">\n" +
-                            "                                                    <img src=\"assets/img/product/"+item.goodsImage+"\" alt=\"\">\n" +
+                            "                                                    <img src=\""+item.goodsImage+"\" alt=\"\">\n" +
                             "                                                </a>\n" +
                             "                                                <div class=\"product-action\">\n" +
                             "                                                    <a title=\"Quick View\" data-toggle=\"modal\" data-target=\"#exampleModal\" href=\"#\">\n" +
@@ -1139,14 +1142,14 @@
                             "                                            <div class=\"product-content\">\n" +
                             "                                                <h4><a href=\"product-details.html?goodsInfoId="+item.goodsId+"\">"+item.goodsName+"</a></h4>\n" +
                             "                                                <div class=\"product-price\">\n" +
-                            "                                                    <span class=\"new\">"+item.showPrice+" </span>\n" +
+                            "                                                    <span class=\"new\">￥"+item.showPrice+" </span>\n" +
                             // "                                                    <span class=\"old\">$50.00</span>\n" +
                             "                                                </div>\n" +
                             "                                            </div>\n" +
                             "                                            <div class=\"product-list-content\">\n" +
                             "                                                <h4><a href=\"#\">"+item.goodsName+"</a></h4>\n" +
                             "                                                <div class=\"product-price\">\n" +
-                            "                                                    <span class=\"new\">"+item.showPrice+" </span>\n" +
+                            "                                                    <span class=\"new\">￥"+item.showPrice+" </span>\n" +
                             "                                                </div>\n" +
                             "                                                <p>"+item.goodsDetails+"</p>\n" +
                             "                                                <div class=\"product-list-action\">\n" +
