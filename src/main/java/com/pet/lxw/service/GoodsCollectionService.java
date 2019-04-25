@@ -12,4 +12,6 @@ public interface GoodsCollectionService {
     int delWishlist(Integer collectionId);
 
     boolean delByForeach(Map map);
+
+    boolean insertC(GoodsCollection goodsCollection);
 }

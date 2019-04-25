@@ -1,13 +1,11 @@
 package com.pet.lxw.controller;
 
 import com.pet.lxw.pojo.GoodsCollection;
+import com.pet.lxw.pojo.ShippingAddress;
 import com.pet.lxw.service.GoodsCollectionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,5 +40,13 @@ public class GoodsCollectionController {
         System.out.println(ids);
         Boolean flag = this.goodsCollectionService.delByForeach(map);
         return flag.toString();
+    }
+
+    //增加收藏
+    @RequestMapping(value = "insertC",method = RequestMethod.POST)
+    public Object insertC(@RequestBody GoodsCollection goodsCollection){
+        System.out.println(goodsCollection);
+        boolean flag = this.goodsCollectionService.insertC(goodsCollection);
+        return flag;
     }
 }

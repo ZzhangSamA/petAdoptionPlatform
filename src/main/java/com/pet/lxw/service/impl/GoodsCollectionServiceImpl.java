@@ -32,4 +32,12 @@ public class GoodsCollectionServiceImpl implements GoodsCollectionService{
         }
         return false;
     }
+
+    public boolean insertC(GoodsCollection goodsCollection) {
+        boolean flag = false;
+        if (this.goodsCollectionMapper.insertC(goodsCollection)>0){
+            return true;
+        }
+        return false;
+    }
 }
