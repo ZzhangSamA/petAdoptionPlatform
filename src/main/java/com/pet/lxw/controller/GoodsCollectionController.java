@@ -1,7 +1,6 @@
 package com.pet.lxw.controller;
 
 import com.pet.lxw.pojo.GoodsCollection;
-import com.pet.lxw.pojo.ShippingAddress;
 import com.pet.lxw.service.GoodsCollectionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +48,16 @@ public class GoodsCollectionController {
         boolean flag = this.goodsCollectionService.insertC(goodsCollection);
         return flag;
     }
+    //单查
+    @RequestMapping(value = "selectC",method = RequestMethod.POST)
+    public GoodsCollection selectC(@RequestBody GoodsCollection goodsCollection){
+        return this.goodsCollectionService.selectC(goodsCollection);
+    }
+
+    //单查
+    @RequestMapping(value = "changedFromHeart",method = RequestMethod.POST)
+    public int changedFromHeart(@RequestBody GoodsCollection goodsCollection){
+        return this.goodsCollectionService.changedFromHeart(goodsCollection);
+    }
+
 }
