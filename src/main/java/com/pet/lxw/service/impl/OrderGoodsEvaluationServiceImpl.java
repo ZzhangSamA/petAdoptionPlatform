@@ -1,6 +1,7 @@
 package com.pet.lxw.service.impl;
 
 import com.pet.lxw.mapper.OrderGoodsEvaluationMapper;
+import com.pet.lxw.pojo.GoodsCollection;
 import com.pet.lxw.pojo.OrderGoodsEvaluation;
 import com.pet.lxw.service.OrderGoodsEvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,6 @@ public class OrderGoodsEvaluationServiceImpl implements OrderGoodsEvaluationServ
     public List<OrderGoodsEvaluation> selectEC(Integer goodsId) {
         return this.orderGoodsEvaluationMapper.selectEC(goodsId);
     }
+
+
 }

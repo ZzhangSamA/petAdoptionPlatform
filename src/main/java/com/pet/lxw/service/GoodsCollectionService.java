@@ -14,4 +14,8 @@ public interface GoodsCollectionService {
     boolean delByForeach(Map map);
 
     boolean insertC(GoodsCollection goodsCollection);
+    //单查
+    GoodsCollection selectC (GoodsCollection goodsCollection);
+
+    int changedFromHeart(GoodsCollection goodsCollection);
 }

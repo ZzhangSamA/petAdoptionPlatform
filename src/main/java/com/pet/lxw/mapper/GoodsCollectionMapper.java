@@ -27,11 +27,15 @@ public interface GoodsCollectionMapper {
     //伪删
     int delWishlist(Integer collectionId);
 
+    //已有数据的情况下，按红心取消或者添加收藏
+    int changedFromHeart(GoodsCollection goodsCollection);
+
     //批量
     int delByForeach(Map map);
 
     //增加
     int insertC(GoodsCollection goodsCollection);
 
-//    GoodsCollection selectC (GoodsCollection goodsCollection)
+    //单查
+    GoodsCollection selectC (GoodsCollection goodsCollection);
 }
