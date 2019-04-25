@@ -53,6 +53,7 @@ public class OrderController {
         tOrder.setCustomerId(customerId);
         OrderDetail orderDetail = orderService.getOrderDetail(tOrder);
         return orderDetail;
+
     }
 
     @RequestMapping(value = "checkedDeliver",method = RequestMethod.POST)
