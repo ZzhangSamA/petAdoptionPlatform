@@ -356,14 +356,12 @@
                         <div class="product-details-img">
                             <img id="zoompro" src="assets/img/product-details/l1.jpg" data-zoom-image="assets/img/product-details/bl1.jpg" alt="zoom"/>
                             <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
-
                                 <a data-image="assets/img/product-details/s1.jpg" >
                                     <img src="assets/img/product-details/s1.jpg" alt="">
                                 </a>
                                 <a data-image="assets/img/product/product-5.jpg" >
                                     <img src="assets/img/product/product-5.jpg" alt="">
                                 </a>
-
                             </div>
                         </div>
                     </div>
@@ -408,9 +406,9 @@
                                         加入购物车
                                     </a>
                                 </div>
-                                <div class="product-list-action-right">
-                                    <a href="wishlist.html" title="Wishlist">
-                                        <i class="ti-heart"></i>
+                                <div id="collect" class="product-list-action-right">
+                                    <a  type="button" onclick="collection()" title="收藏">
+                                        <i id="heart" style="" class="ti-heart"></i>
                                     </a>
                                 </div>
                             </div>
@@ -438,8 +436,8 @@
                     </div>
                     <div class="tab-content description-review-bottom">
                         <div id="des-details1" class="tab-pane active">
-                            <div class="product-description-wrapper">
-                                <p>This stewpot is part of the Scanpan Classic cookware range, which boasts GreenTek non-stick coating which is 100% PFOA free, meaning it's safer for your family and the environment. The heavy-duty, pressure-cast aluminum body has an extra-thick base for quick, even heating and it is compatible with all cooking surfaces (excluding induction). The extraordinarily hard exterior surface is a combination of ceramic and titanium nonstick cooking surface which is impossible to scrape away, even with metal utensils. Patented spring-lock handle stays cool during normal stove top use and the stewpot is also oven safe from up to 260°C. It's also dishwasher safe for easy cleanup. </p>
+                            <div class="product-description-wrapper" >
+                                <!--<p>This stewpot is part of the Scanpan Classic cookware range, which boasts GreenTek non-stick coating which is 100% PFOA free, meaning it's safer for your family and the environment. The heavy-duty, pressure-cast aluminum body has an extra-thick base for quick, even heating and it is compatible with all cooking surfaces (excluding induction). The extraordinarily hard exterior surface is a combination of ceramic and titanium nonstick cooking surface which is impossible to scrape away, even with metal utensils. Patented spring-lock handle stays cool during normal stove top use and the stewpot is also oven safe from up to 260°C. It's also dishwasher safe for easy cleanup. </p>
                                 <p>Scanpan is designed and manufactured in Denmark and offers a lifetime warranty.</p>
                                 <ul>
                                     <li>Key Features:</li>
@@ -452,11 +450,11 @@
                                     <li>Ovenproof up to 260°C</li>
                                     <li>Dishwasher safe - but not recommended</li>
                                     <li>Designed and manufactured in Denmark</li>
-                                </ul>
+                                </ul>-->
                             </div>
                         </div>
                         <div id="des-details2" class="tab-pane">
-                            <div class="product-anotherinfo-wrapper">
+                            <div class="product-anotherinfo-wrapper" id="goodsDesc">
                                 <ul>
                                     <li><span>name:</span> Scanpan Classic Covered</li>
                                     <li><span>color:</span> orange , pink , yellow </li>
@@ -929,11 +927,11 @@
                     }
                 }),
                 success: function (responseText) {
-
                     var goodsInfo = responseText.goodsInfos[0];
                     $("#goodsName").text(goodsInfo.goodsName);
                     $("#goodsPrice").html(goodsInfo.showPrice);
                     $("#goodsTitle").html(goodsInfo.goodsTitle);
+                    $("#goodsDesc").html(goodsInfo.goodsDetails);
                     price = goodsInfo.showPrice;
 
                     var option="";
@@ -980,13 +978,13 @@
                           "                                </a></div><div class=\"owl-item cloned active\" style=\"width: 133.25px; margin-right: 12px;\"><a data-image=\"assets/img/product/"+item.goodsImage+"\">"
 
                   }else {
-                       $("#zoompro").attr("src","assets/img/product/"+item.goodsImage)
+                       $("#zoompro").attr("src",item.goodsImage)
                     }
 
                 })
                     img = img +"</div></div><div class=\"owl-nav disabled\"><div class=\"owl-prev\"><i class=\"ti-arrow-left\"></i></div><div class=\"owl-next\"><i class=\"ti-arrow-right\"></i></div></div><div class=\"owl-dots disabled\"><div class=\"owl-dot active\"><span></span></div></div>";
                     // console.log(img);
-                $("#gallery").html(img);
+                // $("#gallery").html(img);
                 },
                 error: function (message) {
                     console.log(message);
@@ -1021,6 +1019,9 @@
             }
         }
 
+        var customerId ;
+        var changed;
+        var statuss;
 
         //评论
         initPage();
@@ -1029,6 +1030,7 @@
             var goodsId = window.location.search.split("=")[1];
 
             $.ajax({
+                async:false,
                 type: 'POST',
                 url: 'selectEC',
                 data:{
@@ -1038,6 +1040,9 @@
                 success:function (response) {
                     console.log(response);
                     $(response).each(function (index,item) {
+
+                        customerId = item.customerId;
+
                         $("#comment").append(
                         "<div class=\"star-author-all\">"+
                             "<div class=\"product-author f-left\">"+
@@ -1057,8 +1062,119 @@
                 },
                 dataType: 'json'
             });
-        }
 
+            //红心
+            $.ajax({
+                type: 'POST',
+                url: 'selectC',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "customerId":customerId,
+                    "goodsId":goodsId,
+                }),
+                success:function (response) {
+                    if (response.status==true) {
+                        $("#heart").attr("style","color: red")
+                        statuss = 1;
+                        changed = 0;
+                    }else {
+                        statuss =0;
+                        changed = 0;
+                    }
+                },
+                error:function (response) {
+                   changed = 1;
+                   statuss =0;
+
+                },
+                dataType: 'json'
+            })
+
+        }
+        function collection() {
+            var goodsId = window.location.search.split("=")[1];
+            if(changed ==1){
+                $.ajax({
+                    type: 'POST',
+                    url: 'insertC',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        "customerId":customerId,
+                        "goodsId":goodsId,
+                    }),
+                    success:function (response) {
+                        if(response==true){
+                            alert("收藏成功");
+                            $("#heart").attr("style","color: red")
+                            changed = 0;
+                            statuss =1;
+                        }else{
+                            alert("收藏失败");
+                        }
+                    },
+                    error:function (response) {
+                        alert("服务器内部错误,收藏失败");
+                    },
+                    dataType: 'json'
+                })
+            }else if(changed == 0){
+                if (statuss==1) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'changedFromHeart',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            "customerId":customerId,
+                            "goodsId":goodsId,
+                            "status":0,
+                        }),
+                        success:function (response) {
+                            if(response==true){
+                                alert("取消收藏");
+                                $("#heart").attr("style","")
+                                changed = 0;
+                                statuss =0;
+                            }else{
+                                alert("收藏失败");
+                            }
+                        },
+                        error:function (response) {
+                            alert("服务器内部错误,收藏失败");
+                        },
+                        dataType: 'json'
+                    })
+                }else {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'changedFromHeart',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            "customerId":customerId,
+                            "goodsId":goodsId,
+                            "status":1,
+                        }),
+                        success:function (response) {
+                            if(response==true){
+                                alert("收藏成功");
+                                $("#heart").attr("style","color: red")
+                                changed = 0;
+                                statuss =1;
+                            }else{
+                                alert("收藏失败");
+                            }
+                        },
+                        error:function (response) {
+                            alert("服务器内部错误,收藏失败");
+                        },
+                        dataType: 'json'
+                    })
+                }
+
+
+            }
+
+
+        }
     </script>
     </body>
 </html>

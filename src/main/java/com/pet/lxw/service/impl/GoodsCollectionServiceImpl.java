@@ -40,4 +40,12 @@ public class GoodsCollectionServiceImpl implements GoodsCollectionService{
         }
         return false;
     }
+
+    public GoodsCollection selectC(GoodsCollection goodsCollection) {
+        return this.goodsCollectionMapper.selectC(goodsCollection);
+    }
+
+    public int changedFromHeart(GoodsCollection goodsCollection) {
+        return this.goodsCollectionMapper.changedFromHeart(goodsCollection);
+    }
 }

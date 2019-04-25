@@ -171,7 +171,7 @@
   </insert>
   <!--回显评论内容-->
   <select id="selectEC" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT DATE_FORMAT(o.create_time,'%Y-%c-%d %H:%i:%S')create_time,o.evaluation_content,c.customer_name from
+    SELECT DATE_FORMAT(o.create_time,'%Y-%c-%d %H:%i:%S')create_time,o.evaluation_content,c.customer_name,c.customer_id from
     (select *
     from order_goods_evaluation
     where goods_id = #{goodsId}) o

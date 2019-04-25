@@ -8,7 +8,7 @@ public class GoodsInfoVo {
     private String search;
     private Integer brandId;
     private Integer goodsId;
-
+    private SplitePageBean splitePageBean;
     public Integer getGoodsId() {
         return goodsId;
     }
@@ -17,7 +17,7 @@ public class GoodsInfoVo {
         this.goodsId = goodsId;
     }
 
-    private SplitePageBean splitePageBean;
+
 
     public Integer getGoodsTypeId() {
         return goodsTypeId;
