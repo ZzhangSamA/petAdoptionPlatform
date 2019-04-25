@@ -37,7 +37,6 @@ public class PayInfoController {
         }
         //根据订单编号获取TOrder对象
         TOrder order = orderService.getOrderByOrderNumber(orderPayVo.getOrderNumber());
-        System.out.println(order);
         PayInfo payInfo = new PayInfo();
         //设置customerId,orderId
         payInfo.setCustomerId(order.getCustomerId());

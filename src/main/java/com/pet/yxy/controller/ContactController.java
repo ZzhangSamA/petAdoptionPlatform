@@ -11,6 +11,11 @@ public class ContactController {
     @Autowired
     ContactService contactService;
 
+    /**
+     * 添加留言
+     * @param contact
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "addContact",method = RequestMethod.POST)
     public int addContact(@RequestBody Contact contact) {

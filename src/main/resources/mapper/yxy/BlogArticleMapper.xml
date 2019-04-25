@@ -186,6 +186,7 @@
     <if test="labelName != null">
     and bl.label_name like(#{labelName})
     </if>
+    order by ba.create_time desc
     <if test="page != null">
     limit #{page.startPage},#{page.pageSize}
     </if>

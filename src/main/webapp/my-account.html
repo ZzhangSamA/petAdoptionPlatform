@@ -404,9 +404,9 @@
                                                     <div class="billing-back">
                                                         <a href="#"><i class="ti-arrow-up"></i> back</a>
                                                     </div>
-                                                    <!--<div class="billing-btn">-->
-                                                        <!--<button type="button" onclick="updateCustomer()">修改</button>-->
-                                                    <!--</div>-->
+                                                    <div class="billing-btn">
+                                                        <button type="button" onclick="updateCustomer()">修改</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -777,37 +777,48 @@
                 });
             }
             
-            // function updateCustomer() {
-            //     alert($("#customername").val())
-            //     alert($("#customeremail").val())
-            //     alert($("#customerbirthday").val())
-            //     alert($("#customerphone").val())
-            //
-            //     //1.提交数据到服务器并获取返回值
-            //     $.ajax({
-            //         type:"POST",
-            //         url:"updateCustomer1",
-            //         contentType:"application/json; charset=utf-8",
-            //         data:JSON.stringify({
-            //             "customerName":$("#customername").val(),
-            //             "email":$("#customeremail").val(),
-            //             "birthday":$("#customerbirthday").val(),
-            //             "telephone":$("#customerphone").val()
-            //         }),
-            //         //2.根据返回值提示并跳转
-            //         success:function (response) {
-            //             if(response==true){
-            //                 window.location.href="my-account.html";
-            //             }else {
-            //                 alert("修改失败")
-            //             }
-            //         },
-            //         error:function (response) {
-            //             alert("服务器内部错误,修改失败")
-            //         },
-            //         dataType: 'json'
-            //     })
-            // }
+            function updateCustomer() {
+                alert($("#customername").val())
+                alert($("#customeremail").val())
+                alert($("#customerbirthday").val())
+                alert($("#customerphone").val())
+                var dateFromString = convertDateFromString($("#customerbirthday").val());
+                //1.提交数据到服务器并获取返回值
+                $.ajax({
+                    type:"POST",
+                    url:"updateCustomer",
+                    contentType:"application/json; charset=utf-8",
+                    data:JSON.stringify({
+                        "customerName":$("#customername").val(),
+                        "email":$("#customeremail").val(),
+                        "birthday":dateFromString,
+                        "telephone":$("#customerphone").val()
+                    }),
+                    //2.根据返回值提示并跳转
+                    success:function (response) {
+                        if(response==true){
+                            alert("修改成功,请重新登录!")
+                            window.location.href="login-register.html";
+
+                        }else {
+                            alert("修改失败")
+                        }
+                    },
+                    error:function (response) {
+                        alert("服务器内部错误,修改失败")
+                    },
+                    dataType: 'json'
+                })
+            }
+            function convertDateFromString(dateString) {
+                if (dateString) {
+                    var arr1 = dateString.split(" ");
+                    var sdate = arr1[0].split('-');
+                    var date = new Date(sdate[0], sdate[1]-1, sdate[2]);
+                    return date;
+                }
+            }
+
         </script>
     </body>
 </html>

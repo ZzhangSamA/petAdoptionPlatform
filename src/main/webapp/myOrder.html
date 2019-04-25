@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!--快递鸟-->
+    <link rel="stylesheet" href="KDNWidget/KDNWidget.css" />
 </head>
 <body>
 <header class="header-area">
@@ -369,6 +371,7 @@
                             </tr>
                             </thead>
                         </table>
+                            <div id="getExpress"></div>
                         </div>
                     </div>
                 <div class="pagination-style text-center mt-10" id="liChange">
@@ -564,6 +567,8 @@
 <script src="assets/js/plugins.js"></script>
 <script  src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/alert.js"></script>
+<!--快递鸟-->
+<script src="KDNWidget/KDNWidget.js"></script>
 
 <script>
     getOrders(1);
@@ -940,10 +945,8 @@
             url: "insertSelective",
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify({
-                "customerId":1,
-                "orderId":1,
+                "orderNumber":bc,
                 "platformId":2,
-                "money":2640
             }),
             success:function(response){
                 $(".loading_masker").remove()
@@ -981,10 +984,8 @@
             url: "insertSelective",
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify({
-                "customerId":1,
-                "orderId":1,
+                "orderNumber":bc,
                 "platformId":1,
-                "money":2640
             }),
             success:function(response){
                 $(".loading_masker").remove()
@@ -1002,37 +1003,15 @@
             dataType: "json"
         });
     })
-    function getStatus(orderNumber,ogId) {
 
-        console.log(orderNumber);
-        $.ajax({
-            async: true,
-            cache: false,
-            traditional: true,
-            type: "POST",
-            url: "checkedDeliver",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify({
-                "orderNumber":orderNumber
-            }),
-            success:function(text){
-                if (text==0){
-                    alert("交易已超过15天或订单还未付款，不支持售后")
-                }else if (text==1){
-                    window.location.href="applyRouter.html?orderNumber="+orderNumber+"&&ogId="+ogId
-                }
-            },
-            error: function (text) {
-                alert("服务器错误，确认失败");
-            },
-
-            dataType: "json"
-        });
-    }
-
-    function getReturn(orderNumber,ogId) {
-
-        window.location.href="returnDetail.html?orderNumber="+orderNumber+"&&ogId="+ogId
+    function getExpress() {
+        KDNWidget.run({
+            serviceType: "B",
+            expCode:"YTO",
+            expNo:"805288023381685896",
+            showType:"pop",
+            container: "getExpress"
+        })
     }
 
     // $(".transaction-status").click(function () {
@@ -1085,6 +1064,45 @@
     //        }
     //     },e);
     // })
+
+
+    function getStatus(orderNumber,ogId) {
+        console.log(orderNumber);
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "checkedDeliver",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "orderNumber":orderNumber
+            }),
+            success:function(text){
+                if (text==0){
+                    alert("交易已超过15天或订单还未付款，不支持售后")
+                }else if (text==1){
+                    window.location.href="applyRouter.html?orderNumber="+orderNumber+"&&ogId="+ogId
+                }
+            },
+            error: function (text) {
+                alert("服务器错误，确认失败");
+            },
+
+            dataType: "json"
+        });
+    }
+
+    function getReturn(orderNumber,ogId) {
+
+        window.location.href="returnDetail.html?orderNumber="+orderNumber+"&&ogId="+ogId
+    }
+
+
+
+
+
+
 
 </script>
 </body>
