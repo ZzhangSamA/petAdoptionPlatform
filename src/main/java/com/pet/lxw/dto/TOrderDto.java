@@ -9,7 +9,7 @@ public class TOrderDto {
     private Integer customerId;
     private Integer addressId;
     private String orderNumber;
-    private Boolean status;
+    private Integer status;
     private Date createTime;
     private Date updateTime;
     private Date paymentTime;
@@ -27,6 +27,7 @@ public class TOrderDto {
     @Override
     public String toString() {
         return "TOrderDto{" +
+                "status"+status+
                 "customer"+customer+
                 "orderId=" + orderId +
                 ", customerId=" + customerId +
@@ -86,11 +87,11 @@ public class TOrderDto {
         this.orderNumber = orderNumber;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
