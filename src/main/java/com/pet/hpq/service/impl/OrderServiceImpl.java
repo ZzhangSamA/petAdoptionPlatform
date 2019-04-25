@@ -112,4 +112,13 @@ public class OrderServiceImpl implements OrderService {
             return false;
         }
     }
+
+    /**
+     * 根据订单编号获取TOrder对象
+     * @param orderNumber
+     * @return
+     */
+    public TOrder getOrderByOrderNumber(String orderNumber) {
+        return tOrderMapper.getOrderByOrderNumber(orderNumber);
+    }
 }

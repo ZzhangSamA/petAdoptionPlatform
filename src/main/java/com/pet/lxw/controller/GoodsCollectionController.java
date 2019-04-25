@@ -1,11 +1,13 @@
 package com.pet.lxw.controller;
 
+import com.pet.yh.pojo.Customer;
 import com.pet.lxw.pojo.GoodsCollection;
 import com.pet.lxw.service.GoodsCollectionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,14 +18,26 @@ public class GoodsCollectionController {
     @Autowired
     GoodsCollectionService goodsCollectionService;
 
-    //查
-    @RequestMapping(value = "selectFromCustomerId",method = RequestMethod.POST)
-    public List<GoodsCollection> selectFromCustomerId(@RequestParam int customerId){
-        List<GoodsCollection> list =this.goodsCollectionService.selectFromCustomerId(customerId);
+
+    /**
+     * 查收藏
+     * @param httpSession{customerId}
+     * @return
+     */
+    @RequestMapping(value = "selectFromCustomerId",method = RequestMethod.GET)
+    public List<GoodsCollection> selectFromCustomerId(HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        List<GoodsCollection> list =this.goodsCollectionService.selectFromCustomerId(customer.getCustomerId());
         return list;
     }
 
     //删
+
+    /**
+     *
+     * @param collectionId
+     * @return
+     */
     @RequestMapping(value = "removeCollection",method = RequestMethod.POST)
     public int removeCollection(@Param("collectionId") String collectionId) {
         int id = Integer.parseInt(collectionId);
@@ -43,20 +57,27 @@ public class GoodsCollectionController {
 
     //增加收藏
     @RequestMapping(value = "insertC",method = RequestMethod.POST)
-    public Object insertC(@RequestBody GoodsCollection goodsCollection){
-        System.out.println(goodsCollection);
+    public Object insertC(@RequestBody GoodsCollection goodsCollection,HttpSession httpSession){
+
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+
+        goodsCollection.setCustomerId(customer.getCustomerId());
         boolean flag = this.goodsCollectionService.insertC(goodsCollection);
         return flag;
     }
     //单查
     @RequestMapping(value = "selectC",method = RequestMethod.POST)
-    public GoodsCollection selectC(@RequestBody GoodsCollection goodsCollection){
+    public GoodsCollection selectC(@RequestBody GoodsCollection goodsCollection,HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        goodsCollection.setCustomerId(customer.getCustomerId());
         return this.goodsCollectionService.selectC(goodsCollection);
     }
 
-    //单查
+    //改
     @RequestMapping(value = "changedFromHeart",method = RequestMethod.POST)
-    public int changedFromHeart(@RequestBody GoodsCollection goodsCollection){
+    public int changedFromHeart(@RequestBody GoodsCollection goodsCollection,HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        goodsCollection.setCustomerId(customer.getCustomerId());
         return this.goodsCollectionService.changedFromHeart(goodsCollection);
     }
 

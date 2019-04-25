@@ -357,7 +357,7 @@
                             <div id="faq" class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1" onclick="getCustomerInfo()">编辑你的详细信息 </a></h5>
+                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1" onclick="getCustomerInfo()">你的详细信息 </a></h5>
                                     </div>
                                     <div id="my-account-1" class="panel-collapse collapse ">
                                         <div class="panel-body">
@@ -414,7 +414,7 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>2</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-2">更改密码 </a></h5>
+                                        <h5 class="panel-title"><span>2</span> <a href="forget_password.html">更改密码 </a></h5>
                                     </div>
                                     <div id="my-account-2" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -629,11 +629,11 @@
             function initPage(){
                 // $("#tbody").empty("");
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: 'selectFromAddress',
-                    data:{
-                        "customerId":customerId
-                    },
+                    // data:{
+                    //     "customerId":customerId
+                    // },
                     traditional: true,
                     success:function (response) {
                          console.log(response);
@@ -682,7 +682,7 @@
                     error:function (response) {
                         console.log(response)
                     },
-                    dataType: 'json'
+                    // dataType: 'json'
                 });
             }
             //删除地址
@@ -715,8 +715,8 @@
                     url: 'defaultAddress',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({
-                        "customerId":1,
-                        "addressId":addressId
+                        //"customerId":customerId,
+                        "addressId":addressId,
                     }),
                     //2.根据返回值提示并跳转
                     success:function (response) {
@@ -762,7 +762,7 @@
                         }else {
                             $("#woman").attr("checked",true)
                         }
-                        alert(1231545);
+                        // alert(1231545);
                         $("#customername").val(text.customerName);
                         // $("#customersex").val(text.sex);
                         $("#customeremail").val(text.email);
@@ -782,22 +782,24 @@
                 alert($("#customeremail").val())
                 alert($("#customerbirthday").val())
                 alert($("#customerphone").val())
-
+                var dateFromString = convertDateFromString($("#customerbirthday").val());
                 //1.提交数据到服务器并获取返回值
                 $.ajax({
                     type:"POST",
-                    url:"updateCustomer1",
+                    url:"updateCustomer",
                     contentType:"application/json; charset=utf-8",
                     data:JSON.stringify({
                         "customerName":$("#customername").val(),
                         "email":$("#customeremail").val(),
-                        "birthday":$("#customerbirthday").val(),
+                        "birthday":dateFromString,
                         "telephone":$("#customerphone").val()
                     }),
                     //2.根据返回值提示并跳转
                     success:function (response) {
                         if(response==true){
-                            window.location.href="my-account.html";
+                            alert("修改成功,请重新登录!")
+                            window.location.href="login-register.html";
+
                         }else {
                             alert("修改失败")
                         }
@@ -808,6 +810,15 @@
                     dataType: 'json'
                 })
             }
+            function convertDateFromString(dateString) {
+                if (dateString) {
+                    var arr1 = dateString.split(" ");
+                    var sdate = arr1[0].split('-');
+                    var date = new Date(sdate[0], sdate[1]-1, sdate[2]);
+                    return date;
+                }
+            }
+
         </script>
     </body>
 </html>

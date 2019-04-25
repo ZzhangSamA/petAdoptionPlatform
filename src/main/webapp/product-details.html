@@ -882,11 +882,12 @@
                                         <input type="text" value="2" name="qtybutton" class="cart-plus-minus-box">
                                     </div>
                                     <div class="quickview-btn-cart">
-                                        <a class="btn-style" href="#">加入购物车</a>
+                                        <a class="btn-style" href="#" onclick="addShoppingCart()">加入购物车</a>
                                     </div>
                                     <div class="quickview-btn-wishlist">
                                         <a class="btn-hover" href="#"><i class="ti-heart"></i></a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1019,7 +1020,7 @@
             }
         }
 
-        var customerId ;
+        // var customerId ;
         var changed;
         var statuss;
 
@@ -1041,7 +1042,7 @@
                     console.log(response);
                     $(response).each(function (index,item) {
 
-                        customerId = item.customerId;
+                        // customerId = item.customerId;
 
                         $("#comment").append(
                         "<div class=\"star-author-all\">"+
@@ -1069,7 +1070,7 @@
                 url: 'selectC',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({
-                    "customerId":customerId,
+                    //"customerId":customerId,
                     "goodsId":goodsId,
                 }),
                 success:function (response) {
@@ -1085,7 +1086,6 @@
                 error:function (response) {
                    changed = 1;
                    statuss =0;
-
                 },
                 dataType: 'json'
             })
@@ -1099,7 +1099,7 @@
                     url: 'insertC',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({
-                        "customerId":customerId,
+                       // "customerId":customerId,
                         "goodsId":goodsId,
                     }),
                     success:function (response) {
@@ -1124,7 +1124,7 @@
                         url: 'changedFromHeart',
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
-                            "customerId":customerId,
+                           // "customerId":customerId,
                             "goodsId":goodsId,
                             "status":0,
                         }),
@@ -1149,7 +1149,7 @@
                         url: 'changedFromHeart',
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
-                            "customerId":customerId,
+                           // "customerId":customerId,
                             "goodsId":goodsId,
                             "status":1,
                         }),
@@ -1187,7 +1187,33 @@
                     "number":number,
                 }),
                 success:function (response) {
-                 window.location.href="cart.html"
+                   if (response==1){
+                       window.location.href="cart.html"
+                   }
+                 //
+                },
+                error:function (response) {
+                    alert("服务器内部错误,收藏失败");
+                },
+                dataType: 'json'
+            })
+        }
+
+        function addOrder() {
+            var parameterId = $("#goodsPra").val();
+            var number = $(".cart-plus-minus-box").val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'addOneOrder',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "parameterId":parameterId,
+                    "goodsId":goodsId,
+                    "number":number,
+                }),
+                success:function (response) {
+                    window.location.href="myOrder.html"
                 },
                 error:function (response) {
                     alert("服务器内部错误,收藏失败");

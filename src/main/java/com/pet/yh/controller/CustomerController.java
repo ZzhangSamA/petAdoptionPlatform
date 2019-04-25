@@ -103,23 +103,30 @@ public class CustomerController {
      * @param
      * @return
      */
-    @RequestMapping(value = "updateCustomer1",method = RequestMethod.POST)
-    public Object updateCustomer(@RequestBody(required = false) Customer customer){
+    @RequestMapping(value = "updateCustomer",method = RequestMethod.POST)
+    public Object updateCustomer(HttpSession httpSession ,@RequestBody(required = false) Customer customer){
         //获取customerId
-
+        System.out.println(customer);
         //获取需要修改的customer对象
 
         //如果对象没有id属性,将id属性set进去
         System.out.println(1);
         //将set之后的customer对象传入service层进行数据库操作
-//        Customer customer1 =(Customer) httpSession.getAttribute("customer");
+        Customer customer1 =(Customer) httpSession.getAttribute("customer");
 //        System.out.println(customer1.getCustomerId());
 //        System.out.println(customer);
 //        if(customer1.getCustomerId()==0){
 //            return false+"";
 //        }
-        customer.setCustomerId(72);
-        boolean flag = this.customerService.updateCustomer(customer);
-        return flag;
+        customer.setCustomerId(customer1.getCustomerId());
+        Boolean flag = this.customerService.updateCustomer(customer);
+        if (flag){
+//            CustomerVo customerVo = new CustomerVo();
+//            customerVo.setPassword(customer.getPassword());
+//            customerVo.setCustomerName(customer.getCustomerName());
+//            loginCheck(customerVo,httpSession);
+
+        }
+        return flag.toString();
     }
 }

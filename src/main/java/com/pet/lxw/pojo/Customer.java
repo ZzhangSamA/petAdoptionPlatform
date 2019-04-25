@@ -1,4 +1,4 @@
-package com.pet.yh.pojo;
+package com.pet.lxw.pojo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -78,7 +78,7 @@ public class Customer {
         }
         String dateStr = "";
         try{
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             dateStr = sdf.format(birthday);
         }catch(Exception e){
             e.printStackTrace();

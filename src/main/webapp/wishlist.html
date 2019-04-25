@@ -519,11 +519,11 @@
             function initPage(){
                 // $("#tbody").empty("");
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: 'selectFromCustomerId',
-                    data:{
-                        "customerId":1
-                    },
+                    // data:{
+                    //     "customerId":1
+                    // },
                     traditional: true,
                     success:function (response) {
                         console.log(response);
@@ -545,7 +545,7 @@
                     error:function (response) {
                         console.log(response)
                     },
-                    dataType: 'json'
+                    // dataType: 'json'
                 });
             }
             //删除地址
