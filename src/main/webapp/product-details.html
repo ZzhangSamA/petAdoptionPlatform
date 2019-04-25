@@ -1020,7 +1020,7 @@
             }
         }
 
-        var customerId ;
+        // var customerId ;
         var changed;
         var statuss;
 
@@ -1042,7 +1042,7 @@
                     console.log(response);
                     $(response).each(function (index,item) {
 
-                        customerId = item.customerId;
+                        // customerId = item.customerId;
 
                         $("#comment").append(
                         "<div class=\"star-author-all\">"+
@@ -1070,7 +1070,7 @@
                 url: 'selectC',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({
-                    "customerId":customerId,
+                    //"customerId":customerId,
                     "goodsId":goodsId,
                 }),
                 success:function (response) {
@@ -1086,7 +1086,6 @@
                 error:function (response) {
                    changed = 1;
                    statuss =0;
-
                 },
                 dataType: 'json'
             })
@@ -1100,7 +1099,7 @@
                     url: 'insertC',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({
-                        "customerId":customerId,
+                       // "customerId":customerId,
                         "goodsId":goodsId,
                     }),
                     success:function (response) {
@@ -1125,7 +1124,7 @@
                         url: 'changedFromHeart',
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
-                            "customerId":customerId,
+                           // "customerId":customerId,
                             "goodsId":goodsId,
                             "status":0,
                         }),
@@ -1150,7 +1149,7 @@
                         url: 'changedFromHeart',
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify({
-                            "customerId":customerId,
+                           // "customerId":customerId,
                             "goodsId":goodsId,
                             "status":1,
                         }),
