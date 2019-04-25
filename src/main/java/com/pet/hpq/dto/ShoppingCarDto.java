@@ -77,11 +77,27 @@ public class ShoppingCarDto {
         this.totalPrice = totalPrice;
     }
 
+
     public int getParameterId() {
         return parameterId;
     }
 
     public void setParameterId(int parameterId) {
         this.parameterId = parameterId;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCarDto{" +
+                "cartId=" + cartId +
+                ", goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", parameterIcon='" + parameterIcon + '\'' +
+                ", parameterName='" + parameterName + '\'' +
+                ", price=" + price +
+                ", number=" + number +
+                ", totalPrice=" + totalPrice +
+                ", parameterId=" + parameterId +
+                '}';
     }
 }

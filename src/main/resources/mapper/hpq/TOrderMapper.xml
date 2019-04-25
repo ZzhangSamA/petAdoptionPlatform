@@ -111,6 +111,9 @@
   <select id="checkStatus" parameterType="com.pet.hpq.vo.ReturnMessageVo" resultType="com.pet.hpq.dto.StatusDto">
     select ot.status tOderStatus ,og.`status` goodsStatus from t_order ot,order_goods og where ot.customer_id=#{customerId} and ot.order_number= #{orderNumber} and ot.order_id=og.order_id
   </select>
+  <select id="getOrderId" parameterType="int" resultType="int">
+    select order_id from t_order where order_number=#{orderNumber}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
