@@ -73,6 +73,17 @@
                                 </foreach>
 
   </insert>
+  <insert id="addOneOrderGoods" parameterType="com.pet.hpq.vo.ShoppingCarVo">
+    insert into order_goods(order_id,goods_id,number,price,total_price,parameter_id) values
+    (
+      #{orderId},
+      #{goodsId},
+      #{number},
+      #{price},
+      #{totalPrice},
+      #{parameterId}
+    )
+  </insert>
   <insert id="insert" parameterType="com.pet.hpq.pojo.ShoppingCart" >
     <!--
       WARNING - @mbggenerated
