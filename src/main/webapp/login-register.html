@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
         <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="assets/js/slideunlock.js"></script>
     </head>
     <body>
     <header class="header-area">
@@ -366,22 +367,19 @@
                                         <div class="login-register-form">
                                             <form id="customerform" method="post">
                                                 <input type="text" name="customername" id="customername" placeholder="用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-                                                <input type="password" name="password" id="password" placeholder="密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-                                                <!--<div class="form-group has-success has-feedback">-->
-                                                <!--<div class="drag">-->
-                                                <!--<div class="bg"></div>-->
-                                                <!--<div class="text" onselectstart="return false;">请拖动滑块解锁</div>-->
-                                                <!--<div class="btndrag">&gt;&gt;</div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
+                                                <input type="password" name="password" id="passWord" placeholder="密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                                <div id="slider">
+                                                    <div id="slider_bg"></div>
+                                                    <span id="label">>></span>
+                                                    <span id="labelTip">拖动滑块验证</span>
+                                                </div>
                                                 <div class="button-box">
                                                     <div class="login-toggle-btn">
-                                                        <input type="checkbox">
-                                                        <label>记住我</label>
-                                                        <!--<a href="#">忘记密码?</a>-->
+                                                        <input type="checkbox" id="within_a_week"  style="zoom:120%;">&nbsp;记住密码
+                                                        <a href="forget_password.html" class="fr org">忘记密码？</a>
                                                     </div>
-                                                    <div class="button-box" style="text-align: center">
-                                                        <button type="button" value="登录" onclick="dologin()">登录</button>
+                                                    <div class="button-box" style="text-align: center" >
+                                                        <button type="button" value="登录" onclick="dologin()" disabled="disabled" id="btn">登录</button>
                                                     </div>
                                                     </div>
                                             </form>
@@ -396,17 +394,23 @@
                                     <div class="login-form-container">
                                         <div class="login-register-form">
                                             <form action="#" method="post" id="registerform">
-                                                <input type="text" name="rcustomername" id="rcustomername" placeholder="请输入用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rname()"><span id="hint" style="color: red"></span>
-                                                <input type="password" name="rpassword" id="rpassword" placeholder="请输入密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rpwd()"><span id="hint1" style="color: red"></span>
-                                                <input type="text" name="telephone" id="telephone" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rtel()"><span id="hint2" style="color: red"></span>
-                                                <input type="email" name="email" id="email" placeholder="请输入邮箱"
-                                                       onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="remail()"><span id="hint3" style="color: red"></span>
-                                                <div class="button-box">
-                                                    <button type="button" id="ebtn" disabled="disabled" onclick="doemail()" ></font>获取邮箱验证码</button>
+                                                <div class="control-group ">
+                                                    <input type="text" name="rcustomername" id="rcustomername" placeholder="请输入用户名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rname()"><span id="hint" style="color: red"></span>
+                                                    <p for="sign_name" class="invalid" style="display: none;" id="customerCheck" ></p>
                                                 </div>
-                                                    <input type="text" name="verification" id="verification" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="ver()"><span id="hint4" style="color: red"></span>
+                                                <input type="password" name="rpassword" id="rpassword" placeholder="请输入密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="rpwd()"><span id="hint1" style="color: red"></span>
+                                                <input type="password" name="qpassword" id="qpassword" placeholder="请输入确认密码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" onblur="qpwd()"><span id="hint2" style="color: red"></span>
+                                                <div class="control-group ">
+                                                    <input type="email" name="email" id="email" placeholder="请输入邮箱"
+                                                       onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" ><span id="hint3" style="color: red"></span>
+                                                    <p for="email" class="invalid" style="display: none;" id="emailp"></p>
+                                                </div>
+                                                <div class="control-group ">
+                                                    <input type="text" name="vcode" id="sign_email" placeholder="请输入邮箱验证码" class="inp_txt inp_yzm" style="width: 250px">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="获取验证码" disabled="disabled" class="gray_btn" id="tel_btn" style="width: 150px;background:#ffa000">
+                                                    <p for="sign_duanxin" class="invalid" id="emailnum" style="display: none;"></p>
+                                                </div>
                                                 <div class="button-box" style="text-align: center">
-                                                    <button type="button" onclick="doregister()" id="rbtn" disabled="disabled" ><span>注册</span></button>
+                                                    <button type="button" onclick="doregister()" id="rbtn" disabled="disabled"><span>注册</span></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -526,21 +530,71 @@
         <script src="assets/js/jquery.validate-1.13.1.js"></script>
     <script>
 
+        var oLinksList=$('#linksFooterList');
+        var iLinksHeight=oLinksList.outerHeight();
+        var iNum = iLinksHeight/47;
+        var iN=0;
+
+        setInterval(function(){
+            iN++;
+            iN = iN%iNum;
+            var top = iN*47;
+            if(top >= iLinksHeight/2+47){
+                oLinksList.css({'margin-top':'0px'});
+                iN=0;
+            }else{
+                oLinksList.animate({'margin-top':-iN*47+'px'},1000);
+            }
+        },3000);
+        //用户名校验
         function rname() {
             var rcustomername=$("#rcustomername").val();
             var rcustomername1=/^[a-z]{2,10}/i;
-            if(rcustomername.length==0)
-            {
-                $("#hint").html("账号不能为空");
-                return false;
-            }else if(!rcustomername1.test(rcustomername)){
-                $("#hint").html("请输入2-10的字母");
-                return false;
-            }else {
-                $("#hint").remove();
-            }
-        }
 
+            if (rcustomername.length>=2&&rcustomername.length<=10) {
+                // $(this).next().css({
+                //     display:'none'
+                // });
+                $("#customerCheck").html("");
+                userFlag=true;
+                // 判断用户名是否存在
+                $.ajax({
+                    type: 'POST',
+                    url: 'registerCustomerCheck',
+                    data:JSON.stringify({
+                        "customerName":rcustomername
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    success:function (response) {
+                        if (response!=0){
+                            $("#customerCheck").css('display','block');
+                            $("#customerCheck").html("<font color='red'>用户名已存在</font>")
+                            userFlag=false;
+                        }
+                    },
+                    error:function (response) {
+                        console.log(response)
+                    },
+                    dataType: 'json'
+                });
+
+            } else{
+                $("#customerCheck").html("<font color='red'>请输入2-10位账号</font>");
+                $("#customerCheck").css('display','block');
+                userFlag=false;
+            }
+            // if(rcustomername.length==0)
+            // {
+            //     $("#hint").html("账号不能为空");
+            //     return false;
+            // }else if(!rcustomername1.test(rcustomername)){
+            //     $("#hint").html("请输入2-10的字母");
+            //     return false;
+            // }else {
+            //     $("#hint").remove();
+            // }
+        }
+        //密码校验
         function rpwd() {
         var rpassword=$("#rpassword").val();
         var rpassword1=/^[0-9]{5,10}/;
@@ -555,77 +609,39 @@
             $("#hint1").remove();
         }}
 
-        function rtel() {
-            var telephone = $("#telephone").val();
-            var telephone1 = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-            if(telephone.length==0){
-                $("#hint2").html("电话不可以为空");
+        //确认密码校验
+        function qpwd() {
+            var rpassword=$("#rpassword").val();
+            var qpassword=$("#qpassword").val();
+            if(rpassword.length==0)
+            {
+                $("#hint2").html("确认密码不可以为空");
                 return false;
-            }else if(!telephone1.test(telephone)){
-                $("#hint2").html("请输入合法电话");
+            }else if(rpassword!=qpassword){
+                $("#hint2").html("两次密码不一致");
                 return false;
             }else {
                 $("#hint2").remove();
-            }
-        }
+            }}
 
-        function remail() {
-        var email=$("#email").val();
-        var email1=/^[\w]+(\.[\w]+)*@(163)+(\.[\w]+)+$/;
-        if(email.length==0){
-            $("#hint3").html("email不可以为空");
-            return false;
-        }else if(!email1.test(email)){
-            $("#hint3").html("请输入合法的163电子邮件");
-            return false;
-        }else {
-            $("#hint3").remove();
-            $("#ebtn").attr("disabled",false);
-        }}
-
-        function doemail() {
-            var email=$("#email").val();
-            var email1=/^[\w]+(\.[\w]+)*@(163)+(\.[\w]+)+$/;
-            if(email.length==0 || !email1.test(email)){  //验证邮箱是否正确
-                return false;
-            }
-            $.ajax({
-                type: 'POST',
-                url: 'emailCheck',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({
-                    "email":$("#email").val()
-                }),
-
-                success: function(response){
-                    // alert(response);
-                    console.log(response);
-                    if(response==true){
-                        new invokeSettime("#send"); //发送正确后，调用方法，开始倒计时
-                        $("#showTooltips").attr("href","javascript:");
-                        $("#showTooltips").css("background-color","rgba(26,173,25,0.5)");
-                    }else {
-                        alert("验证码发送失败");
-                    }
-                },
-                error: function (message) {
-                    console.log(message);
-                },
-                dataType: 'json'
-            });
-        }
-        function ver() {
-            var verification=$("#verification").val();
-            if(verification.length==0){
-                $("#hint4").html("验证码不能为空");
-                return false;
-            }else if(verification.length==4){
-                $("#hint4").remove();
-                $("#rbtn").attr("disabled",false);
-            }
-        }
+        //邮箱格式校验
+        // function remail() {
+        // var email=$("#email").val();
+        // var email1=/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+        // if(email.length==0){
+        //     $("#emailp").html("email不可以为空");
+        //     return false;
+        // }else if(!email1.test(email)){
+        //     $("#emailp").html("请输入合法的电子邮件");
+        //     return false;
+        // }else {
+        //     $("#emailp").remove();
+        //     $("#ebtn").attr("disabled",false);
+        // }}
 
 
+        //登录
+        var week=$('#within_a_week');
         function dologin() {
 
             $.ajax({
@@ -634,13 +650,20 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({
                     "customerName":$("#customername").val(),
-                    "password":$("#password").val()
+                    "password":$("#passWord").val()
                 }),
 
                 success: function(response){
-                    // alert(response);
+                    alert(response);
                     console.log(response);
                     if(response==true){
+                        if(week.prop("checked")){
+                            document.cookie="rem=true;path=/"
+                            document.cookie="customerName="+customername+";path=/";
+                            document.cookie="password="+passWord+";path=/";
+                        }else{
+                            document.cookie="rem=;path=/"
+                        }
                         location.href="index.html";
                     }else {
                         alert("用户名或密码错误");
@@ -653,6 +676,7 @@
             });
         }
 
+        //注册
         function doregister(){
             $.ajax({
                 type: 'POST',
@@ -661,7 +685,7 @@
                 data: JSON.stringify({
                     "customerName":$("#rcustomername").val(),
                     "password":$("#rpassword").val(),
-                    "telephone":$("#telephone").val(),
+                    "qpassword":$("#qpassword").val(),
                     "email":$("#email").val()
                 }),
 
@@ -681,99 +705,152 @@
                 dataType: 'json'
             });
         }
-        // //一、定义一个获取DOM元素的方法
-        //      var $ = function(selector){
-        //              return  document.querySelector(selector);
-        //          },
-        //          box = $(".drag"),//容器
-        //          bg = $(".bg"),//背景
-        //          text = $(".text"),//文字
-        //          btn = $(".btndrag"),//滑块
-        //          success = false,//是否通过验证的标志
-        //          distance = box.offsetWidth - btn.offsetWidth;//滑动成功的宽度（距离）
-        //
-        //      //二、给滑块注册鼠标按下事件
-        //      btn.onmousedown = function(e){
-        //
-        //          //1.鼠标按下之前必须清除掉后面设置的过渡属性
-        //          btn.style.transition = "";
-        //          bg.style.transition ="";
-        //
-        //          //说明：clientX 事件属性会返回当事件被触发时，鼠标指针向对于浏览器页面(或客户区)的水平坐标。
-        //
-        //          //2.当滑块位于初始位置时，得到鼠标按下时的水平位置
-        //          var e = e || window.event;
-        //          var downX = e.clientX;
-        //
-        //          //三、给文档注册鼠标移动事件
-        //          document.onmousemove = function(e){
-        //
-        //              var e = e || window.event;
-        //              //1.获取鼠标移动后的水平位置
-        //              var moveX = e.clientX;
-        //
-        //              //2.得到鼠标水平位置的偏移量（鼠标移动时的位置 - 鼠标按下时的位置）
-        //              var offsetX = moveX - downX;
-        //
-        //              //3.在这里判断一下：鼠标水平移动的距离 与 滑动成功的距离 之间的关系
-        //              if( offsetX > distance){
-        //                  offsetX = distance;//如果滑过了终点，就将它停留在终点位置
-        //              }else if( offsetX < 0){
-        //                  offsetX = 0;//如果滑到了起点的左侧，就将它重置为起点位置
-        //              }
-        //
-        //              //4.根据鼠标移动的距离来动态设置滑块的偏移量和背景颜色的宽度
-        //              btn.style.left = offsetX + "px";
-        //              bg.style.width = offsetX + "px";
-        //
-        //              //如果鼠标的水平移动距离 = 滑动成功的宽度
-        //              if( offsetX == distance){
-        //
-        //                  //1.设置滑动成功后的样式
-        //                  text.innerHTML = "验证通过";
-        //                  text.style.color = "#fff";
-        //                  btn.innerHTML = "&radic;";
-        //                  btn.style.color = "green";
-        //                  bg.style.backgroundColor = "lightgreen";
-        //
-        //                  //2.设置滑动成功后的状态
-        //                  success = true;
-        //                  //成功后，清除掉鼠标按下事件和移动事件（因为移动时并不会涉及到鼠标松开事件）
-        //                  btn.onmousedown = null;
-        //                  document.onmousemove = null;
-        //
-        //                  //3.成功解锁后的回调函数
-        //                  setTimeout(function(){
-        // //                      alert('解锁成功！');
-        //                      //1.获取登录按钮 btnlogin
-        //                      var btnObj = $("#btnLogin");
-        //                      //2.设置btnlogin disable为false
-        //                      btnObj.removeAttribute("disabled");
-        //                      //3.改btnlogin的底色
-        //                      btnObj.removeAttribute("style");
-        //                  },100);
-        //              }
-        //          }
-        //
-        //          //四、给文档注册鼠标松开事件
-        //          document.onmouseup = function(e){
-        //
-        //              //如果鼠标松开时，滑到了终点，则验证通过
-        //              if(success){
-        //                  return;
-        //              }else{
-        //                  //反之，则将滑块复位（设置了1s的属性过渡效果）
-        //                  btn.style.left = 0;
-        //                  bg.style.width = 0;
-        //                  btn.style.transition = "left 1s ease";
-        //                  bg.style.transition = "width 1s ease";
-        //              }
-        //              //只要鼠标松开了，说明此时不需要拖动滑块了，那么就清除鼠标移动和松开事件。
-        //              document.onmousemove = null;
-        //              document.onmouseup = null;
-        //          }
-        //      }
 
+
+        //滑块验证码判断
+        var check=false;
+        $(function () {
+            var slider = new SliderUnlock('#slider',{
+                successLabelTip : '验证通过'
+            },function(){
+                check=true;
+                $("#btn").attr("disabled",false);
+            });
+            slider.init();
+        });
+
+        //记住密码
+        var passFlag1 = false;
+        var customerNameFlag = false;
+        var customername = $('#customername');
+        var password = $('#passWord');
+        window.onload = function() {
+            var rem = document.cookie.split("rem=")[1];
+            var remem = rem.split(';')[0];
+            week.prop("checked",remem);
+            if(week.prop("checked")){
+                //获取cookie
+                var c1=document.cookie.split("customerName=")[1];
+                var customerName=c1.split(";")[0];
+                var p1=document.cookie.split("password=")[1];
+                var passWord=p1.split(";")[0];
+                customername.val(customerName);
+                password.val(passWord);
+                passFlag1 = true;
+                customerNameFlag = true;
+            }
+        }
+
+        var emailbtn=$('#tel_btn');
+        var emailval = $("#sign_email");
+        var customername=$('#sign_name');
+        //用户账号框
+        var userFlag=false;
+        var mmmnum;
+        //邮箱
+        var emailFlag=false;
+        //邮箱验证码
+        var emailcheckFlag=false;
+        var email = $('#email');
+        var emailrule=/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;
+
+        //邮箱验证码输入框
+        $("#sign_email").keydown(function(ev){
+            if(ev.keyCode==32){
+                ev.preventDefault();
+                return false;
+            }
+        });
+
+        //判断验证码是否正确
+        emailval.blur(function () {
+            if(emailval.val()==mmmnum){
+                emailcheckFlag=true;
+                $("#rbtn").removeAttrs("disabled");
+            }else{
+                emailcheckFlag=false;
+            }
+        });
+
+        //获取邮箱验证码和定时器60s
+        $('#tel_btn').click(function () {
+            var emailvalue= $("#email").val()
+            var ids=[];
+            ids.push(emailvalue)
+            $.ajax({
+                type: 'GET',
+                url: 'emailCheck',
+                data: {eml:ids},
+                traditional: true,
+                async:true,
+                // contentType: "application/json; charset=utf-8",
+                success:function (response) {
+                    mmmnum=response;
+                },
+                error:function (response) {
+                    console.log(response)
+                },
+                dataType: 'json'
+            });
+
+            var count = 60;
+            var countdown = setInterval(CountDown, 1000);
+            function CountDown() {
+                $("#tel_btn").attr("disabled", true);
+                $("#tel_btn").removeClass('active')
+                $("#tel_btn").val("重新发送 " + count + " s");
+                if (count == 0) {
+                    $("#tel_btn").addClass('active');
+                    $("#tel_btn").val("获取验证码").removeAttr("disabled");
+                    clearInterval(countdown);
+                }
+                count--;
+            }
+        })
+
+        //判断邮箱是否正确
+        email.blur(function () {
+            var vvv = email.val();
+            if(emailrule.test(email.val())){
+                //判断邮箱是否被注册
+                $.ajax({
+                    type: 'POST',
+                    url: 'registerCustomerCheck',
+                    data:JSON.stringify({
+                        "email":vvv
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    success:function (response) {
+                        if (response!=0){
+                            $("#emailp").css('display','block');
+                            $("#emailp").html("<font color='red'>邮箱已被注册</font>")
+                            emailFlag=false;
+                        }else{
+                            $("#tel_btn").removeAttr("disabled")
+                            $("#emailp").css({
+                                display:'none'
+                            })
+                            emailbtn.addClass('active');
+                            emailFlag = true;
+                        }
+                    },
+                    error:function (response) {
+                        console.log(response)
+                    },
+                    dataType: 'json'
+                });
+
+            }else{
+                $("#emailp").css({
+                    display:'block'
+                })
+                $("#emailp").html("<font color='red'>邮箱格式错误</font>")
+                emailbtn.removeClass('active')
+                emailFlag = false;
+            }
+        });
+
+        //登录用户名密码校验
         $("#customerform").validate({
             rules:{
                 customername:{
@@ -789,58 +866,16 @@
             },
             messages:{
                 customername:{
-                    required:"请输入用户名",
-                    minlength:"至少输入{0}个字符"
+                    required:"<font color='red'>请输入用户名</font>",
+                    minlength:"<font color='red'>至少输入{0}个字符</font>"
                 },
                 password:{
-                    required:"请输入密码",
-                    minlength:"至少输入{0}个字符"
+                    required:"<font color='red'>请输入密码</font>",
+                    minlength:"<font color='red'>至少输入{0}个字符</font>"
                 }
             }
         })
 
-        // $("#registerform").validate({
-        //     rules:{
-        //         rcustomername:{
-        //             required: true,
-        //             minlength: 2,
-        //             maxlength: 16
-        //         },
-        //         rpassword:{
-        //             required: true,
-        //             minlength: 5,
-        //             maxlength: 16
-        //         },
-        //         telephone: {
-        //             required:true,
-        //             minlength:11,
-        //             isMobile:true
-        //         },
-        //         email: {
-        //             required:true,
-        //             email:true
-        //         }
-        //     },
-        //     messages:{
-        //         rcustomername:{
-        //             required:"请输入用户名",
-        //             minlength:"至少输入{0}个字符"
-        //         },
-        //         rpassword:{
-        //             required:"请输入密码",
-        //             minlength:"至少输入{0}个字符"
-        //         },
-        //         telephone: {
-        //             required:"请输入手机号",
-        //             minlength:"请输入11位手机号",
-        //             isMobile:"请输入正确格式的手机号"
-        //         },
-        //         email: {
-        //             required:"请输入邮箱",
-        //             email:"请输入正确格式的邮箱"
-        //         }
-        //     }
-        // })
 
     </script>
     </body>
