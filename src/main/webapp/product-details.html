@@ -408,9 +408,9 @@
                                         加入购物车
                                     </a>
                                 </div>
-                                <div class="product-list-action-right">
-                                    <a href="wishlist.html" title="Wishlist">
-                                        <i class="ti-heart"></i>
+                                <div id="collect" class="product-list-action-right">
+                                    <a  type="button" onclick="collection()" title="收藏">
+                                        <i id="heart" style="" class="ti-heart"></i>
                                     </a>
                                 </div>
                             </div>
@@ -1021,6 +1021,9 @@
             }
         }
 
+        var customerId ;
+        var changed;
+        var statuss;
 
         //评论
         initPage();
@@ -1029,6 +1032,7 @@
             var goodsId = window.location.search.split("=")[1];
 
             $.ajax({
+                async:false,
                 type: 'POST',
                 url: 'selectEC',
                 data:{
@@ -1038,6 +1042,9 @@
                 success:function (response) {
                     console.log(response);
                     $(response).each(function (index,item) {
+
+                        customerId = item.customerId;
+
                         $("#comment").append(
                         "<div class=\"star-author-all\">"+
                             "<div class=\"product-author f-left\">"+
@@ -1057,8 +1064,119 @@
                 },
                 dataType: 'json'
             });
-        }
 
+            //红心
+            $.ajax({
+                type: 'POST',
+                url: 'selectC',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "customerId":customerId,
+                    "goodsId":goodsId,
+                }),
+                success:function (response) {
+                    if (response.status==true) {
+                        $("#heart").attr("style","color: red")
+                        statuss = 1;
+                        changed = 0;
+                    }else {
+                        statuss =0;
+                        changed = 0;
+                    }
+                },
+                error:function (response) {
+                   changed = 1;
+                   statuss =0;
+                   alert("changed:"+changed)
+                },
+                dataType: 'json'
+            })
+
+        }
+        function collection() {
+            var goodsId = window.location.search.split("=")[1];
+            if(changed ==1){
+                $.ajax({
+                    type: 'POST',
+                    url: 'insertC',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        "customerId":customerId,
+                        "goodsId":goodsId,
+                    }),
+                    success:function (response) {
+                        if(response==true){
+                            alert("收藏成功");
+                            $("#heart").attr("style","color: red")
+                            changed = 0;
+                            statuss =1;
+                        }else{
+                            alert("收藏失败");
+                        }
+                    },
+                    error:function (response) {
+                        alert("服务器内部错误,收藏失败");
+                    },
+                    dataType: 'json'
+                })
+            }else if(changed == 0){
+                if (statuss==1) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'changedFromHeart',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            "customerId":customerId,
+                            "goodsId":goodsId,
+                            "status":0,
+                        }),
+                        success:function (response) {
+                            if(response==true){
+                                alert("取消收藏");
+                                $("#heart").attr("style","")
+                                changed = 0;
+                                statuss =0;
+                            }else{
+                                alert("收藏失败");
+                            }
+                        },
+                        error:function (response) {
+                            alert("服务器内部错误,收藏失败");
+                        },
+                        dataType: 'json'
+                    })
+                }else {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'changedFromHeart',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            "customerId":customerId,
+                            "goodsId":goodsId,
+                            "status":1,
+                        }),
+                        success:function (response) {
+                            if(response==true){
+                                alert("收藏成功");
+                                $("#heart").attr("style","color: red")
+                                changed = 0;
+                                statuss =1;
+                            }else{
+                                alert("收藏失败");
+                            }
+                        },
+                        error:function (response) {
+                            alert("服务器内部错误,收藏失败");
+                        },
+                        dataType: 'json'
+                    })
+                }
+
+
+            }
+
+
+        }
     </script>
     </body>
 </html>
