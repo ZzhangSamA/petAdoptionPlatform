@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>PC端-物流轨迹查询结果页面嵌入</title>
+    <link rel="stylesheet" href="KDNWidget/KDNWidget.css" />
+</head>
+<body>
+<button onclick="getExpress()">
+<div id="demoID"></div>
+<script src="KDNWidget/KDNWidget.js"></script>
+<script>
+    function getExpress() {
+        KDNWidget.run({
+            serviceType: "B",
+            expCode:"YTO",
+            expNo:"805288023381685896",
+            showType:"normal",
+            container: "demoID"
+        })
+    }
+</script>
+</body>
+</html>
