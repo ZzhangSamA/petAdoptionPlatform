@@ -82,4 +82,11 @@ public interface TOrderMapper {
     StatusDto checkStatus(ReturnMessageVo returnMessageVo);
 
     int setStatus(ChangeGoodsStatusVo changeGoodsStatusVo);
+
+    /**
+     * 根据支付结果，修改订单状态为：待发货
+     * @param orderId
+     * @return
+     */
+    Integer updateByPayInfo(Integer orderId);
 }
