@@ -11,8 +11,6 @@ public interface GoodsCollectionMapper {
     int deleteByPrimaryKey(Integer collectionId);
 
 
-    int insert(GoodsCollection record);
-
     int insertSelective(GoodsCollection record);
 
 
@@ -31,4 +29,9 @@ public interface GoodsCollectionMapper {
 
     //批量
     int delByForeach(Map map);
+
+    //增加
+    int insertC(GoodsCollection goodsCollection);
+
+//    GoodsCollection selectC (GoodsCollection goodsCollection)
 }
