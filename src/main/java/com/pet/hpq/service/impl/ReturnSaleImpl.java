@@ -41,7 +41,6 @@ public class ReturnSaleImpl implements ReturnSale {
                 if (orderStatus == 1) {
                     return 0;
                 }
-                System.out.println(123456);
                 if ((orderStatus == 2 || orderStatus == 3 && returnStatus == 1)||(orderStatus == 4 || orderStatus == 5 || orderStatus == 6 && returnStatus == 2)) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMwwDDkkmmss");
                     Date date =new Date();
@@ -52,7 +51,6 @@ public class ReturnSaleImpl implements ReturnSale {
                     ChangeGoodsStatusVo changeGoodsStatusVo = new ChangeGoodsStatusVo();
                     changeGoodsStatusVo.setOgId(returnMessageVo.getOgId());
                     changeGoodsStatusVo.setStatus(1);
-                    System.out.println(456789);
                     return  tOrderMapper.setStatus(changeGoodsStatusVo);
                 }
             }

@@ -39,8 +39,14 @@
     where cart_id = #{cartId,jdbcType=INTEGER}
   </select>
   <select id="getCart" resultMap="shoppingCartMap" parameterType="int">
-    SELECT sc.cart_id,sc.goods_id,sc.paramter_id,sc.number,gi.goods_name, gp.parameter_icon,gp.parameter_name,sc.price,sc.total_price
-    FROM shopping_cart sc,goods_parameter gp,goods_info gi where sc.customer_id=2 and sc.paramter_id=gp.parameter_id and sc.`status`=1 and sc.goods_id=gi.goods_id
+    SELECT sc.cart_id,sc.goods_id,sc.parameter_id,sc.number,gi.goods_name, gp.parameter_icon,gp.parameter_name,sc.price,sc.total_price
+    FROM shopping_cart sc,goods_parameter gp,goods_info gi where sc.customer_id=#{customerId} and sc.parameter_id=gp.parameter_id and sc.`status`=1 and sc.goods_id=gi.goods_id
+  </select>
+  <select id="getPrice" parameterType="int" resultType="BigDecimal">
+    select preferential_price from goods_parameter where parameter_id=#{parameterId}
+  </select>
+  <select id="getAddressId" parameterType="int" resultType="int">
+    select address_id from shipping_address where customer_id=#{custmerId} and is_default=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
@@ -50,6 +56,23 @@
     delete from shopping_cart
     where cart_id = #{cartId,jdbcType=INTEGER}
   </delete>
+  <insert id="addOrder" useGeneratedKeys="true" keyProperty="orderId" parameterType="com.pet.hpq.vo.AddOrderVo">
+    insert into t_order(customer_id,address_id,order_number,total_price) VALUES(#{customerId},#{addressId},#{orderNumber},#{totalPrice})
+  </insert>
+  <insert id="addOrderGoods" parameterType="com.pet.hpq.vo.AddOrderGoodsVo">
+    insert into order_goods(order_id,goods_id,number,price,total_price,parameter_id) values
+   <foreach collection="shoppingCarDtos" item="item" index="index" separator=",">
+                                  (
+                                  #{orderId},
+                                  #{item.goodsId},
+                                  #{item.number},
+                                  #{item.price},
+                                  #{item.totalPrice},
+                                  #{item.parameterId}
+                                  )
+                                </foreach>
+
+  </insert>
   <insert id="insert" parameterType="com.pet.hpq.pojo.ShoppingCart" >
     <!--
       WARNING - @mbggenerated
@@ -101,6 +124,12 @@
       </if>
     </trim>
   </insert>
+  <update id="removeCart" parameterType="com.pet.hpq.vo.ShoppingCarVo">
+    update shopping_cart set status=0 where customer_id=#{customerId} and cart_id=#{cartId}
+  </update>
+  <update id="removeAllCart" parameterType="int">
+    update shopping_cart set status=0 where customer_id=#{customerId}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.pet.hpq.pojo.ShoppingCart" >
     <!--
       WARNING - @mbggenerated
