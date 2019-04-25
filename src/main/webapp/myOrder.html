@@ -612,7 +612,7 @@
                                 "<div id='message'>等待付款</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='#' id='orderMessage'></a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'></a></div></td><td colspan='1' style='font-size: large'>" +
-                                "<div ><a class='transaction-status'  style='color: red;'  href='#'>立即付款</a> </div>" +
+                                "<div ><a class='transaction-status goToPay'  style='color: red;'  href='#'>立即付款</a> </div>" +
                                 "<div><a class='hover-blue refuseOrder' href='javascript:void(0);' >取消订单</a> </div></td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -781,39 +781,40 @@
     $("html").on("click",".checked",function () {
         $("#simplyBody").remove();
         $("body").css("overflow","auto");
-                   var ac = $(".confirm").parents("table").find(".orderNumber").html();
-                   var bc = ac.split("：")[1];
-                   var height = $(window).height();
-                   var width = $(window).width();
-                   var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
-                       '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
-                   $("html").append(htmlValue);
+        var ac = $(".confirm").parents("table").find(".orderNumber").html();
+        var bc = ac.split("：")[1];
+        var height = $(window).height();
+        var width = $(window).width();
+        var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+            '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+        $("html").append(htmlValue);
 
-                   $.ajax({
-                       async: true,
-                       cache: false,
-                       traditional: true,
-                       type: "POST",
-                       url: "delivery",
-                       contentType: "application/json;charset=utf-8",
-                       data: JSON.stringify({
-                           "orderNumber":bc
-                       }),
-                       success:function(text){
-                           $(".loading_masker").remove()
-                         if (text==0){
-                            alert("错误，确认失败")
-                         }else if (text==1){
-                             window.location.reload()
-                         }
-                       },
-                       error: function (text) {
-                           alert("服务器错误，确认失败");
-                       },
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "delivery",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "orderNumber":bc
+            }),
+            success:function(text){
+                $(".loading_masker").remove()
+                if (text==0){
+                    alert("错误，确认失败")
+                }else if (text==1){
+                    window.location.reload()
+                }
+            },
+            error: function (text) {
+                alert("服务器错误，确认失败");
+            },
 
-                       dataType: "json"
-                   });
+            dataType: "json"
+        });
     })
+
     $('body').on('click','.refuseOrder',function(){
         var htmlValue = "<div id=\"simplyBody\">\n" +
             "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
@@ -867,6 +868,106 @@
             dataType: "json"
         });
     })
+
+    $('body').on('click','.goToPay',function(){
+        var htmlValue = "<div id=\"simplyBody\">\n" +
+            "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
+            "<div style=\"margin: 2% 30%\"><h2>是否要付款？</h2></div>\n" +
+            "<div style=\"margin: 10%\">\n" +
+            "<span class='transaction-status zfb' style=\"margin: 0 60% 0 0\" id=\"zfb\"><a>支付宝</a></span>\n" +
+            "<span class='transaction-status wx' id=\"wx\"><a>微信支付</a></span>\n" +
+            "<span class='transaction-status noPay' id=\"noPay\"><a>一会儿再付</a></span>\n" +
+            "</div>\n" +
+            "</div>";
+        $("html").append(htmlValue);
+        $("body").css("overflow","hidden")
+    })
+    $("html").on("click",".noPay",function () {
+        $("#simplyBody").remove()
+        $("body").css("overflow","auto")
+    })
+    $("html").on("click",".wx",function () {
+        $("#simplyBody").remove();
+        $("body").css("overflow","auto");
+        var ac = $(".goToPay").parents("table").find(".orderNumber").html();
+        var bc = ac.split("：")[1];
+        var height = $(window).height();
+        var width = $(window).width();
+        var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+            '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+        $("html").append(htmlValue);
+
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "insertSelective",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "customerId":1,
+                "orderId":1,
+                "platformId":2,
+                "money":2640
+            }),
+            success:function(response){
+                $(".loading_masker").remove()
+                if (response != true){
+                    alert("微信支付：付款失败")
+                }else if (response == true){
+                    alert("微信支付恭喜您，付款成功")
+                    window.location.reload()
+                }
+            },
+            error: function (text) {
+                alert("服务器错误，付款失败");
+            },
+
+            dataType: "json"
+        });
+    })
+
+    $("html").on("click",".zfb",function () {
+        $("#simplyBody").remove();
+        $("body").css("overflow","auto");
+        var ac = $(".goToPay").parents("table").find(".orderNumber").html();
+        var bc = ac.split("：")[1];
+        var height = $(window).height();
+        var width = $(window).width();
+        var htmlValue = '<div class="loading_masker" style="height:'+height+'px;width:'+width+'px;position:fixed;top:0px;left:0px;text-align:center;verticle-align:middle;">' +
+            '<img style="margin-top:400px;" src="assets/img/loading.gif"/><div>';
+        $("html").append(htmlValue);
+
+        $.ajax({
+            async: true,
+            cache: false,
+            traditional: true,
+            type: "POST",
+            url: "insertSelective",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({
+                "customerId":1,
+                "orderId":1,
+                "platformId":1,
+                "money":2640
+            }),
+            success:function(response){
+                $(".loading_masker").remove()
+                if (response != true){
+                    alert("蚂蚁金服：付款失败")
+                }else if (response == true){
+                    alert("蚂蚁金服恭喜您，付款成功")
+                    window.location.reload()
+                }
+            },
+            error: function (text) {
+                alert("服务器错误，付款失败");
+            },
+
+            dataType: "json"
+        });
+    })
+
     // $(".transaction-status").click(function () {
     //     alert(222)
     // })

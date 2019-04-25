@@ -20,4 +20,25 @@ public interface OrderService {
     GoodsDto getGoodsInfo(GoodsOrderVo goodsOrderVo);
     GoodsDto getRefuseGoods(GoodsOrderVo goodsOrderVo);
     int setStatus(ReturnMessageVo returnMessageVo);
+
+    /**
+     * 根据订单id获取对象
+     * @param orderId
+     * @return
+     */
+    TOrder selectByPrimaryKey(Integer orderId);
+
+    /**
+     * 根据条件属性修改对象属性
+     * @param tOrder
+     * @return
+     */
+    Boolean updateByPrimaryKeySelective(TOrder tOrder);
+
+    /**
+     * 根据订单编号获取TOrder对象
+     * @param orderNumber
+     * @return
+     */
+    TOrder getOrderByOrderNumber(String orderNumber);
 }

@@ -13,5 +13,7 @@ public interface ShoppingCart {
 
     int addOrder(ShoppingCarVo shoppingCarVo);
 
+    int addShoppingCart(ShoppingCarVo shoppingCarVo);
 
+    int addOneOrder(ShoppingCarVo shoppingCarVo);
 }

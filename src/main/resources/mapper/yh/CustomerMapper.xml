@@ -42,7 +42,7 @@
   <select id="getCustomerInfo" parameterType="int" resultMap="CustomerResultMap">
       select * from customer where status=1 and customer_id=#{customerId}
   </select>
-
+<!--修改用户信息-->
   <update id="updateCustomer" parameterType="com.pet.yh.pojo.Customer">
     update customer
     <set>
