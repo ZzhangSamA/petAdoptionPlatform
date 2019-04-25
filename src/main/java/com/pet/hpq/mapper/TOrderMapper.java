@@ -3,10 +3,7 @@ package com.pet.hpq.mapper;
 import com.pet.hpq.dto.*;
 import com.pet.hpq.pojo.TOrder;
 import com.pet.hpq.service.ReturnSale;
-import com.pet.hpq.vo.ChangeGoodsStatusVo;
-import com.pet.hpq.vo.GoodsOrderVo;
-import com.pet.hpq.vo.OrderInfoVo;
-import com.pet.hpq.vo.ReturnMessageVo;
+import com.pet.hpq.vo.*;
 
 
 import java.util.Date;
@@ -85,8 +82,8 @@ public interface TOrderMapper {
 
     /**
      * 根据支付结果，修改订单状态为：待发货
-     * @param orderId
+     * @param paymentVo
      * @return
      */
-    Integer updateByPayInfo(Integer orderId);
+    Integer updateByPayInfo(PaymentVo paymentVo);
 }
