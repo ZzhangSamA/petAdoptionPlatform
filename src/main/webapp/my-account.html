@@ -357,7 +357,7 @@
                             <div id="faq" class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1">编辑你的详细信息 </a></h5>
+                                        <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-1" onclick="getCustomerInfo()">编辑你的详细信息 </a></h5>
                                     </div>
                                     <div id="my-account-1" class="panel-collapse collapse ">
                                         <div class="panel-body">
@@ -369,32 +369,34 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="billing-info">
-                                                            <label>First Name</label>
-                                                            <input type="text">
+                                                            <label>姓名</label>
+                                                            <input type="text" id="customername">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="billing-info">
-                                                            <label>Last Name</label>
-                                                            <input type="text">
+                                                            <label id="customersex">性别</label><br>
+                                                            <input class="clo-lg-2 col-md-2" type="radio" id="secret" style="height: 20px" name="sex" >保密
+                                                            <input class="clo-lg-2 col-md-2" type="radio" id="man" style="height: 20px" name="sex" >男
+                                                            <input class="clo-lg-2 col-md-2" type="radio" id="woman" style="height: 20px" name="sex" >女
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="billing-info">
-                                                            <label>Email Address</label>
-                                                            <input type="email">
+                                                            <label>邮箱地址</label>
+                                                            <input type="email" id="customeremail">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="billing-info">
-                                                            <label>Telephone</label>
-                                                            <input type="text">
+                                                            <label>生日</label>
+                                                            <input type="text" id="customerbirthday">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="billing-info">
-                                                            <label>Fax</label>
-                                                            <input type="text">
+                                                            <label>电话</label>
+                                                            <input type="text" id="customerphone">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -403,7 +405,7 @@
                                                         <a href="#"><i class="ti-arrow-up"></i> back</a>
                                                     </div>
                                                     <div class="billing-btn">
-                                                        <button type="button">Continue</button>
+                                                        <button type="button" onclick="updateCustomer()">修改</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -630,7 +632,7 @@
                     type: 'POST',
                     url: 'selectFromAddress',
                     data:{
-                        "customerId":1
+                        "customerId":customerId
                     },
                     traditional: true,
                     success:function (response) {
@@ -738,6 +740,73 @@
             function jumpAdd(customerId) {
                 var urll = "add-Address.html?customerId="+customerId;
                 window.location.href =urll ;
+            }
+
+            //信息回显
+
+            function getCustomerInfo() {
+                $.ajax({
+                    type:"GET",
+                    traditional:true,
+                    url:"getCustomerInfo",
+                    // data:JSON.stringify({
+                    //     "x":"1"
+                    // }),
+                    // contentType:"application/json; charset=utf-8",
+                    success:function (text) {
+
+                        if(text.sex==0){
+                            $("#secret").attr("checked",true)
+                        }else if(text.sex==1){
+                            $("#man").attr("checked",true)
+                        }else {
+                            $("#woman").attr("checked",true)
+                        }
+                        alert(1231545);
+                        $("#customername").val(text.customerName);
+                        // $("#customersex").val(text.sex);
+                        $("#customeremail").val(text.email);
+                        $("#customerbirthday").val(text.birthday);
+                        $("#customerphone").val(text.telephone);
+
+                    },
+                    error: function (message) {
+                        alert(404);
+                    },
+                    // dataType: 'json'
+                });
+            }
+            
+            function updateCustomer() {
+                alert($("#customername").val())
+                alert($("#customeremail").val())
+                alert($("#customerbirthday").val())
+                alert($("#customerphone").val())
+
+                //1.提交数据到服务器并获取返回值
+                $.ajax({
+                    type:"POST",
+                    url:"updateCustomer1",
+                    contentType:"application/json; charset=utf-8",
+                    data:JSON.stringify({
+                        "customerName":$("#customername").val(),
+                        "email":$("#customeremail").val(),
+                        "birthday":$("#customerbirthday").val(),
+                        "telephone":$("#customerphone").val()
+                    }),
+                    //2.根据返回值提示并跳转
+                    success:function (response) {
+                        if(response==true){
+                            window.location.href="my-account.html";
+                        }else {
+                            alert("修改失败")
+                        }
+                    },
+                    error:function (response) {
+                        alert("服务器内部错误,修改失败")
+                    },
+                    dataType: 'json'
+                })
             }
         </script>
     </body>
