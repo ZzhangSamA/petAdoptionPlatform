@@ -31,7 +31,7 @@ public class MyInterceptor implements HandlerInterceptor {
 
             Customer customer = (Customer) httpSession.getAttribute("customer");
             //获取对应的菜单信息，将其保存到session中
-            System.out.println(customer);
+//            System.out.println(customer);
             if(customer==null){
                 return false;
             }else{

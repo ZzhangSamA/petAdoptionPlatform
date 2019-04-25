@@ -835,7 +835,7 @@ function initArticlePage(currentPage,labelName) {
 
             $("#articleList").empty();
             $(response.articleDtoList).each(function (index, item) {
-                $("#articleList").append($("<div class=\"col-lg-6 col-md-12\">\n" +
+                $("#articleList").append("<div class=\"col-lg-6 col-md-12\">\n" +
                     "                                <div class=\"blog-wrapper mb-30 gray-bg\">\n" +
                     "                                    <div class=\"blog-img hover-effect\">\n" +
                     "                                        <a href=\"blog-details.html?articleId="+item.article_id+"\"><img alt=\"\" src=\""+item.article_pic+"\"></a>\n" +
@@ -847,10 +847,10 @@ function initArticlePage(currentPage,labelName) {
                     "                                                <li>"+item.create_time+"</li>\n" +
                     "                                            </ul>\n" +
                     "                                        </div>\n" +
-                    "                                        <h4><a href=\"blog-details.html?articleId=\"+item.article_id+\"\">"+item.article_title+"</a></h4>\n" +
+                    "                                        <h4><a href=\"blog-details.html?articleId="+item.article_id+"\">"+item.article_title+"</a></h4>\n" +
                     "                                    </div>\n" +
                     "                                </div>\n" +
-                    "                            </div>"));
+                    "                            </div>");
             });
             var page = response.page;
             var str ="";
