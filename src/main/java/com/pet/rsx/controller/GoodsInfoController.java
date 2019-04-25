@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class GoodsInfoController {
     @Autowired
     GoodsInfoService goodsInfoService;
+
+    /**
+     * 根据上传的信息获取集合
+     * @param goodsInfoVo
+     * @return
+     */
     @RequestMapping(value = "getGoodsInfoBy",method = RequestMethod.POST)
     public Object getGoodsInfoBy(@RequestBody(required = false)GoodsInfoVo goodsInfoVo){
-        System.out.println(goodsInfoVo);
         return goodsInfoService.getGoodsInfoBy(goodsInfoVo);
     }
 }

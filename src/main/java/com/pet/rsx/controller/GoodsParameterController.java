@@ -13,7 +13,12 @@ public class GoodsParameterController {
 @Autowired
 GoodsParameterService goodsParameterService;
 
-@RequestMapping(value = "getPrice",method = RequestMethod.POST)
+    /**
+     * 根据id获取价格
+     * @param goodsParameter
+     * @return
+     */
+    @RequestMapping(value = "getPrice",method = RequestMethod.POST)
 public Object getPrice(@RequestBody(required = false)GoodsParameter goodsParameter){
     return goodsParameterService.getPrice(goodsParameter);
 }

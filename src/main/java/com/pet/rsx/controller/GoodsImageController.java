@@ -13,6 +13,11 @@ public class GoodsImageController {
     @Autowired
     GoodsImageService goodsImageService;
 
+    /**
+     * 根据商品id获取图片集合
+     * @param goodsImg
+     * @return
+     */
     @RequestMapping(value = "getImageById",method = RequestMethod.POST)
     public Object getImageById(@RequestBody(required = false)GoodsImg goodsImg){
         return goodsImageService.getImageById(goodsImg);
