@@ -629,11 +629,11 @@
             function initPage(){
                 // $("#tbody").empty("");
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: 'selectFromAddress',
-                    data:{
-                        "customerId":customerId
-                    },
+                    // data:{
+                    //     "customerId":customerId
+                    // },
                     traditional: true,
                     success:function (response) {
                          console.log(response);
@@ -682,7 +682,7 @@
                     error:function (response) {
                         console.log(response)
                     },
-                    dataType: 'json'
+                    // dataType: 'json'
                 });
             }
             //删除地址
@@ -715,8 +715,8 @@
                     url: 'defaultAddress',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({
-                        "customerId":1,
-                        "addressId":addressId
+                        //"customerId":customerId,
+                        "addressId":addressId,
                     }),
                     //2.根据返回值提示并跳转
                     success:function (response) {
