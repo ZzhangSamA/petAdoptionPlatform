@@ -1,11 +1,14 @@
 package com.pet.lxw.controller;
 
+
+import com.pet.yh.pojo.Customer;
 import com.pet.lxw.pojo.ShippingAddress;
 import com.pet.lxw.service.ShippingAddressService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -15,10 +18,11 @@ public class ShippingAddressController {
     ShippingAddressService shippingAddressService;
 
 
-    @RequestMapping(value = "selectFromAddress",method = RequestMethod.POST)
-    public List<ShippingAddress> selectFromAddress(@RequestParam int customerId){
-
-        return this.shippingAddressService.selectFromAddress(customerId);
+    @RequestMapping(value = "selectFromAddress",method = RequestMethod.GET)
+    public List<ShippingAddress> selectFromAddress(HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        List<ShippingAddress> list =this.shippingAddressService.selectFromAddress(customer.getCustomerId());
+        return list;
     }
 
     @RequestMapping(value = "selectOneAddress")
@@ -47,8 +51,11 @@ public class ShippingAddressController {
     }
 
     @RequestMapping(value = "defaultAddress",method = RequestMethod.POST)
-    public Object defaultAddress(@RequestBody ShippingAddress shippingAddress){
+    public Object defaultAddress(@RequestBody ShippingAddress shippingAddress,HttpSession httpSession){
         //System.out.println(shippingAddress);
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+
+        shippingAddress.setCustomerId(customer.getCustomerId());
         boolean flag = this.shippingAddressService.defaultAddress(shippingAddress);
         return flag;
     }

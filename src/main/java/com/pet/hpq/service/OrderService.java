@@ -34,4 +34,11 @@ public interface OrderService {
      * @return
      */
     Boolean updateByPrimaryKeySelective(TOrder tOrder);
+
+    /**
+     * 根据订单编号获取TOrder对象
+     * @param orderNumber
+     * @return
+     */
+    TOrder getOrderByOrderNumber(String orderNumber);
 }
