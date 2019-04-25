@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/responsive.css">
         <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
     </head>
     <body>
     <header class="header-area">
@@ -229,8 +230,8 @@
                                     </li>
                                 </ul>
                                 <div class="shopping-cart-total">
-                                    <h4>Shipping : <span>$20.00</span></h4>
-                                    <h4>Total : <span class="shop-total">$260.00</span></h4>
+                                    <h4>Shipping : <span >$20.00</span></h4>
+
                                 </div>
                                 <div class="shopping-cart-btn">
                                     <a href="cart.html">view cart</a>
@@ -355,27 +356,20 @@
                         <div class="product-details-img">
                             <img id="zoompro" src="assets/img/product-details/l1.jpg" data-zoom-image="assets/img/product-details/bl1.jpg" alt="zoom"/>
                             <div id="gallery" class="mt-12 product-dec-slider owl-carousel">
-                                <a data-image="assets/img/product-details/l1.jpg" data-zoom-image="assets/img/product-details/bl1.jpg">
+
+                                <a data-image="assets/img/product-details/s1.jpg" >
                                     <img src="assets/img/product-details/s1.jpg" alt="">
                                 </a>
-                                <a data-image="assets/img/product-details/l2.jpg" data-zoom-image="assets/img/product-details/bl2.jpg">
-                                    <img src="assets/img/product-details/s2.jpg" alt="">
+                                <a data-image="assets/img/product/product-5.jpg" >
+                                    <img src="assets/img/product/product-5.jpg" alt="">
                                 </a>
-                                <a data-image="assets/img/product-details/l3.jpg" data-zoom-image="assets/img/product-details/bl3.jpg">
-                                    <img src="assets/img/product-details/s3.jpg" alt="">
-                                </a>
-                                <a data-image="assets/img/product-details/l4.jpg" data-zoom-image="assets/img/product-details/bl4.jpg">
-                                    <img src="assets/img/product-details/s4.jpg" alt="">
-                                </a>
-                                <a data-image="assets/img/product-details/l3.jpg" data-zoom-image="assets/img/product-details/bl3.jpg">
-                                    <img src="assets/img/product-details/s3.jpg" alt="">
-                                </a>
+
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product-details-content">
-                            <h2>Dog Calcium Food</h2>
+                            <h2 id="goodsName">Dog Calcium Food</h2>
                             <div class="product-rating">
                                 <i class="ti-star theme-color"></i>
                                 <i class="ti-star theme-color"></i>
@@ -385,23 +379,20 @@
                                 <span> ( 01 Customer Review )</span>
                             </div>
                             <div class="product-price">
-                                <span class="new">$20.00 </span>
-                                <span class="old">$50.00</span>
+                                ￥<span class="new" id="goodsPrice">$20.00 </span>
+                                <!--<span class="old">$50.00</span>-->
                             </div>
-                            <div class="in-stock">
+                            <!--<div class="in-stock">
                                 <span><i class="ion-android-checkbox-outline"></i> In Stock</span>
                             </div>
                             <div class="sku">
                                 <span>SKU#: MS04</span>
-                            </div>
-                            <p>Founded in 1989, Jack & Jones is a Danish brand that offers cool, relaxed designs that express a strong visual style through their diffusion lines, Jack & Jones intelligence and Jack & Jones vintage.</p>
+                            </div>-->
+                            <p id="goodsTitle"></p>
                             <div class="product-details-style shorting-style mt-30">
-                                <label>color:</label>
-                                <select>
-                                    <option value=""> Choose an option</option>
-                                    <option value=""> orange</option>
-                                    <option value=""> pink</option>
-                                    <option value=""> yellow</option>
+                                <label>规格:</label>
+                                <select id="goodsPra" onchange="changePrice()">
+
                                 </select>
                             </div>
                             <div class="quality-wrapper mt-30 product-quantity">
@@ -412,13 +403,13 @@
                             </div>
                             <div class="product-list-action">
                                 <div class="product-list-action-left">
-                                    <a class="addtocart-btn" href="#" title="Add to cart">
+                                    <a class="addtocart-btn" href="#" title="加入购物车">
                                         <i class="ion-bag"></i>
-                                        Add to cart
+                                        加入购物车
                                     </a>
                                 </div>
                                 <div class="product-list-action-right">
-                                    <a href="#" title="Wishlist">
+                                    <a href="wishlist.html" title="Wishlist">
                                         <i class="ti-heart"></i>
                                     </a>
                                 </div>
@@ -441,9 +432,9 @@
             <div class="container">
                 <div class="description-review-wrapper gray-bg pt-40">
                     <div class="description-review-topbar nav text-center">
-                        <a class="active" data-toggle="tab" href="#des-details1">DESCRIPTION</a>
-                        <a data-toggle="tab" href="#des-details2">MORE INFORMATION</a>
-                        <a data-toggle="tab" href="#des-details3">REVIEWS (2)</a>
+                        <a class="active" data-toggle="tab" href="#des-details1">评论详情</a>
+                        <a data-toggle="tab" href="#des-details2">商品详情</a>
+                        <a data-toggle="tab" href="#des-details3">商品评论</a>
                     </div>
                     <div class="tab-content description-review-bottom">
                         <div id="des-details1" class="tab-pane active">
@@ -477,85 +468,83 @@
                         </div>
                         <div id="des-details3" class="tab-pane">
                             <div class="rattings-wrapper">
-                                <div class="sin-rattings">
-                                    <div class="star-author-all">
-                                        <div class="product-rating f-left">
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <span>(5)</span>
-                                        </div>
-                                        <div class="ratting-author f-right">
-                                            <h3>tayeb rayed</h3>
-                                            <span>12:24</span>
-                                            <span>9 March 2018</span>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
-                                </div>
-                                <div class="sin-rattings">
-                                    <div class="star-author-all">
-                                        <div class="product-rating f-left">
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star theme-color"></i>
-                                            <i class="ti-star"></i>
-                                            <span>(4)</span>
-                                        </div>
-                                        <div class="ratting-author f-right">
-                                            <h3>farhana shuvo</h3>
-                                            <span>12:24</span>
-                                            <span>9 March 2018</span>
-                                        </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
+                                <!--<div class="sin-rattings">-->
+                                    <!--<div class="star-author-all">-->
+                                        <!--<div class="product-rating f-left">-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                        <!--</div>-->
+                                        <!--<div class="ratting-author f-right">-->
+                                            <!--<h3>tayeb rayed</h3>-->
+                                            <!--<span>12:24</span>-->
+                                            <!--<span>9 March 2018</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<p>这是评论</p>-->
+                                <!--</div>-->
+                                <div class="sin-rattings" id="comment">
+                                    <!--<div class="star-author-all">-->
+                                        <!--<div class="product-rating f-left">-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star theme-color"></i>-->
+                                            <!--<i class="ti-star"></i>-->
+                                        <!--</div>-->
+                                        <!--<div class="ratting-author f-right">-->
+                                            <!--<h3>ID:</h3>-->
+
+                                            <!--<span>小王</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<p>这也是个评论</p>-->
                                 </div>
                             </div>
-                            <div class="ratting-form-wrapper">
-                                <h3>Add your Comments :</h3>
-                                <div class="ratting-form">
-                                    <form action="#">
-                                        <div class="star-box">
-                                            <h2>Rating:</h2>
-                                                <div class="product-rating">
-                                                <i class="ti-star theme-color"></i>
-                                                <i class="ti-star theme-color"></i>
-                                                <i class="ti-star theme-color"></i>
-                                                <i class="ti-star"></i>
-                                                <i class="ti-star"></i>
-                                                <span>(3)</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="rating-form-style mb-20">
-                                                    <input placeholder="Name" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="rating-form-style mb-20">
-                                                    <input placeholder="Email" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="rating-form-style form-submit">
-                                                    <textarea name="message" placeholder="Message"></textarea>
-                                                    <input type="submit" value="add review">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            <!--<div class="ratting-form-wrapper">-->
+                                <!--<h3>Add your Comments :</h3>-->
+                                <!--<div class="ratting-form">-->
+                                    <!--<form action="#">-->
+                                        <!--<div class="star-box">-->
+                                            <!--<h2>Rating:</h2>-->
+                                                <!--<div class="product-rating">-->
+                                                <!--<i class="ti-star theme-color"></i>-->
+                                                <!--<i class="ti-star theme-color"></i>-->
+                                                <!--<i class="ti-star theme-color"></i>-->
+                                                <!--<i class="ti-star"></i>-->
+                                                <!--<i class="ti-star"></i>-->
+                                                <!--<span>(3)</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-md-6">-->
+                                                <!--<div class="rating-form-style mb-20">-->
+                                                    <!--<input placeholder="Name" type="text">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-6">-->
+                                                <!--<div class="rating-form-style mb-20">-->
+                                                    <!--<input placeholder="Email" type="text">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-12">-->
+                                                <!--<div class="rating-form-style form-submit">-->
+                                                    <!--<textarea name="message" placeholder="Message"></textarea>-->
+                                                    <!--<input type="submit" value="add review">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="related-product-area pt-95 pb-80 gray-bg">
+     <!--   <div class="related-product-area pt-95 pb-80 gray-bg">
             <div class="container">
                 <div class="section-title text-center mb-55">
                     <h4>Most Populer</h4>
@@ -723,7 +712,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 		<footer class="footer-area">
             <div class="footer-top pt-80 pb-50">
                 <div class="container">
@@ -878,12 +867,9 @@
                                         </select>
                                     </div>
                                     <div class="select-option-part">
-                                        <label>Color*</label>
-                                        <select class="select">
-                                            <option value="">- Please Select -</option>
-                                            <option value="">orange</option>
-                                            <option value="">pink</option>
-                                            <option value="">yellow</option>
+                                        <label>规格*</label>
+                                        <select class="select" id="">
+
                                         </select>
                                     </div>
                                 </div>
@@ -892,7 +878,7 @@
                                         <input type="text" value="2" name="qtybutton" class="cart-plus-minus-box">
                                     </div>
                                     <div class="quickview-btn-cart">
-                                        <a class="btn-style" href="#">add to cart</a>
+                                        <a class="btn-style" href="#">加入购物车</a>
                                     </div>
                                     <div class="quickview-btn-wishlist">
                                         <a class="btn-hover" href="#"><i class="ti-heart"></i></a>
@@ -904,8 +890,7 @@
                 </div>
             </div>
         </div>
-		
-		
+
 		
 		<!-- all js here -->
         <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
@@ -918,5 +903,162 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var price = getGoodsInfoById();
+            getImage();
+            changePrice(price);
+        });
+
+        function getGoodsInfoById() {
+            var goodsInfoId = 1;
+            goodsInfoId = window.location.search.split("=")[1];
+            var price="" ;
+            $.ajax({
+
+                type: 'POST',
+                url: 'getGoodsInfoBy',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                data:JSON.stringify({
+                    "search":$("#search").val(),
+                    "goodsId":goodsInfoId,
+                    "splitePageBean":{
+                        "currentPage":1,
+                        "pageSize":1
+                    }
+                }),
+                success: function (responseText) {
+
+                    var goodsInfo = responseText.goodsInfos[0];
+                    $("#goodsName").text(goodsInfo.goodsName);
+                    $("#goodsPrice").html(goodsInfo.showPrice);
+                    $("#goodsTitle").html(goodsInfo.goodsTitle);
+                    price = goodsInfo.showPrice;
+
+                    var option="";
+                   var goods = goodsInfo.goodsParameters;
+                   for (var i=0;i<goods.length;i++){
+                       option +="<option value='"+goods[i].parameterId+"'>"+goods[i].parameterName+"</option>";
+                   }
+                    $("#goodsPra").html(option);
+                },
+                error: function (message) {
+                    console.log(message);
+
+                },
+                dataType: 'json'
+            });
+            return price;
+        }
+        function getImage() {
+            console.log($("#gallery").html());
+
+            var goodsInfoId = 1;
+            goodsInfoId = window.location.search.split("=")[1];
+            $.ajax({
+
+                type: 'POST',
+                url: 'getImageById',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                data:JSON.stringify({
+                    "goodsId":goodsInfoId
+                }),
+                success: function (responseText) {
+                // console.log(responseText);
+                var img="<div class=\"owl-stage-outer\"><div class=\"owl-stage\" style=\"transform: translate3d(-581px, 0px, 0px); transition: all 0s ease 0s; width: 1453px;\"><div class=\"owl-item cloned\" style=\"width: 133.25px; margin-right: 12px;\">";
+
+                    console.log($("#gallery").html());
+                $(responseText).each(function (index, item) {
+                  if (!item.isCover) {
+                      img +="<div class=\"owl-item cloned\" style=\"width: 133.25px; margin-right: 12px;\"><a data-image=\"assets/img/product/"+item.goodsImage+"\">\n" +
+                          "                                    <img src=\"assets/img/product/"+item.goodsImage+"\" alt=\"\">\n" +
+                          "                                </a></div>";
+                      img+="</a></div><div class=\"owl-item cloned active\" style=\"width: 133.25px; margin-right: 12px;\"><a data-image=\"assets/img/product/"+item.goodsImage+"\">\n" +
+                          "                                    <img src=\"assets/img/product/"+item.goodsImage+"\" alt=\"\">\n" +
+                          "                                </a></div><div class=\"owl-item cloned active\" style=\"width: 133.25px; margin-right: 12px;\"><a data-image=\"assets/img/product/"+item.goodsImage+"\">"
+
+                  }else {
+                       $("#zoompro").attr("src","assets/img/product/"+item.goodsImage)
+                    }
+
+                })
+                    img = img +"</div></div><div class=\"owl-nav disabled\"><div class=\"owl-prev\"><i class=\"ti-arrow-left\"></i></div><div class=\"owl-next\"><i class=\"ti-arrow-right\"></i></div></div><div class=\"owl-dots disabled\"><div class=\"owl-dot active\"><span></span></div></div>";
+                    // console.log(img);
+                $("#gallery").html(img);
+                },
+                error: function (message) {
+                    console.log(message);
+
+                },
+                dataType: 'json'
+            });
+        }
+        function changePrice(price) {
+            if ($("#goodsPra").val()==0){
+                $("#goodsPrice").html(price);
+            } else {
+                $.ajax({
+
+                    type: 'POST',
+                    url: 'getPrice',
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    data:JSON.stringify({
+                        "parameterId":$("#goodsPra").val()
+                    }),
+                    success: function (responseText) {
+                        $("#goodsPrice").html(responseText);
+
+                    },
+                    error: function (message) {
+                        console.log(message);
+
+                    },
+                    dataType: 'json'
+                });
+            }
+        }
+
+
+        //评论
+        initPage();
+        function initPage(){
+
+            var goodsId = window.location.search.split("=")[1];
+
+            $.ajax({
+                type: 'POST',
+                url: 'selectEC',
+                data:{
+                    "goodsId":goodsId
+                },
+                traditional: true,
+                success:function (response) {
+                    console.log(response);
+                    $(response).each(function (index,item) {
+                        $("#comment").append(
+                        "<div class=\"star-author-all\">"+
+                            "<div class=\"product-author f-left\">"+
+                                 "<h6>"+item.createTime+"</h6>"+
+                            "</div>"+
+                            " <div class=\"ratting-author f-right\">"+
+                                "<h3>ID:</h3>"+
+                                "<span>"+item.customer[0].customerName+"</span>"+
+                            "</div>"+
+                        "</div>"+
+                        "<p style='height: 100px'>"+item.evaluationContent+"</p>"
+                        );
+                    })
+                },
+                error:function (response) {
+                    console.log(response)
+                },
+                dataType: 'json'
+            });
+        }
+
+    </script>
     </body>
 </html>

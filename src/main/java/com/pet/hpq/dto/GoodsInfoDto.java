@@ -3,6 +3,7 @@ package com.pet.hpq.dto;
 import java.math.BigDecimal;
 
 public class GoodsInfoDto {
+    private Integer ogId;
     private Integer goodsId;
     private String goodsName;
     private String parameterName;
@@ -10,6 +11,7 @@ public class GoodsInfoDto {
     private String parameterIcon;
     private BigDecimal PreferentialPrice;
     private int number;
+    private int goodsStatus;
     private BigDecimal goodsTotalPrice;
 
     public Integer getGoodsId() {
@@ -74,5 +76,21 @@ public class GoodsInfoDto {
 
     public void setGoodsTotalPrice(BigDecimal goodsTotalPrice) {
         this.goodsTotalPrice = goodsTotalPrice;
+    }
+
+    public Integer getOgId() {
+        return ogId;
+    }
+
+    public void setOgId(Integer ogId) {
+        this.ogId = ogId;
+    }
+
+    public int getGoodsStatus() {
+        return goodsStatus;
+    }
+
+    public void setGoodsStatus(int goodsStatus) {
+        this.goodsStatus = goodsStatus;
     }
 }
