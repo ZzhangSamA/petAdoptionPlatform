@@ -477,6 +477,7 @@
                 "currentPage": newCurrentPage
             }),
             success:function(text){
+                console.log(text)
                 if (text!=null){
                     $("#orders").remove();
                     var String1="";
@@ -535,6 +536,7 @@
                             }
 
                         });
+                        alert(item.status)
 
                         if (item.status==1){
                             String1+="<div id='orders' style='margin: 5% auto;width: 100%;'><div><table style=\"table-layout: fixed;word-break: break-all; word-wrap: break-word; border: 1px;width: 100%;text-align: center\">\n" +
@@ -576,6 +578,7 @@
                                 "<tr>\n" +
                                 "<th style=\"width: 41%\" colspan=\"2\">"+item.createTime+"</th>\n" +
                                 "<th  colspan=\"5\" class='orderNumber'>订单编号："+item.orderNumber+"</th>\n" +
+
                                 "</tr>\n" +
                                 "</tbody>"+String+"<tbody style='border-bottom: 1px solid #e5e5e5'> <tr> <td colspan='4' style='font-size: large;color: red;'  >实付款："+item.totalPrice+"" +
                                 "</td><td><a class='hover-blue' href='javascript:void(0);' id='afterSale'></a></td> <td colspan='1' style='font-size: large'>" +
@@ -599,7 +602,7 @@
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
-                                "<div ><a class='transaction-status'  style='color: blue'  href='#'>评价</a> </div>" +
+                                "<div ><a class='transaction-status'  style='color: blue'  href='order_goods_evaluation.html?orderNumber="+item.orderNumber+"'>评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -616,7 +619,7 @@
                                 "<div id='message'>交易成功</div>" +
                                 "<div><a class='hover-blue' style='word-break: break-all' href='orderDetail.html?orderNumber="+item.orderNumber+"'>订单详情</a>" +
                                 "</div><div><a class='hover-blue' href='javascript:void(0);' id='logistics'  onclick='getExpress()'>物流详情</a></div></td><td colspan='1' style='font-size: large'>" +
-                                "<div ><a class='transaction-status'  style='color: blue'  href='#'>再次评价</a> </div>" +
+                                "<div ><a class='transaction-status'  style='color: blue'  href='order_goods_evaluation.html?orderNumber="+item.orderNumber+"'>再次评价</a> </div>" +
                                 "</td> </tr>" +
                                 "</tbody></table> " +
                                 "</div>"
@@ -639,6 +642,7 @@
 
                     })
                     $(String1).insertAfter($("#orderHead"));
+                    alert(String1)
                 }
                 $("#liChange ul li").remove();
                 var totalpage=text.splitPage.totalPage;
