@@ -58,7 +58,13 @@ public class ShoppingCartImpl implements ShoppingCart {
                 shoppingCarDtos.add(shoppingCarDto);
             }
             shoppingCartMapper.removeAllCart(shoppingCarVo.getCustomerId());
-            int addressId = shoppingCartMapper.getAddressId(shoppingCarVo.getCustomerId());
+            int addressId=0;
+            try {
+               addressId  = shoppingCartMapper.getAddressId(shoppingCarVo.getCustomerId());
+            }catch (Exception E){
+                return 0;
+            }
+
             AddOrderVo addOrderVo = new AddOrderVo();
             addOrderVo.setCustomerId(shoppingCarVo.getCustomerId());
             addOrderVo.setAddressId(addressId);
@@ -104,6 +110,10 @@ public class ShoppingCartImpl implements ShoppingCart {
         shoppingCarVo.setTotalPrice(totalPrice);
         shoppingCarVo.setOrderId(addOrderVo.getOrderId());
         return shoppingCartMapper.addOneOrderGoods(shoppingCarVo);
+    }
+
+    public int getCartCount(Integer customerId) {
+        return shoppingCartMapper.getCartCount(customerId);
     }
 
 

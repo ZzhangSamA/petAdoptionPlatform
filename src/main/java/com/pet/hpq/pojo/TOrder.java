@@ -209,7 +209,7 @@ public class TOrder {
      * @mbggenerated
      */
     public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber == null ? null : orderNumber.trim();
+        this.orderNumber = orderNumber;
     }
 
     /**

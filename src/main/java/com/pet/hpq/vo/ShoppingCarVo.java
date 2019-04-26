@@ -85,4 +85,19 @@ public class ShoppingCarVo {
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingCarVo{" +
+                "cartId=" + cartId +
+                ", customerId=" + customerId +
+                ", parameterId=" + parameterId +
+                ", orderId=" + orderId +
+                ", number=" + number +
+                ", goodsId=" + goodsId +
+                ", price=" + price +
+                ", totalPrice=" + totalPrice +
+                ", cartMessage=" + Arrays.toString(cartMessage) +
+                '}';
+    }
 }

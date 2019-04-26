@@ -8,7 +8,6 @@ import com.pet.hpq.vo.GoodsOrderVo;
 import com.pet.hpq.vo.OrderInfoVo;
 import com.pet.hpq.vo.ReturnMessageVo;
 import com.pet.tools.SplitPage;
-import com.pet.yh.pojo.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +64,7 @@ public class OrderServiceImpl implements OrderService {
 
     public int checkedDeliver(TOrder tOrder) {
         TOrder nTOrder = tOrderMapper.getCreatTime(tOrder);
+        System.out.println(nTOrder);
         if (nTOrder==null){
             return 0;
         }
