@@ -22,9 +22,6 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "getCart",method = RequestMethod.POST)
     public Object getOrders(HttpSession httpSession){
-        Customer customer1 = new Customer();
-        customer1.setCustomerId(2);
-        httpSession.setAttribute("customer",customer1);
         Customer customer = (Customer)httpSession.getAttribute("customer");
 
         return shoppingCart.getCart(customer.getCustomerId());
@@ -50,6 +47,8 @@ public class ShoppingCartController {
     public Object addShoppingCart(@RequestBody ShoppingCarVo shoppingCarVo, HttpSession httpSession){
         Customer customer = (Customer)httpSession.getAttribute("customer");
         shoppingCarVo.setCustomerId(customer.getCustomerId());
+        System.out.println(customer.getCustomerId());
+        System.out.println(shoppingCarVo);
         return shoppingCart.addShoppingCart(shoppingCarVo);
     }
     @RequestMapping(value = "addOneOrder",method = RequestMethod.POST)
