@@ -33,6 +33,7 @@ public class MyInterceptor implements HandlerInterceptor {
             //获取对应的菜单信息，将其保存到session中
 //            System.out.println(customer);
             if(customer==null){
+                httpServletResponse.sendRedirect("login-register.html");
                 return false;
             }else{
                 return true;
