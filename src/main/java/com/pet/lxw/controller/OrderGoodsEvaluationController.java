@@ -16,7 +16,7 @@ public class OrderGoodsEvaluationController {
 
     @RequestMapping(value = "insertOGE",method = RequestMethod.POST)
     public Object insertOGE(@RequestBody OrderGoodsEvaluation orderGoodsEvaluation){
-        System.out.println(orderGoodsEvaluation);
+
         boolean flag = this.orderGoodsEvaluationService.insertOGE(orderGoodsEvaluation);
         return flag;
     }
