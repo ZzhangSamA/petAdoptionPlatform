@@ -423,10 +423,11 @@
                     success:function (response) {
                         console.log(response);
                         $(response).each(function (index,item) {
+                            var a = item;
                             $("#tbody").append("<tr>"+
                                     "<td style=\"text-align: center\"><input onclick='anbooksChange()' name='booksId' value="+item.collectionId+" class='ids' style=\" width: 23px;\"type=\"checkbox\"></td>"+
                                 "<td class=\"product-thumbnail\">"+
-                                "<a href=\"product-details.html\"><img href='product-details.html?goodsInfoId="+item.goods_info[index].goodsId+"' style='width: 120px;height: 120px' src="+item.goods_img[0].goodsImage+"></a>"+
+                                "<a href=\"product-details.html?goodsInfoId="+item.goods_info[0].goodsId+"\"><img  style='width: 120px;height: 120px' src="+item.goods_img[0].goodsImage+"></a>"+
                                 "</td>"+
                                 // "<td style=\"text-align: center\">"+item.goods_img[0].goodsImage+"</td>"+
                                 "<td style=\"text-align: center\">"+item.goods_info[0].goodsName+"</td>"+
@@ -435,6 +436,7 @@
                                 " <button type='button' onclick='removeCollection("+item.collectionId+")'>取消收藏</button>"+
                                 "</td>"+
                                 "</tr>");
+
                         })
                     },
                     error:function (response) {

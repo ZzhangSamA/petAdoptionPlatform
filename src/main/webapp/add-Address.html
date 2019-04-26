@@ -445,7 +445,7 @@
 
 
 
-    var customerId = window.location.search.split("=")[1];
+    // var customerId = window.location.search.split("=")[1];
 
     function addAddress() {
         // 1.提交数据到服务器并获取返回值
@@ -466,7 +466,7 @@
             url: 'addAddress',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
-                "customerId":customerId,
+
                 "name":jq("#cName").val(),
                 "postalCode":jq("#postalCode").val(),
                 "sex":sexx,

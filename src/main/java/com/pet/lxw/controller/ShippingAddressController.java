@@ -38,10 +38,11 @@ public class ShippingAddressController {
     }
 
     @RequestMapping(value = "addAddress",method = RequestMethod.POST)
-    public Object addAddress(@RequestBody ShippingAddress shippingAddress){
+    public Object addAddress(@RequestBody ShippingAddress shippingAddress,HttpSession httpSession){
+        Customer customer = (Customer) httpSession.getAttribute("customer");
+        shippingAddress.setCustomerId(customer.getCustomerId());
 
-        boolean flag = this.shippingAddressService.addAddress(shippingAddress);
-        return flag;
+        return this.shippingAddressService.addAddress(shippingAddress);
     }
 
     @RequestMapping(value = "updateAddress",method = RequestMethod.POST)
