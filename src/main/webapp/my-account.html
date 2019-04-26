@@ -358,7 +358,7 @@
                                                     <th style="width: 130px ;text-align: center">姓名</th>
                                                     <th style="width: 130px ;text-align: center">邮编</th>
                                                     <th style="width: 500px ;text-align: center">详细地址</th>
-                                                    <th width="100" style="text-align: center">增加地址</th>
+                                                    <!--<th width="100" style="text-align: center">增加地址</th>-->
                                                     <th width="100" style="text-align: center">更改地址</th>
                                                     <th width="100" style="text-align: center">删除地址</th>
                                                 </tr>
@@ -393,6 +393,9 @@
                                                         <!--</td>-->
                                                     <!--</tr>-->
                                                 </tbody>
+                                                <thead>
+                                                <input type="button"value="增加地址"onclick='jumpAdd()'> >
+                                                </thead>
                                                 </table>
                                 </div>
                             </div>
@@ -548,9 +551,9 @@
                                 "<td style=\"text-align: center\">"+item.name+"</td>"+
                                 "<td style=\"text-align: center\">"+item.postalCode+"</td>"+
                                 "<td style=\"text-align: center\">"+item.address+"</td>"+
-                                "<td class=\"billing-btn\" style=\"text-align: center\">"+
-                                " <button type='button' onclick='jumpAdd("+item.customerId+")'>增加</button>"+
-                                "</td>"+
+                                // "<td class=\"billing-btn\" style=\"text-align: center\">"+
+                                // " <button type='button' onclick='jumpAdd("+item.customerId+")'>增加</button>"+
+                                // "</td>"+
                                 "<td class=\"billing-btn\" style=\"text-align: center\">"+
                                 " <button type='button' onclick='jumpToEdit("+item.addressId+")'>修改</button>"+
                                 "</td>"+
@@ -632,7 +635,7 @@
                 window.location.href = url;
             }
             function jumpAdd(customerId) {
-                var urll = "add-Address.html?customerId="+customerId;
+                var urll = "add-Address.html?customerId";
                 window.location.href =urll ;
             }
 
