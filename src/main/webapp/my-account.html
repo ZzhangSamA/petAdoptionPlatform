@@ -394,7 +394,11 @@
                                                     <!--</tr>-->
                                                 </tbody>
                                                 <thead>
-                                                <input type="button"value="增加地址"onclick='jumpAdd()'> >
+                                                <!--<input type="button"value="增加地址"onclick='jumpAdd()'> -->
+                                                <div style="text-align: center">
+                                                    <a href="add-Address.html?customerId"><h4 style="color:brown">增加地址</h4></a>
+                                                </div>
+
                                                 </thead>
                                                 </table>
                                 </div>
@@ -634,10 +638,10 @@
                 var url = "change-address.html?addressId="+addressId;
                 window.location.href = url;
             }
-            function jumpAdd(customerId) {
-                var urll = "add-Address.html?customerId";
-                window.location.href =urll ;
-            }
+            // function jumpAdd(customerId) {
+            //     var urll = "add-Address.html?customerId";
+            //     window.location.href =urll ;
+            // }
 
             //信息回显
 
