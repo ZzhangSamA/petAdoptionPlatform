@@ -809,11 +809,11 @@
     $('body').on('click','.goToPay',function(){
         var htmlValue = "<div id=\"simplyBody\">\n" +
             "<div style=\"background-color: whitesmoke\"><h4 style=\"color: orange;text-align: center;margin: 0 auto\">提示</h4></div>\n" +
-            "<div style=\"margin: 2% 30%\"><h2>是否要付款？</h2></div>\n" +
+            "<div style=\"margin: 2% 32%\"><h3>是否要付款？</h3></div>\n" +
             "<div style=\"margin: 10%\">\n" +
-            "<span class='transaction-status zfb' style=\"margin: 0 60% 0 0\" id=\"zfb\"><a>支付宝</a></span>\n" +
-            "<span class='transaction-status wx' id=\"wx\"><a>微信支付</a></span>\n" +
-            "<span class='transaction-status noPay' id=\"noPay\"><a>一会儿再付</a></span>\n" +
+            "<span class=' zfb' style=\"margin: 0 55px 0 0;width: 20px;height: 8px\" id=\"zfb\"><span style='background: #00a9da'><font color='white' style='margin: 10px'>支付宝</font></span></span>\n" +
+            "<span class=' wx' style=\"margin: 0 55px 0 0;width: 20px;height: 8px\" id=\"wx\"><span style='background: #1e7e34'><font color='white' style='margin: 10px'>微信支付</font></span></span>\n" +
+            "<span class=' noPay' style=\"margin: 0 0 0 0;width: 20px;height: 8px\" id=\"noPay\"><span style='background: #cd0a0a'><font color='white' style='margin: 10px'>一会儿再付</font></span></span>\n" +
             "</div>\n" +
             "</div>";
         $("html").append(htmlValue);
