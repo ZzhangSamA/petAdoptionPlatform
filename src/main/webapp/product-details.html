@@ -808,8 +808,42 @@
             var price = getGoodsInfoById();
             getImage();
             changePrice(price);
+            getAllGoodsType();
         });
+        function getAllGoodsType() {
+            $.ajax({
 
+                type: 'POST',
+                url: 'getAllGoodType',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (responseText) {
+                    console.log(responseText);
+                    var str="";
+                    $(responseText).each(function (index, itme) {
+                        str+="<li> <ul> <li class=\"mega-menu-title\">"+itme.goodsTypeName+"</li>";
+
+                        $(itme.children).each(function (index1, itmetext) {
+                            str+=" <li><a a href=\"shop-page.html?goodsTypeId="+itmetext.goodsTypeId+"\">"+itmetext.goodsTypeName+"</a></li>";
+                        })
+
+                        str+="</ul></li>";
+                    })
+                    str+=" <li>\n" +
+                        "<ul>\n" +
+                        "<li><a href=\"shop-page.html\"><img alt=\"\" src=\"assets/img/banner/menu-img-4.jpg\"></a></li>\n" +
+                        "</ul>\n" +
+                        "</li>"
+                    $("#goodsTypeDate").html(str);
+
+                },
+                error: function (message) {
+                    console.log(message);
+
+                },
+                dataType: 'json'
+            });
+        }
         function getGoodsInfoById() {
            var goodsInfoId = 1;
             goodsInfoId = window.location.search.split("=")[1];

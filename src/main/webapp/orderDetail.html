@@ -421,6 +421,7 @@
             "orderNumber": orderNumber
         }),
         success:function(text){
+            console.log(text)
            $("#consignMessage").html(text.consignee+"\t"+text.deliveryAddress+"\t"+text.consigneePhone);
            $("#orderMessage").html(text.message);
            $("#getOrderNumber").html(text.orderNumber)
@@ -442,7 +443,29 @@
                 $("#but1").html("确认收货");
                 $("but2").html("联系客服");
                 $("#logisticsId").html(text.logisticsNumber)
-                $("#logisticsName").html(text.logisticsName)
+                if (text.logisticsName=="HHTT") {
+                    $("#logisticsName").html("天天快递")
+                }
+                if (text.logisticsName=="YTO") {
+                    $("#logisticsName").html("圆通快递")
+                }
+                if (text.logisticsName=="ZTO") {
+                    $("#logisticsName").html("中通快递")
+                }
+                if (text.logisticsName=="SF") {
+                    $("#logisticsName").html("顺丰快递")
+                }
+                if (text.logisticsName=="STO") {
+                    $("#logisticsName").html("申通快递")
+                }
+                if (text.logisticsName=="EMS") {
+                    $("#logisticsName").html("邮政EMS")
+                }if (text.logisticsName=="YZPT") {
+                    $("#logisticsName").html("邮政小包")
+                }if (text.logisticsName=="YD") {
+                    $("#logisticsName").html("韵达快递")
+                }
+
 
             }
             else if (text.status==4){

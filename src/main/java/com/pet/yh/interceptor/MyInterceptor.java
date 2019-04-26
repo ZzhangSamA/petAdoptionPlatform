@@ -22,7 +22,7 @@ public class MyInterceptor implements HandlerInterceptor {
         //1.1获取路径
         String uri = httpServletRequest.getRequestURI();
         //1.2判断路径,如果这个路径包含login-register或者loginCheck，我就放行
-        if(uri.indexOf("login-register")!=-1||uri.indexOf("loginCheck")!=-1||uri.indexOf("clearSession")!=-1){
+        if(uri.indexOf("login-register")!=-1||uri.indexOf("loginCheck")!=-1||uri.indexOf("clearSession")!=-1 || uri.indexOf("index") !=-1 || uri.indexOf("index-2") !=-1 || uri.indexOf("blog-leftsidebar") !=-1){
             return true;
         }else{
             //如果不是包含login或者loginCheck，我就验这个session里面有没有customer
@@ -33,6 +33,7 @@ public class MyInterceptor implements HandlerInterceptor {
             //获取对应的菜单信息，将其保存到session中
 //            System.out.println(customer);
             if(customer==null){
+                httpServletResponse.sendRedirect("login-register.html");
                 return false;
             }else{
                 return true;

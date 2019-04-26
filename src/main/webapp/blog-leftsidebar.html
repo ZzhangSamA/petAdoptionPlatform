@@ -235,10 +235,10 @@
         <div class="breadcrumb-area pt-95 pb-95 bg-img" style="background-image:url(assets/img/banner/banner-2.jpg);">
             <div class="container">
                 <div class="breadcrumb-content text-center">
-                    <h2>博客左侧边栏</h2>
+                    <h2>博客</h2>
                     <ul>
                         <li><a href="index.html">home</a></li>
-                        <li class="active">Blog Left sidebar</li>
+                        <li class="active">Blog</li>
                     </ul>
                 </div>
             </div>
@@ -702,7 +702,7 @@
     /**初始化分类列表**/
     $.get("getLabelList").done(function (data) {
         $(data).each(function (index, item) {
-            $("#labelList").append("<li><i class=\"fa fa-newspaper-o pink \"></i> <a href=\"#\" onclick='searchByLabel(\""+item.labelName+"\")' >"+item.labelName+"</a></li>");
+            $("#labelList").append("<li><i class=\"fa fa-newspaper-o pink \"></i> <a href=\"javascript:void(0)\" onclick='searchByLabel(\""+item.labelName+"\")' >"+item.labelName+"</a></li>");
         })
     });
     /**按分类搜索**/
