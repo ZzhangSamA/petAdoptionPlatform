@@ -62,7 +62,7 @@
     and brand_id = #{brandId}
   </if>
   <if test="search !=null and search !=''">
-    and goods_title like  concat('%',concat(#{search},'%'))
+    and goods_name like  concat('%',concat(#{search},'%'))
   </if>
   <if test="goodsId !=null and goodsId !=''">
     and gb.goods_id=#{goodsId}
