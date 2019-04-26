@@ -11,9 +11,13 @@
     
     /* cart */
     $(".icon-cart").on("click", function() {
-        $(this).parent().find('.shopping-cart-content').slideToggle('medium');
+        window.location.href="cart.html"
     })
-    
+    // $(".ti-shopping-cart").on("click", function(){
+    //     alert(123456)
+    // }
+
+
     /*--
 	Header Search Toggle
     -----------------------------------*/
@@ -50,7 +54,7 @@
             }
         }
     })
-    
+
     
     /*------ Wow Active ----*/
     new WOW().init();
@@ -261,3 +265,25 @@
     
     
 })(jQuery);
+
+$(function () {
+    getCartCount();
+    function getCartCount() {
+        $.ajax({
+            type: 'POST',
+            url: 'getCartCount',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (responseText) {
+                $(".count-style").html(responseText)
+            },
+            error: function (message) {
+                console.log(message);
+
+            },
+            dataType: 'json'
+        });
+    }
+
+});
+
