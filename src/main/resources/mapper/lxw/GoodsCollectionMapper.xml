@@ -18,7 +18,7 @@
       <result column="goods_image" property="goodsImage"></result>
     </collection>
     <collection property="goods_info" ofType="com.pet.lxw.dto.GoodsNameDto">
-      <id column="goods_id" property="id"></id>
+      <id column="goods_id" property="goodsId"></id>
       <result column="goods_name" property="goodsName"></result>
       <result column="show_price" property="showPrice"></result>
     </collection>
@@ -119,7 +119,7 @@
 
   <!--收藏列表查询-->
   <select id="selectFromCustomerId" resultMap="BaseResultMap" parameterType="int">
-    SELECT c.goods_image,c.goods_name,c.show_price,g.collection_id
+    SELECT c.goods_id,c.goods_image,c.goods_name,c.show_price,g.collection_id
 FROM (SELECT * from  goods_collection WHERE customer_id = #{customerId} and status = 1)g  LEFT JOIN
 (select a.*,b.goods_name,b.show_price FROM (select * from goods_img)
 a LEFT JOIN (SELECT * FROM goods_info ) b ON a.goods_id =b.goods_id) c ON g.goods_id = c.goods_id
