@@ -702,7 +702,7 @@
     /**初始化分类列表**/
     $.get("getLabelList").done(function (data) {
         $(data).each(function (index, item) {
-            $("#labelList").append("<li><i class=\"fa fa-newspaper-o pink \"></i> <a href=\"#\" onclick='searchByLabel(\""+item.labelName+"\")' >"+item.labelName+"</a></li>");
+            $("#labelList").append("<li><i class=\"fa fa-newspaper-o pink \"></i> <a href=\"javascript:void(0)\" onclick='searchByLabel(\""+item.labelName+"\")' >"+item.labelName+"</a></li>");
         })
     });
     /**按分类搜索**/
