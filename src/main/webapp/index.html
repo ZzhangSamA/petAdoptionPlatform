@@ -664,55 +664,55 @@
                     <h4>最新新闻</h4>
                     <h2>我们的博客</h2>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-1.jpg"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-2.jpg"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrapper mb-30 gray-bg">
-                            <div class="blog-img hover-effect">
-                                <a href="blog-details.html"><img alt="" src="assets/img/blog/blog-3.jpg"></a>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li>By: <span>Admin</span></li>
-                                        <li>Sep 14, 2018</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" id="newArticleList">
+                    <!--<div class="col-lg-4 col-md-6">-->
+                        <!--<div class="blog-wrapper mb-30 gray-bg">-->
+                            <!--<div class="blog-img hover-effect">-->
+                                <!--<a href="blog-details.html"><img alt="" src="assets/img/blog/blog-1.jpg"></a>-->
+                            <!--</div>-->
+                            <!--<div class="blog-content">-->
+                                <!--<div class="blog-meta">-->
+                                    <!--<ul>-->
+                                        <!--<li>By: <span>Admin</span></li>-->
+                                        <!--<li>Sep 14, 2018</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-6">-->
+                        <!--<div class="blog-wrapper mb-30 gray-bg">-->
+                            <!--<div class="blog-img hover-effect">-->
+                                <!--<a href="blog-details.html"><img alt="" src="assets/img/blog/blog-2.jpg"></a>-->
+                            <!--</div>-->
+                            <!--<div class="blog-content">-->
+                                <!--<div class="blog-meta">-->
+                                    <!--<ul>-->
+                                        <!--<li>By: <span>Admin</span></li>-->
+                                        <!--<li>Sep 14, 2018</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-4 col-md-6">-->
+                        <!--<div class="blog-wrapper mb-30 gray-bg">-->
+                            <!--<div class="blog-img hover-effect">-->
+                                <!--<a href="blog-details.html"><img alt="" src="assets/img/blog/blog-3.jpg"></a>-->
+                            <!--</div>-->
+                            <!--<div class="blog-content">-->
+                                <!--<div class="blog-meta">-->
+                                    <!--<ul>-->
+                                        <!--<li>By: <span>Admin</span></li>-->
+                                        <!--<li>Sep 14, 2018</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<h4><a href="blog-details.html">Lorem ipsum dolor amet cons adipisicing elit</a></h4>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 		    </div>
 		</div>
@@ -951,6 +951,28 @@
                 var url = "shop-page.html?goodsTypeId="+id;
                 window.location.href=url;
             }
+
+            /**初始化最新博客列表**/
+            $.get("getNewArticle").done(function (data) {
+                $(data).each(function (index, item) {
+                    $("#newArticleList").append("<div class=\"col-lg-4 col-md-6\">\n" +
+                        "                        <div class=\"blog-wrapper mb-30 gray-bg\">\n" +
+                        "                            <div class=\"blog-img hover-effect\">\n" +
+                        "                                <a href=\"blog-details.html?articleId="+item.article_id+"\"><img alt=\"\" src=\""+item.article_pic+"\"></a>\n" +
+                        "                            </div>\n" +
+                        "                            <div class=\"blog-content\">\n" +
+                        "                                <div class=\"blog-meta\">\n" +
+                        "                                    <ul>\n" +
+                        "                                        <li>作者: <span>"+item.user_name+"</span></li>\n" +
+                        "                                        <li>"+item.create_time+"</li>\n" +
+                        "                                    </ul>\n" +
+                        "                                </div>\n" +
+                        "                                <h4><a href=\"blog-details.html?articleId="+item.article_id+"\">"+item.article_title+"</a></h4>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </div>");
+                })
+            });
         </script>
     </body>
 </html>

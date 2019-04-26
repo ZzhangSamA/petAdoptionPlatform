@@ -113,7 +113,7 @@
     where ot.order_number=#{orderNumber} and og.og_id=#{ogId} and og.goods_id=gi.goods_id and og.parameter_id=gp.parameter_id
   </select>
   <select id="checkStatus" parameterType="com.pet.hpq.vo.ReturnMessageVo" resultType="com.pet.hpq.dto.StatusDto">
-    select ot.status tOderStatus ,og.`status` goodsStatus from t_order ot,order_goods og where ot.customer_id=#{customerId} and ot.order_number= #{orderNumber} and ot.order_id=og.order_id
+    select ot.status tOderStatus ,og.`status` goodsStatus from t_order ot,order_goods og where ot.customer_id=#{customerId} and ot.order_number= #{orderNumber} and ot.order_id=og.order_id and og_id=#{ogId}
   </select>
   <select id="getOrderId" parameterType="int" resultType="int">
     select order_id from t_order where order_number=#{orderNumber}

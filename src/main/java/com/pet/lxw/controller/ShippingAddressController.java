@@ -39,7 +39,7 @@ public class ShippingAddressController {
 
     @RequestMapping(value = "addAddress",method = RequestMethod.POST)
     public Object addAddress(@RequestBody ShippingAddress shippingAddress){
-        System.out.println(shippingAddress);
+
         boolean flag = this.shippingAddressService.addAddress(shippingAddress);
         return flag;
     }
@@ -52,7 +52,7 @@ public class ShippingAddressController {
 
     @RequestMapping(value = "defaultAddress",method = RequestMethod.POST)
     public Object defaultAddress(@RequestBody ShippingAddress shippingAddress,HttpSession httpSession){
-        //System.out.println(shippingAddress);
+
         Customer customer = (Customer) httpSession.getAttribute("customer");
 
         shippingAddress.setCustomerId(customer.getCustomerId());

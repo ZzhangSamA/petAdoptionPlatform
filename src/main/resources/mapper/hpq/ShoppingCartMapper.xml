@@ -40,7 +40,7 @@
   </select>
   <select id="getCart" resultMap="shoppingCartMap" parameterType="int">
     SELECT sc.cart_id,sc.goods_id,sc.parameter_id,sc.number,gi.goods_name, gp.parameter_icon,gp.parameter_name,sc.price,sc.total_price
-    FROM shopping_cart sc,goods_parameter gp,goods_info gi where sc.customer_id=#{customerId} and sc.parameter_id=gp.parameter_id and sc.`status`=1 and sc.goods_id=gi.goods_id
+    FROM shopping_cart sc,goods_parameter gp,goods_info gi where sc.customer_id=#{customerId} and sc.parameter_id=gp.parameter_id and sc.`status`=1 and sc.goods_id=gi.goods_id  ORDER BY cart_id desc
   </select>
   <select id="getPrice" parameterType="int" resultType="BigDecimal">
     select preferential_price from goods_parameter where parameter_id=#{parameterId}
