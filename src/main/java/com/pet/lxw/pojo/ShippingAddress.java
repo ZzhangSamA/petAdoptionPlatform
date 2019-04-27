@@ -24,6 +24,8 @@ public class ShippingAddress {
 
     public int customerId;
 
+    private String phone;
+
 
     @Override
     public String toString() {
@@ -37,6 +39,14 @@ public class ShippingAddress {
                 ", status=" + status +
                 ", customerId=" + customerId +
                 '}';
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getAddressId() {
