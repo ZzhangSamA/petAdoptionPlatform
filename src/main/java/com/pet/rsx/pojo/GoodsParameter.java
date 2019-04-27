@@ -14,10 +14,19 @@ public class GoodsParameter {
     private BigDecimal parameterPrice;
 
     private Integer stock;
+    private Integer buyCount;
 
     private BigDecimal preferentialPrice;
 
     private Boolean status;
+
+    public Integer getBuyCount() {
+        return buyCount;
+    }
+
+    public void setBuyCount(Integer buyCount) {
+        this.buyCount = buyCount;
+    }
 
     public Integer getParameterId() {
         return parameterId;
