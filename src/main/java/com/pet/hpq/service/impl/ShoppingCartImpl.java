@@ -4,6 +4,7 @@ import com.pet.hpq.dto.ShoppingCarDto;
 import com.pet.hpq.mapper.ShoppingCartMapper;
 import com.pet.hpq.mapper.TOrderMapper;
 import com.pet.hpq.service.ShoppingCart;
+import com.pet.hpq.tools.GetNewVo;
 import com.pet.hpq.vo.AddOrderGoodsVo;
 import com.pet.hpq.vo.AddOrderVo;
 import com.pet.hpq.vo.ShoppingCarVo;
@@ -34,49 +35,67 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     @Transactional
     public int addOrder (ShoppingCarVo shoppingCarVo) {
-        String[] cartMessage = shoppingCarVo.getCartMessage();
-        if (cartMessage!=null){
-            ArrayList<ShoppingCarDto> shoppingCarDtos = new ArrayList<ShoppingCarDto>();
-            BigDecimal allPrice=new BigDecimal(0);
-            for (String s:cartMessage){
-                int cartId = Integer.parseInt(s.split("&")[0].split("cartId=")[1]);
-                int goodsId = Integer.parseInt(s.split("&")[1].split("goodsId=")[1]);
-                int parameterId = Integer.parseInt(s.split("&")[2].split("parameterId=")[1]);
-                int number = Integer.parseInt(s.split("&")[3].split("number=")[1]);
-                ShoppingCarDto shoppingCarDto = new ShoppingCarDto();
-                shoppingCarDto.setCartId(cartId);
-                shoppingCarDto.setGoodsId(goodsId);
-                shoppingCarDto.setParameterId(parameterId);
-                shoppingCarDto.setNumber(number);
-                BigDecimal num = new BigDecimal(number);
-                BigDecimal totalPrice ;
-                BigDecimal price = shoppingCartMapper.getPrice(parameterId);
-                totalPrice=price.multiply(num);
-                allPrice= allPrice.add(totalPrice);
-                shoppingCarDto.setPrice(price);
-                shoppingCarDto.setTotalPrice(totalPrice);
-                shoppingCarDtos.add(shoppingCarDto);
-            }
-            shoppingCartMapper.removeAllCart(shoppingCarVo.getCustomerId());
-            int addressId=0;
-            try {
+        if (shoppingCarVo.getStatus()==1){
+            int addressId=shoppingCarVo.getAddressId();
+            if (addressId==0){
                addressId  = shoppingCartMapper.getAddressId(shoppingCarVo.getCustomerId());
-            }catch (Exception E){
-                return 0;
+
+            }
+            List<ShoppingCarDto> cart = shoppingCartMapper.getCart(shoppingCarVo.getCustomerId());
+            if (cart!=null){
+                BigDecimal orderTotalPrice=new BigDecimal(0);
+                for (ShoppingCarDto sc:cart){
+                    BigDecimal goodsTotalPrice = sc.getTotalPrice();
+                   orderTotalPrice= orderTotalPrice.add(goodsTotalPrice);
+                }
+                AddOrderVo addOrderVo = new AddOrderVo();
+                addOrderVo.setOrderNumber(RandomNumber.getFormat());
+                addOrderVo.setTotalPrice(orderTotalPrice);
+                if (addressId==0){
+                    return 0;
+                }
+                addOrderVo.setAddressId(addressId);
+                addOrderVo.setCustomerId(shoppingCarVo.getCustomerId());
+                shoppingCartMapper.addOrder(addOrderVo);
+                shoppingCartMapper.removeAllCart(shoppingCarVo.getCustomerId());
+                AddOrderGoodsVo addOrderGoodsVo = new AddOrderGoodsVo();
+                addOrderGoodsVo.setOrderId(addOrderVo.getOrderId());
+                addOrderGoodsVo.setShoppingCarDtos(cart);
+                return shoppingCartMapper.addOrderGoods(addOrderGoodsVo);
             }
 
-            AddOrderVo addOrderVo = new AddOrderVo();
-            addOrderVo.setCustomerId(shoppingCarVo.getCustomerId());
-            addOrderVo.setAddressId(addressId);
-            addOrderVo.setTotalPrice(allPrice);
-            String format = RandomNumber.getFormat();
-            addOrderVo.setOrderNumber(format);
-            shoppingCartMapper.addOrder(addOrderVo);
-            AddOrderGoodsVo addOrderGoodsVo = new AddOrderGoodsVo();
-            addOrderGoodsVo.setOrderId(addOrderVo.getOrderId());
-            addOrderGoodsVo.setShoppingCarDtos(shoppingCarDtos);
-            int i = shoppingCartMapper.addOrderGoods(addOrderGoodsVo);
-            return i;
+        }
+        else if(shoppingCarVo.getStatus()==2){
+            BigDecimal totalPrice ;
+            BigDecimal num = new BigDecimal(shoppingCarVo.getNumber());
+            BigDecimal price = shoppingCartMapper.getPrice(shoppingCarVo.getParameterId());
+            if (price==null){
+                return 0;
+            }
+            totalPrice=num.multiply(price);
+            int addressId=shoppingCarVo.getAddressId();
+            if (addressId==0){
+                addressId= shoppingCartMapper.getAddressId(shoppingCarVo.getCustomerId());
+
+            }
+            if (addressId==0){
+                return 0;
+            }
+                AddOrderVo addOrderVo = new AddOrderVo();
+                addOrderVo.setCustomerId(shoppingCarVo.getCustomerId());
+                addOrderVo.setAddressId(addressId);
+            System.out.println(shoppingCarVo.getAddressId());
+                addOrderVo.setTotalPrice(totalPrice);
+                String format = RandomNumber.getFormat();
+                addOrderVo.setOrderNumber(format);
+                shoppingCartMapper.addOrder(addOrderVo);
+                shoppingCarVo.setPrice(price);
+                shoppingCarVo.setTotalPrice(totalPrice);
+                shoppingCarVo.setOrderId(addOrderVo.getOrderId());
+                return shoppingCartMapper.addOneOrderGoods(shoppingCarVo);
+
+
+
         }
         return 0;
     }
@@ -90,30 +109,29 @@ public class ShoppingCartImpl implements ShoppingCart {
         shoppingCarVo.setTotalPrice(totalPrice);
         return shoppingCartMapper.addShoppingCart(shoppingCarVo);
     }
-
-
-    @Transactional
-    public int addOneOrder(ShoppingCarVo shoppingCarVo) {
-        BigDecimal totalPrice ;
-        BigDecimal num = new BigDecimal(shoppingCarVo.getNumber());
-        BigDecimal price = shoppingCartMapper.getPrice(shoppingCarVo.getParameterId());
-        totalPrice=num.multiply(price);
-        int addressId = shoppingCartMapper.getAddressId(shoppingCarVo.getCustomerId());
-        AddOrderVo addOrderVo = new AddOrderVo();
-        addOrderVo.setCustomerId(shoppingCarVo.getCustomerId());
-        addOrderVo.setAddressId(addressId);
-        addOrderVo.setTotalPrice(totalPrice);
-        String format = RandomNumber.getFormat();
-        addOrderVo.setOrderNumber(format);
-        shoppingCartMapper.addOrder(addOrderVo);
-        shoppingCarVo.setPrice(price);
-        shoppingCarVo.setTotalPrice(totalPrice);
-        shoppingCarVo.setOrderId(addOrderVo.getOrderId());
-        return shoppingCartMapper.addOneOrderGoods(shoppingCarVo);
-    }
-
     public int getCartCount(Integer customerId) {
         return shoppingCartMapper.getCartCount(customerId);
+    }
+
+    @Transactional
+    public int changeNum(ShoppingCarVo shoppingCarVo) {
+       BigDecimal price= shoppingCartMapper.getPriceInfo(shoppingCarVo);
+        System.out.println(price);
+       if (price!=null){
+           System.out.println(11);
+           int number = shoppingCarVo.getNumber();
+           BigDecimal num = new BigDecimal(number);
+           BigDecimal totalPrice = num.multiply(price);
+           shoppingCarVo.setPrice(price);
+           shoppingCarVo.setTotalPrice(totalPrice);
+           return  shoppingCartMapper.updateShoppingCar(shoppingCarVo);
+
+       }
+        return 0;
+    }
+
+    public ShoppingCarDto getOneGoods(ShoppingCarVo shoppingCarVo) {
+        return shoppingCartMapper.getOneGoods(shoppingCarVo);
     }
 
 

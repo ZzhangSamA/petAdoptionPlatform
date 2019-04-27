@@ -43,4 +43,10 @@ public interface ShoppingCartMapper {
     int addOneOrderGoods(ShoppingCarVo shoppingCarVo);
 
     int getCartCount(Integer customerId);
+
+    int updateShoppingCar(ShoppingCarVo shoppingCarVo);
+
+    BigDecimal getPriceInfo(ShoppingCarVo shoppingCarVo);
+
+    ShoppingCarDto getOneGoods(ShoppingCarVo shoppingCarVo);
 }

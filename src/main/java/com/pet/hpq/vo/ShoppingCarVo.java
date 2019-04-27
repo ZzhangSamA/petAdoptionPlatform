@@ -10,6 +10,8 @@ public class ShoppingCarVo {
     private int orderId;
     private int number;
     private int goodsId;
+    private int addressId;
+    private int status;
     private BigDecimal price;
     private BigDecimal totalPrice;
     private String[] cartMessage;
@@ -84,6 +86,22 @@ public class ShoppingCarVo {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
