@@ -262,13 +262,12 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="product-details-content">
                             <h2 id="goodsName">Dog Calcium Food</h2>
-                            <div class="product-rating">
-                                <i class="ti-star theme-color"></i>
-                                <i class="ti-star theme-color"></i>
-                                <i class="ti-star theme-color"></i>
-                                <i class="ti-star"></i>
-                                <i class="ti-star"></i>
-                                <span> ( 01 Customer Review )</span>
+                            <div id="cStars" class="product-rating">
+                                <!--<i class="ti-star theme-color"></i>-->
+                                <!--<i class="ti-star theme-color"></i>-->
+                                <!--<i class="ti-star theme-color"></i>-->
+                                <!--<i class="ti-star"></i>-->
+                                <span> ( 客户总评分 )</span>
                             </div>
                             <div class="product-price">
                                 ￥<span class="new" id="goodsPrice">$20.00 </span>
@@ -943,10 +942,11 @@
         var changed;
         var statuss;
 
+
         //评论
         initPage();
         function initPage(){
-
+            var cStarss=0;//平均的总星数
             $.ajax({
                 async:false,
                 type: 'POST',
@@ -958,9 +958,7 @@
                 success:function (response) {
                     console.log(response);
                     $(response).each(function (index,item) {
-
                         $("#comment").append(
-
                         "<div class=\"star-author-all\">"+
 
                             "<div class=\"product-author f-left\">"+
@@ -980,6 +978,8 @@
                         var summ;//余值
                         sum = item.star/2;
                         summ = item.star%2;
+                        cStarss += item.star
+
                         for(i=1;i<=sum;i++){
                             $("[name=star]:last").append(
                                 "<i class=\"ti-star theme-color\">"
@@ -991,6 +991,20 @@
                             );
                         }
                     })
+                    cStarss = cStarss/response.length
+                    cStarss = Math.round(cStarss)
+                    console.log("四舍五入后的cStars:"+cStarss)
+                    for(i=1;i<=(cStarss/2);i++){
+                        $("#cStars").append(
+                            "<i class=\"ti-star theme-color\">"
+
+                        );
+                    }
+                    if((cStarss%2)==1){
+                        $("#cStars").append(
+                            "<i class='ti-star'>"
+                        );
+                    }
                 },
                 error:function (response) {
                     console.log(response)
