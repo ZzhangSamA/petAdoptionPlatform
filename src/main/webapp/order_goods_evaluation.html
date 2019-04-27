@@ -418,17 +418,18 @@ var statuss;
                         "<a href=\"product-details.html\"><img src="+item.goods_img[0].goodsImage+"></a>"+
                         "</td>"+
                         "<td style=\"text-align: center\">"+item.goods_info[0].goodsName+"</td>"+
-                        // "<td style=\"text-align: center\">"+item.createTime+"</td>"+
+
                         "</tr>"+
 
                         "<tr >"+
                         " <td style=\"text-align: center\" height=\"200px\" >"+item.customer[0].customerName+":</td>"+
                         " <td  style=\"text-align: left\" >"+
+                        "<textarea id='evaluationContentA' placeholder=\"输入你对此商品的印象（1-10分）\">" +
+                        "</textarea>"+
                         "<textarea id='evaluationContent' placeholder=\"Massage\">" +
                         "</textarea>"+
                         "<input  type=\"button\" onclick='sendMSG("+item.customerId+","+item.goods_info[0].goodsId+","+item.order_goods[0].ogId+")' value=\"发送消息\">"+
                         "</td>"+
-                        // " <td class=\"col-lg-2 col-md-2\"style=\"text-align: center\" height=\"200px\"></td>"+
                         "</tr>");
                 })
             },
@@ -450,7 +451,8 @@ var statuss;
                 "customerId":customerId,
                 "ogId":ogId,
                 "goodsId":goodsId,
-                "evaluationContent":$("#evaluationContent").val()
+                "evaluationContent":$("#evaluationContent").val(),
+                "star":$("#evaluationContentA").val()
             }),
             //2.根据返回值提示并跳转
             success:function (response) {
@@ -461,7 +463,7 @@ var statuss;
                 }
             },
             error:function (response) {
-                alert("服务器内部错误,修改失败");
+                alert("输入数据类型有误");
             },
             dataType: 'json'
         })
