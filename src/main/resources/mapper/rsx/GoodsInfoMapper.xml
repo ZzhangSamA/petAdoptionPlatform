@@ -68,13 +68,15 @@
     and gb.goods_id=#{goodsId}
   </if>
   limit #{splitePageBean.start},#{splitePageBean.pageSize}
-  ) gm LEFT JOIN goods_parameter gp on gp.goods_id= gm.goods_id and status=1
+  ) gm , goods_parameter gp where gp.goods_id= gm.goods_id and status=1
 
 </select>
 
 <select id="getGoodsInfoCount" parameterType="com.pet.rsx.vo.GoodsInfoVo" resultType="int">
-
-  SELECT count(1)
+  SELECT  SUM(e.endd) FROM (
+  SELECT count(*) endd FROM
+  (SELECT  count(1) ken from (
+  SELECT gb.*,b.brand_name
   FROM (SELECT g.*, gt.goods_type_name
   FROM
   (SELECT
@@ -99,8 +101,14 @@
     and brand_id = #{brandId}
   </if>
   <if test="search !=null and search !=''">
-    and goods_title like  concat('%',concat(#{search},'%'))
+    and goods_name like  concat('%',concat(#{search},'%'))
   </if>
+  <if test="goodsId !=null and goodsId !=''">
+    and gb.goods_id=#{goodsId}
+  </if>
+
+  ) gm , goods_parameter gp where gp.goods_id= gm.goods_id and status=1 GROUP BY gm.goods_id)k
+  GROUP BY k.ken ) e
 
 
 </select>

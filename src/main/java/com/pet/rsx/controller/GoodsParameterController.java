@@ -22,4 +22,19 @@ GoodsParameterService goodsParameterService;
 public Object getPrice(@RequestBody(required = false)GoodsParameter goodsParameter){
     return goodsParameterService.getPrice(goodsParameter);
 }
+
+    /**
+     * 购买商品减库存
+     * @param goodsParameter{
+     *             parameterId:商品参数Id
+     *             buyCount：购买数量
+     * }
+     * @return
+     */
+    @RequestMapping(value = "buyShop",method = RequestMethod.POST)
+public Object buyShop(@RequestBody(required = false)GoodsParameter goodsParameter){
+    return goodsParameterService.updateStockById(goodsParameter);
+}
+
+
 }

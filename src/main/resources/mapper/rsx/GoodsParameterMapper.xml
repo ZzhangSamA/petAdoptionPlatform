@@ -15,4 +15,10 @@
   <select id="getPrice" resultType="double" parameterType="com.pet.rsx.pojo.GoodsParameter">
     SELECT  preferential_price FROM goods_parameter where parameter_id = #{parameterId};
   </select>
+  <select id="getStockById" parameterType="com.pet.rsx.pojo.GoodsParameter" resultType="Integer">
+    select stock from goods_parameter where parameter_id = #{parameterId}
+  </select>
+  <update id="updateStockById" parameterType="com.pet.rsx.pojo.GoodsParameter">
+    update goods_parameter set stock = #{stock} where parameter_id = #{parameterId}
+  </update>
 </mapper>

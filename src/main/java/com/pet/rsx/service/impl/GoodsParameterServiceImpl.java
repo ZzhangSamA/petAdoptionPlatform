@@ -14,4 +14,10 @@ public class GoodsParameterServiceImpl implements GoodsParameterService {
     public double getPrice(GoodsParameter goodsParameter) {
         return goodsParameterMapper.getPrice(goodsParameter);
     }
+
+    public Integer updateStockById(GoodsParameter goodsParameter) {
+        Integer stock = goodsParameterMapper.getStockById(goodsParameter);
+        goodsParameter.setStock(stock-goodsParameter.getBuyCount());
+        return goodsParameterMapper.updateStockById(goodsParameter);
+    }
 }

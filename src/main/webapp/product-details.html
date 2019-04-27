@@ -384,21 +384,10 @@
                                     <!--<p>这是评论</p>-->
                                 <!--</div>-->
                                 <div class="sin-rattings" id="comment">
-                                    <!--<div class="star-author-all">-->
-                                        <!--<div class="product-rating f-left">-->
-                                            <!--<i class="ti-star theme-color"></i>-->
-                                            <!--<i class="ti-star theme-color"></i>-->
-                                            <!--<i class="ti-star theme-color"></i>-->
-                                            <!--<i class="ti-star theme-color"></i>-->
-                                            <!--<i class="ti-star"></i>-->
-                                        <!--</div>-->
-                                        <!--<div class="ratting-author f-right">-->
-                                            <!--<h3>ID:</h3>-->
+                                    <div class="star-author-all">
 
-                                            <!--<span>小王</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<p>这也是个评论</p>-->
+                                    </div>
+
                                 </div>
                             </div>
                             <!--<div class="ratting-form-wrapper">-->
@@ -958,8 +947,6 @@
         initPage();
         function initPage(){
 
-
-
             $.ajax({
                 async:false,
                 type: 'POST',
@@ -972,10 +959,10 @@
                     console.log(response);
                     $(response).each(function (index,item) {
 
-                        // customerId = item.customerId;
-
                         $("#comment").append(
+
                         "<div class=\"star-author-all\">"+
+
                             "<div class=\"product-author f-left\">"+
                                  "<h6>"+item.createTime+"</h6>"+
                             "</div>"+
@@ -984,8 +971,25 @@
                                 "<span>"+item.customer[0].customerName+"</span>"+
                             "</div>"+
                         "</div>"+
+                            "<div name='star' class=\"product-rating f-right\">"+
+
+                            "</div>"+
                         "<p style='height: 100px'>"+item.evaluationContent+"</p>"
                         );
+                        var sum ;//除值
+                        var summ;//余值
+                        sum = item.star/2;
+                        summ = item.star%2;
+                        for(i=1;i<=sum;i++){
+                            $("[name=star]:last").append(
+                                "<i class=\"ti-star theme-color\">"
+                            );
+                        }
+                        if(summ==1){
+                            $("[name=star]:last").append(
+                                "<i class='ti-star'>"
+                            );
+                        }
                     })
                 },
                 error:function (response) {

@@ -38,6 +38,7 @@ public class ShippingAddress {
                 ", isDefault=" + isDefault +
                 ", status=" + status +
                 ", customerId=" + customerId +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 
