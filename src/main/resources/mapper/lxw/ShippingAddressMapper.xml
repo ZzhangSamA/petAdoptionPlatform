@@ -8,6 +8,7 @@
     -->
     <id column="address_id" property="addressId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR"/>
     <result column="sex" property="sex" jdbcType="BIT" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
