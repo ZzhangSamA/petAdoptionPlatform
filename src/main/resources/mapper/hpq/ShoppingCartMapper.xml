@@ -48,6 +48,16 @@
   <select id="getAddressId" parameterType="int" resultType="int">
     select address_id from shipping_address where customer_id=#{custmerId} and is_default=1
   </select>
+  <select id="getCartCount" parameterType="int" resultType="int">
+    SELECT count(*) from shopping_cart where customer_id=#{customerId} and status &lt;&gt;  0
+  </select>
+  <select id="getPriceInfo" parameterType="com.pet.hpq.vo.ShoppingCarVo" resultType="BigDecimal">
+    SELECT gp.preferential_price from shopping_cart sc,goods_parameter  gp
+    where sc.cart_id=#{cartId} and customer_id=#{customerId} and sc.parameter_id=gp.parameter_id and sc.status &lt;&gt; 0
+  </select>
+  <select id="getOneGoods" parameterType="com.pet.hpq.vo.ShoppingCarVo" resultMap="shoppingCartMap">
+      select goods_name,parameter_name,gp.preferential_price price from goods_info gi,goods_parameter gp WHERE gi.goods_id=#{goodsId} and gp.parameter_id=#{parameterId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -140,6 +150,10 @@ values(#{customerId},#{goodsId},#{number},#{price},#{totalPrice},#{parameterId})
       </if>
     </trim>
   </insert>
+  <update id="updateShoppingCar" parameterType="com.pet.hpq.vo.ShoppingCarVo">
+    update shopping_cart set number=#{number},price=#{price},total_price=#{totalPrice}
+    where cart_id=#{cartId} and customer_Id =#{customerId}
+  </update>
   <update id="removeCart" parameterType="com.pet.hpq.vo.ShoppingCarVo">
     update shopping_cart set status=0 where customer_id=#{customerId} and cart_id=#{cartId}
   </update>

@@ -15,7 +15,12 @@ public interface ShoppingCart {
 
     int addShoppingCart(ShoppingCarVo shoppingCarVo);
 
-    int addOneOrder(ShoppingCarVo shoppingCarVo);
 
     int getCartCount(Integer customerId);
+
+
+
+    int changeNum(ShoppingCarVo shoppingCarVo);
+
+    ShoppingCarDto getOneGoods(ShoppingCarVo shoppingCarVo);
 }

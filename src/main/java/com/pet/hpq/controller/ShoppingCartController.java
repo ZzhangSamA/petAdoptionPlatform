@@ -48,15 +48,21 @@ public class ShoppingCartController {
         shoppingCarVo.setCustomerId(customer.getCustomerId());
         return shoppingCart.addShoppingCart(shoppingCarVo);
     }
-    @RequestMapping(value = "addOneOrder",method = RequestMethod.POST)
-    public Object addOneOrder(@RequestBody ShoppingCarVo shoppingCarVo, HttpSession httpSession){
-        Customer customer = (Customer)httpSession.getAttribute("customer");
-        shoppingCarVo.setCustomerId(customer.getCustomerId());
-        return shoppingCart.addOneOrder(shoppingCarVo);
-    }
+
     @RequestMapping(value = "getCartCount",method = RequestMethod.POST)
     public Object getCartCount(HttpSession httpSession){
         Customer customer = (Customer)httpSession.getAttribute("customer");
         return shoppingCart.getCartCount(customer.getCustomerId());
+    }
+    @RequestMapping(value = "changeNum",method = RequestMethod.POST)
+    public Object changeNum(@RequestBody ShoppingCarVo shoppingCarVo,HttpSession httpSession){
+        Customer customer = (Customer)httpSession.getAttribute("customer");
+        shoppingCarVo.setCustomerId(customer.getCustomerId());
+        return shoppingCart.changeNum(shoppingCarVo);
+    }
+    @RequestMapping(value = "getOneGoods",method = RequestMethod.POST)
+    public Object getOneGoods(@RequestBody ShoppingCarVo shoppingCarVo,HttpSession httpSession){
+
+        return shoppingCart.getOneGoods(shoppingCarVo);
     }
 }

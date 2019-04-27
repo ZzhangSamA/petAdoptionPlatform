@@ -80,7 +80,7 @@
                             <div class="search-content">
                                 <form action="#">
                                     <input type="text" placeholder="Search" id="search1">
-                                    <button onclick="innitPage(1)">
+                                    <button onclick="search(1)">
                                         <i class="icon-magnifier"></i>
                                     </button>
                                 </form>
@@ -690,12 +690,12 @@
                             <div class="shop-widget">
                                 <h4 class="shop-sidebar-title">商品搜索</h4>
                                 <div class="shop-search mt-25 mb-50">
-                                    <form class="shop-search-form">
+                                    <div class="shop-search-form">
                                         <input type="text" placeholder="Find a product" id="search">
-                                        <button  onclick="innitPage(1)">
+                                        <button  onclick="search(1)">
                                             <i class="icon-magnifier"></i>
                                         </button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                      <!--       <div class="shop-widget">
@@ -1000,11 +1000,115 @@
             window.location.href=url;
         }
         
-        function innitPage(currentPage,brandId) {
+            function innitPage(currentPage,brandId) {
+                if (!$("#search").val()) {
+                    var goodsTypeId = window.location.search.split("=")[1];
 
-            console.log($("#search1").val())
-            var goodsTypeId = window.location.search.split("=")[1];
-            console.log(goodsTypeId)
+                }
+                console.log(goodsTypeId)
+                $.ajax({
+
+                    type: 'POST',
+                    url: 'getGoodsInfoBy',
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    data:JSON.stringify({
+                        "brandId":brandId,
+                        "search":$("#search").val(),
+                        "goodsTypeId":goodsTypeId,
+                        "splitePageBean":{
+                            "currentPage":currentPage,
+                            "pageSize":$("#pageSize").val()
+                        }
+                    }),
+                    success: function (responseText) {
+                        console.log(responseText);
+                        var splitePageBean = responseText.splitePageBean;
+                        var str1 ="";
+                        $("#pagination").empty();
+                        if(splitePageBean.currentPage==1){
+                            str1 = "<li class=\"disabled\" disabled='disabled'><a href=\"#\">上一页</a></li>";
+                        }else{
+                            str1 = "<li><a href=\"#\" onclick='innitPage("+( parseInt(splitePageBean.currentPage)-1)+")' >上一页</a></li>";
+                        }
+                        for(var i=1;i<=splitePageBean.pageCount;i++){
+                            if(i==splitePageBean.currentPage){
+                                str1 += "<li class=\"active\"><a href=\"#\" onclick='innitPage("+i+")'>"+i+"</a></li>"
+                            }else {
+                                str1 += "<li><a href=\"#\" onclick='innitPage("+i+")'>"+i+"</a></li>"
+
+                            }
+                        }
+                        if(splitePageBean.currentPage==splitePageBean.pageCount){
+                            str1 += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
+                        }else{
+                            str1 += "<li><a href=\"#\" onclick='initPage("+( parseInt(splitePageBean.currentPage)+1)+")'>下一页</a></li>";
+                        }
+                        $("#pagination").html(str1);
+                        var goodsInfos = responseText.goodsInfos;
+                        var  str ="";
+                        $(goodsInfos).each(function (index,item) {
+                            str+= "  <div class=\"product-width col-lg-6 col-xl-4 col-md-6 col-sm-6\">\n" +
+                                "                                        <div class=\"product-wrapper mb-10\">\n" +
+                                "                                            <div class=\"product-img\">\n" +
+                                "                                                <a href=\"product-details.html?goodsInfoId="+item.goodsId+"\">\n" +
+                                "                                                    <img src=\""+item.goodsImage+"\" alt=\"\">\n" +
+                                "                                                </a>\n" +
+                                "                                                <div class=\"product-action\">\n" +
+                                "                                                    <a title=\"Quick View\" data-toggle=\"modal\" data-target=\"#exampleModal\" href=\"#\">\n" +
+                                "                                                        <i class=\"ti-plus\"></i>\n" +
+                                "                                                    </a>\n" +
+                                "                                                    <a title=\"Add To Cart\" href=\"#\">\n" +
+                                "                                                        <i class=\"ti-shopping-cart addtocart-btn\"></i>\n" +
+                                "                                                    </a>\n" +
+                                "                                                </div>\n" +
+                                "                                                <div class=\"product-action-wishlist\">\n" +
+                                "                                                    <a title=\"Wishlist\" href=\"#\">\n" +
+                                "                                                        <i class=\"ti-heart\"></i>\n" +
+                                "                                                    </a>\n" +
+                                "                                                </div>\n" +
+                                "                                            </div>\n" +
+                                "                                            <div class=\"product-content\">\n" +
+                                "                                                <h4><a href=\"product-details.html?goodsInfoId="+item.goodsId+"\">"+item.goodsName+"</a></h4>\n" +
+                                "                                                <div class=\"product-price\">\n" +
+                                "                                                    <span class=\"new\">￥"+item.showPrice+" </span>\n" +
+                                // "                                                    <span class=\"old\">$50.00</span>\n" +
+                                "                                                </div>\n" +
+                                "                                            </div>\n" +
+                                "                                            <div class=\"product-list-content\">\n" +
+                                "                                                <h4><a href=\"#\">"+item.goodsName+"</a></h4>\n" +
+                                "                                                <div class=\"product-price\">\n" +
+                                "                                                    <span class=\"new\">￥"+item.showPrice+" </span>\n" +
+                                "                                                </div>\n" +
+                                "                                                <p>"+item.goodsTitle+"</p>\n" +
+                                "                                                <div class=\"product-list-action\">\n" +
+                                "                                                    <div class=\"product-list-action-left\">\n" +
+                                "                                                        <a class=\"addtocart-btn\" title=\"Add to cart\" href=\"#\"><i class=\"ion-bag\"></i> 加入购物车</a>\n" +
+                                "                                                    </div>\n" +
+                                "                                                    <div class=\"product-list-action-right\">\n" +
+                                "                                                        <a title=\"Wishlist\" href=\"#\"><i class=\"ti-heart\"></i></a>\n" +
+                                "                                                        <a title=\"Quick View\" data-toggle=\"modal\" data-target=\"#exampleModal\" href=\"#\"><i class=\"ti-plus\"></i></a>\n" +
+                                "                                                    </div>\n" +
+                                "                                                </div>\n" +
+                                "                                            </div>\n" +
+                                "                                        </div>\n" +
+                                "                                    </div>";
+                        })
+                        $("#shopData").html(str);
+                       if (!str){
+                           alert("此类商品未添加")
+                       }
+
+                    },
+                    error: function (message) {
+                        console.log(message);
+
+                    },
+                    dataType: 'json'
+                });
+            }
+        function search(currentPage) {
+
             $.ajax({
 
                 type: 'POST',
@@ -1012,9 +1116,7 @@
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 data:JSON.stringify({
-                    "brandId":brandId,
                     "search":$("#search").val(),
-                    "goodsTypeId":goodsTypeId,
                     "splitePageBean":{
                         "currentPage":currentPage,
                         "pageSize":$("#pageSize").val()
@@ -1079,7 +1181,7 @@
                             "                                                <div class=\"product-price\">\n" +
                             "                                                    <span class=\"new\">￥"+item.showPrice+" </span>\n" +
                             "                                                </div>\n" +
-                            "                                                <p>"+item.goodsDetails+"</p>\n" +
+                            "                                                <p>"+item.goodsTitle+"</p>\n" +
                             "                                                <div class=\"product-list-action\">\n" +
                             "                                                    <div class=\"product-list-action-left\">\n" +
                             "                                                        <a class=\"addtocart-btn\" title=\"Add to cart\" href=\"#\"><i class=\"ion-bag\"></i> 加入购物车</a>\n" +
@@ -1095,7 +1197,7 @@
                     })
                     $("#shopData").html(str);
                    if (!str){
-                       alert("此类商品未添加")
+                       alert("商品未找到")
                    }
 
                 },

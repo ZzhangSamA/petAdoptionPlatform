@@ -398,10 +398,10 @@
                         "<td>"+item.parameterName+"</td>"+
                         "<td class=\"product-price-cart\"><span class=\"amount price\" id='price"+index+"'>￥"+item.price+"</span></td>\n" +
                         "<td class=\"product-quantity\">\n" +
-                        "<div class=\"cart-plus-minus\">\n" +
-                            "<div class=\"dec qtybutton  addcc\" onclick='changeValue(1,goodsNumber"+index+",totalPrice"+index+",price"+index+")' >-</div>"+
-                        "<input class=\"cart-plus-minus-box  goodsNumber\" id='goodsNumber"+index+"' type=\"text\" name=\"qtybutton\" value=\""+item.number+"\">\n" +
-                            "<div class=\"inc qtybutton\" onclick='changeValue(2,goodsNumber"+index+",totalPrice"+index+",price"+index+")'>+</div>"+
+                        "<div class=\"cart-plus-minus\" >\n" +
+                            "<div class=\"dec qtybutton  addcc\" onmouseout='changeCartNum(goodsNumber"+index+","+item.cartId+")' onclick='changeValue(1,goodsNumber"+index+",totalPrice"+index+",price"+index+","+item.cartId+")' >-</div>"+
+                        "<input class=\"cart-plus-minus-box  goodsNumber\" readonly=\"readonly\" id='goodsNumber"+index+"' type=\"text\" "+item.cartId+"name=\"qtybutton\" value=\""+item.number+"\">\n" +
+                            "<div class=\"inc qtybutton\" onmouseout='changeCartNum(goodsNumber"+index+","+item.cartId+")' onclick='changeValue(2,goodsNumber"+index+",totalPrice"+index+",price"+index+",)'>+</div>"+
                         " </div>\n" +
                         " </td>\n" +
                         "<td class=\"product-subtotal \" id='totalPrice"+index+"'>￥"+item.totalPrice+"</td>\n" +
@@ -444,7 +444,7 @@
         }
 
 
-        function changeValue(id,goodsNumber,totalPrice,prices) {
+        function changeValue(id,goodsNumber,totalPrice,prices,cartId) {
             if (id == 1) {
                var nGoodsNumber=Number($(goodsNumber).val())-1
                if (nGoodsNumber<1){
@@ -466,28 +466,22 @@
             var nTotalPrice=  Number($(goodsNumber).val())*Number($(prices).html().split("￥")[1])
             $(totalPrice).html("￥"+c);
 
+
         }
-        function addOrder() {
-            var array = new Array();
-            $(".hidden").each(function (index,item) {
-                var cartMessage = item.value;
-                var number = $(this).parent(".product-thumbnail").parent(".topTr").find(".goodsNumber").val();
-                var message=cartMessage+"&number="+number;
-                console.log(message)
-                array.push(message)
-            })
+        function changeCartNum(goodsNumber,cartId) {
             $.ajax({
                 async: true,
                 cache: false,
                 traditional: true,
                 type: "POST",
-                url: "addOrder",
+                url: "changeNum",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify({
-                    "cartMessage":array
+                    "cartId":cartId,
+                    "number":$(goodsNumber).val()
+
                 }),
                 success:function(text){
-                window.location.href="myOrder.html"
 
                 },
                 error: function (text) {
@@ -496,6 +490,12 @@
 
                 dataType: "json"
             });
+        }
+        function addOrder() {
+
+            window.location.href="orderAdd.html?status=1"
+
+
         }
 
 
