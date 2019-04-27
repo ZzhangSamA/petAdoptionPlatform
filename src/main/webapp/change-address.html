@@ -303,6 +303,8 @@
                                                         <br/><br/>
                                                         <input type="text"  id="postalCode" placeholder="你的邮政编码" >
                                                         <br/><br/>
+                                                        <input type="text"  id="phone" placeholder="你的联系电话" >
+                                                        <br/><br/>
                                                         <input type="text" id="detailAddress"  placeholder="你的详细地址" >
                                                     </fieldset>
                                                 </div>
@@ -456,7 +458,7 @@
         success:function (response) {
             console.log(response);
 
-            jq("#myAddress").val("姓名："+response.name+"       地址："+response.address);
+            jq("#myAddress").val("姓名："+response.name+"       地址："+response.address+"       联系电话："+response.phone);
         },
         error:function (response) {
             console.error(response);
@@ -486,6 +488,7 @@
                 "addressId":addressId,
                 "name":jq("#cName").val(),
                 "postalCode":jq("#postalCode").val(),
+                "phone":jq("#phone").val(),
                 "sex":sexx,
                 "address":myAddrezz
             }),

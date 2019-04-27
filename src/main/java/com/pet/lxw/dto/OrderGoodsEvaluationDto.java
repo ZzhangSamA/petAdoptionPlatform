@@ -15,6 +15,7 @@ public class OrderGoodsEvaluationDto {
     private Integer fatherId;
     private Integer userId;
     private Boolean type;
+    private Integer star;
 
     List<CustomerDto> customer;
 
@@ -27,13 +28,22 @@ public class OrderGoodsEvaluationDto {
                 ", customerId=" + customerId +
                 ", goodsId=" + goodsId +
                 ", evaluationContent='" + evaluationContent + '\'' +
-                ", createTime=" + createTime +
+                ", createTime='" + createTime + '\'' +
                 ", status=" + status +
                 ", fatherId=" + fatherId +
                 ", userId=" + userId +
                 ", type=" + type +
+                ", star=" + star +
                 ", customer=" + customer +
                 '}';
+    }
+
+    public Integer getStar() {
+        return star;
+    }
+
+    public void setStar(Integer star) {
+        this.star = star;
     }
 
     public Integer getEvaluationId() {

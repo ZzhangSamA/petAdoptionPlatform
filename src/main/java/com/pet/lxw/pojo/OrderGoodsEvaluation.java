@@ -14,6 +14,7 @@ public class OrderGoodsEvaluation {
     private Integer fatherId;
     private Integer userId;
     private Boolean type;
+    private Integer star;
 
     @Override
     public String toString() {
@@ -28,7 +29,16 @@ public class OrderGoodsEvaluation {
                 ", fatherId=" + fatherId +
                 ", userId=" + userId +
                 ", type=" + type +
+                ", star=" + star +
                 '}';
+    }
+
+    public Integer getStar() {
+        return star;
+    }
+
+    public void setStar(Integer star) {
+        this.star = star;
     }
 
     public Integer getEvaluationId() {
