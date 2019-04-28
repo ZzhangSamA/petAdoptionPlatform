@@ -30,7 +30,7 @@ public interface ShoppingCartMapper {
 
     BigDecimal getPrice(int ParameterId);
 
-    int getAddressId(int customerId);
+    Integer getAddressId(int customerId);
 
     int addOrder(AddOrderVo addOrderVo);
 
