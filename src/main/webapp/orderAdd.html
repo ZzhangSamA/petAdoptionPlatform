@@ -250,7 +250,7 @@
                 <div class="checkout-wrapper">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h5 class="panel-title"><span>3</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-3">选择地址 </a></h5>
+                                <h5 class="panel-title"><span>1</span> <a data-toggle="collapse" data-parent="#faq" href="#my-account-3">选择地址 </a></h5>
                             </div>
                             <div id="my-account-3" class="panel-collapse collapse">
                                 <div class="panel-body">
@@ -583,9 +583,12 @@
     var addressId=0;
    var search = location.search;
    var status = search.split("=")[1];
-   var goodsId=search.split("goodsId=")[1].split("&&")[0];
-    var parameterId=search.split("parameterId=")[1].split("&&")[0];
-    var number=search.split("number=")[1].split("&&")[0];
+   if(status!=1)
+   { var goodsId=search.split("goodsId=")[1].split("&&")[0];
+       var parameterId=search.split("parameterId=")[1].split("&&")[0];
+       var number=search.split("number=")[1].split("&&")[0];
+   }
+
    getOrder();
     function getOrder() {
         if (status == 1) {
